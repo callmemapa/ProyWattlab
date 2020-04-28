@@ -32,7 +32,7 @@ function BaseRouter() {
                         <PrivateRoute exact path="/ModuloAdministrador" component={ModuloAdministrador} />
                         <PrivateRoute exact path="/ModuloAdministrador/Dashboard" component={MADashboard} />
                         <PrivateRoute exact path="/ModuloAdministrador/Users" component={MAUsers} />
-                        <PrivateRoute exact path="/ModuloAdministrador/Transformadores" component={MATransformadores} />
+                        <Route exact path="/ModuloAdministrador/Transformadores" component={MATransformadores} />
                         <PrivateRoute exact path="/ModuloAdministrador/Reportes" component={MAReportes} />
                         <PrivateRoute exact path="/ModuloAdministrador/Pagos" component={MAPagos} />
                         <PrivateRoute exact path="/ModuloAdministrador/Configuracion" component={MAConfiguracion} />
