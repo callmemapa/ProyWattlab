@@ -1,101 +1,53 @@
-// Flag for enabling cache in production
+let CACHE_NAME = 'wattlab-cache';
+let urlsToCache = [
+    './',
+    './imagenes/slides/Cali.png',
+    './imagenes/slides/Slide0.png',
+    './imagenes/slides/Slide1.png',
+    './imagenes/slides/slideCali.png',
+    '/ConsultaFactura',
+    '/PQRS',
+];
 
-var doCache = true;
-
-var CACHE_NAME = 'pwa-app-cache';
-
-// Delete old caches
-
-self.addEventListener('activate', event => {
-
-    const currentCachelist = [CACHE_NAME];
-
+// Install a service worker
+self.addEventListener('install', event => {
+    // Perform install steps
     event.waitUntil(
-
-        caches.keys()
-
-            .then(keyList =>
-
-                Promise.all(keyList.map(key => {
-
-                    if (!currentCachelist.includes(key)) {
-
-                        return caches.delete(key);
-
-                    }
-
-                }))
-
-            )
-
+        caches.open(CACHE_NAME)
+            .then(function (cache) {
+                console.log('Opened cache');
+                return cache.addAll(urlsToCache);
+            }).then(self.skipWaiting())
     );
-
 });
 
-// This triggers when user starts the app
+// Cache and return requests
+self.addEventListener('fetch', event => {
+    event.respondWith(
+        caches.match(event.request)
+            .then(function (response) {
+                // Cache hit - return response
+                if (response) {
+                    return response;
+                }
+                return fetch(event.request);
+            }
+            )
+    );
+});
 
-self.addEventListener('install', function (event) {
-
-    if (doCache) {
-
-        event.waitUntil(
-
-            caches.open(CACHE_NAME)
-
-                .then(function (cache) {
-
-                    fetch('asset-manifest.json')
-
-                        .then(response => {
-
-                            response.json();
-
-                        })
-
-                        .then(assets => {
-
-                            // We will cache initial page and the main.js
-
-                            // We could also cache assets like CSS and images
-
-                            const urlsToCache = [
-
-                                '/',
-                                '/ConsultaFactura',
-                                '/PQRS',
-
-                                assets['main.js']
-
-                            ];
-
-                            cache.addAll(urlsToCache);
-
-                        })
-
+// Update a service worker
+self.addEventListener('activate', event => {
+    let cacheWhitelist = ['your-app-name'];
+    event.waitUntil(
+        caches.keys().then(cacheNames => {
+            return Promise.all(
+                cacheNames.map(cacheName => {
+                    if (cacheWhitelist.indexOf(cacheName) === -1) {
+                        return caches.delete(cacheName);
+                    }
                 })
-
-        );
-
-    }
-
-});
-
-// Here we intercept request and serve up the matching files
-
-self.addEventListener('fetch', function (event) {
-
-    if (doCache) {
-
-        event.respondWith(
-
-            caches.match(event.request).then(function (response) {
-
-                return response || fetch(event.request);
-
-            })
-
-        );
-
-    }
-
+            );
+        })
+    );
 });

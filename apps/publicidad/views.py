@@ -3,22 +3,33 @@ from django.core.mail import  EmailMultiAlternatives
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from rest_framework.generics import ListAPIView, RetrieveAPIView
+from rest_framework import generics 
 
 from .models import Articulo
 from .serializer import ArticuloSerializer
 
 
 # Create your views here Publicidad.
-class ArticuloListView(ListAPIView): 
+class ArticuloListView(generics.ListAPIView): 
     queryset= Articulo.objects.all()
     serializer_class= ArticuloSerializer 
 
-class ArticuloDetailView(RetrieveAPIView): 
+class ArticuloDetailView(generics.RetrieveAPIView): 
+    queryset= Articulo.objects.all()
+    serializer_class= ArticuloSerializer 
+    
+class ArticuloCreateView(generics.CreateAPIView): 
+    queryset= Articulo.objects.all()
+    serializer_class= ArticuloSerializer 
+    
+class ArticuloDelView(generics.DestroyAPIView): 
     queryset= Articulo.objects.all()
     serializer_class= ArticuloSerializer 
 
-
+class ArticuloUpView(generics.UpdateAPIView): 
+    queryset= Articulo.objects.all()
+    serializer_class= ArticuloSerializer 
+    
 # Envio de correo electronicos 
 @api_view(['POST'])
 def pqrs(request): 

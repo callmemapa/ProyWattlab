@@ -1,43 +1,47 @@
 
-from rest_framework import status, generics
+from rest_framework import status, generics, viewsets
+from rest_framework.mixins import UpdateModelMixin
+
 from rest_framework.response import Response
-from knox.models import AuthToken
+from rest_framework.authtoken.models import  Token
+from rest_framework.authtoken.views import ObtainAuthToken
 
 from django.contrib.auth.models import User
+from .serializer import  UserSerializer, UpdateUserSerializer, ProfileSeralizer
 
-from .serializer import RegisterSerializer, UserSerializer, LoginSerializer
-
-#Listar usuarios
-class ListUser(generics.ListAPIView): 
+#Listar/Registrar usuarios (GET/POST)
+class UserView(viewsets.ModelViewSet): 
     queryset = User.objects.all()
     serializer_class = UserSerializer  
-
-#Registrar usuarios
-class RegisterUser(generics.GenericAPIView): 
     
-    def post(self, request): 
-        serializer = RegisterSerializer(data=request.data)
+
+#Login usuarios 
+class LoginUserView(ObtainAuthToken):
+    
+    def post(self, request, *args, **kwargs):    
+        respons = super(LoginUserView, self).post(request, *args, **kwargs)
+        token= Token.objects.get(key=respons.data['token'])
+        user= User.objects.get(id= token.user_id)
+        user_serializer = UserSerializer(user, many=False)
         
-        if serializer.is_valid(): 
-            user= serializer.save() 
-            token= AuthToken.objects.create(user)
-            
-            print(token[1])
-            return Response({"user": UserSerializer(user).data}, status= status.HTTP_201_CREATED )
-        else: 
-            return Response("FALLA")
-        
-#Login usuarios        
-class LoginUser(generics.GenericAPIView):
-     serializer_class = LoginSerializer
-     
-     def post (self, request, *args, **kwargs):
-        serializer= self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        user = serializer.validated_data
-        token= AuthToken.objects.create(user)
         return Response({
-             "user": UserSerializer(user).data, 
-             "token": token[1]
-            }, status= status.HTTP_201_CREATED)
+            'token': token.key, 
+            'user': user_serializer.data
+        }, status= status.HTTP_200_OK)
+
+#Update user and profile
+class UpdateUser(generics.GenericAPIView, UpdateModelMixin): 
+    
+    serializer_class= UpdateUserSerializer
+    queryset= User.objects.all()
+    
+    def put(self, request, *args, **kwargs):    
+        return self.partial_update(request, *args, **kwargs)
+    
+
+
+
+        
+        
+    
 

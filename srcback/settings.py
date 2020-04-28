@@ -26,11 +26,12 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+EMAL_BACKED= 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST= 'smtp.googlemail.com'
 EMAIL_PORT= 587
+EMAIL_USE_TLS= True
 EMAIL_HOST_USER= 'wattlab2711@gmail.com'
 EMAIL_HOST_PASSWORD='Patsi2711'
-EMAIL_USE_TLS= True
 
 
 # Application definition
@@ -45,7 +46,7 @@ INSTALLED_APPS = [
     
     'corsheaders',
     'rest_framework',
-    'knox',
+    'rest_framework.authtoken',
     
     'apps.publicidad',
     'apps.accounts',
@@ -137,8 +138,6 @@ STATIC_URL = '/static/'
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'knox.auth.TokenAuthentication',),
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.AllowAny',
     ) 
