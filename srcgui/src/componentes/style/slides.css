@@ -10,3 +10,23 @@
 .ant-carousel .slick-slide h3 {
   color: #fff;
 }
+
+.icon-publicidad{
+  width: 50px;
+  height: 50px;
+}
+
+@media only screen and (max-width: 576px) {
+  .carousel {
+      margin-top: 120px;
+      text-align: center;
+      overflow: hidden;
+  }
+  .carousel-caption {
+    bottom: 50px !important;
+    top: 50px;
+    }
+  .carousel-caption h1 { 
+    font-size : 20px !important; 
+  }
+}

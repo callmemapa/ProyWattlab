@@ -1,8 +1,5 @@
 import axios from 'axios';
-import BackService from '../PeticionesBack';
 import * as actionTypes from './actionTypes';
-
-const solicitudBack = new BackService();
 
 export const authStart = () => {
     return {

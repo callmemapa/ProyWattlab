@@ -15,7 +15,6 @@ const PrivateRoute = ({ component: Component, auth,
     />
 );
 
-
 const mapStateToProps = (state) => {
    return {
        auth: state.reducer

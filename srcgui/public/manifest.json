@@ -20,7 +20,7 @@
   ],
   "start_url": "/ConsultaFactura",
   "display": "standalone",
-  "theme_color": "#ffffff",
+  "theme_color": "#45B649",
   "background_color": "#ffffff",
   "description": "Wattlab app"
 }

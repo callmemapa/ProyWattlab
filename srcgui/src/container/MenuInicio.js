@@ -11,26 +11,21 @@ const { Content } = Layout;
 class MenuInicio extends Component {
     render() {
         return (
-
             <Layout className="layout">
                 <div>
                     <Menu />
                 </div>
-
                 <div>
                     <Content style={{ padding: '0 auto', marginTop: '70px' }}>
                         <Slides />
                     </Content>
                 </div>
-
                 <div>
                     <Servicio />
                 </div>
-
                 <div>
                     <Noticias/>
                 </div>
-
                 <div>
                     <Footer />
                 </div>

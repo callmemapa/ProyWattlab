@@ -11,7 +11,7 @@ from .serializer import  UserSerializer, UpdateUserSerializer, ProfileSeralizer
 
 #Listar/Registrar usuarios (GET/POST)
 class UserView(viewsets.ModelViewSet): 
-    queryset = User.objects.all()
+    queryset = User.objects.exclude(id__exact=1)
     serializer_class = UserSerializer  
     
 

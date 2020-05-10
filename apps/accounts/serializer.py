@@ -26,7 +26,8 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta: 
         model= User
         fields = ('id', 'username', 'first_name', 'last_name','email','password','is_active','profile')
-        extra_kwargs = {'password': {"write_only": True, 'required': True}}
+        extra_kwargs = {'password': {"write_only": True, 'required': True},
+                        'email': {'required': True} }
     
     @transaction.atomic
     def create(self, validated_data):
@@ -37,6 +38,7 @@ class UserSerializer(serializers.ModelSerializer):
         Token.objects.create(user=user)
         
         return user 
+    
         
 #Update user and profile
 class UpdateUserSerializer(serializers.ModelSerializer):
@@ -62,7 +64,6 @@ class UpdateUserSerializer(serializers.ModelSerializer):
         # this will not throw an exception,
         # as `profile` is not part of `validated_data`
         return super(UpdateUserSerializer, self).update(instance, validated_data)
-    
 
 
     

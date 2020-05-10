@@ -30,6 +30,7 @@
     "react-fontawesome": "^1.7.1",
     "react-google-charts": "^3.0.15",
     "react-google-recaptcha": "^2.0.1",
+    "react-hook-form": "^5.5.3",
     "react-i18next": "^11.3.3",
     "react-leaflet": "^2.6.3",
     "react-recaptcha": "^2.3.10",
@@ -69,6 +70,6 @@
     ]
   },
   "devDependencies": {
-    "http-server": "^0.12.1"
+    "http-server": "^0.12.3"
   }
 }

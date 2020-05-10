@@ -1,53 +1,65 @@
-let CACHE_NAME = 'wattlab-cache';
+const cacheName = 'wattlab-v2';
+
 let urlsToCache = [
-    './',
-    './imagenes/slides/Cali.png',
-    './imagenes/slides/Slide0.png',
-    './imagenes/slides/Slide1.png',
-    './imagenes/slides/slideCali.png',
-    '/ConsultaFactura',
-    '/PQRS',
+    './index.html',
+    './logo.ico',
+    './imagenes/slides/Cali.jpg',
+    './imagenes/slides/Slide0.jpg',
+    './imagenes/slides/Slide1.jpg',
+    './imagenes/PQRS.jpg',
+    './imagenes/ConsultaFactura.jpg',
 ];
 
 // Install a service worker
-self.addEventListener('install', event => {
+self.addEventListener('install', e=> {
     // Perform install steps
-    event.waitUntil(
-        caches.open(CACHE_NAME)
+    e.waitUntil(
+        caches
+            .open(cacheName)
             .then(function (cache) {
-                console.log('Opened cache');
+                console.log('ServiceWorker: Caching files');
                 return cache.addAll(urlsToCache);
-            }).then(self.skipWaiting())
+            })
+            .then(()=>self.skipWaiting())
     );
 });
 
-// Cache and return requests
-self.addEventListener('fetch', event => {
-    event.respondWith(
-        caches.match(event.request)
-            .then(function (response) {
-                // Cache hit - return response
-                if (response) {
-                    return response;
-                }
-                return fetch(event.request);
-            }
-            )
-    );
-});
 
-// Update a service worker
-self.addEventListener('activate', event => {
-    let cacheWhitelist = ['your-app-name'];
-    event.waitUntil(
+self.addEventListener('activate', e => {
+    
+    e.waitUntil(
         caches.keys().then(cacheNames => {
             return Promise.all(
-                cacheNames.map(cacheName => {
-                    if (cacheWhitelist.indexOf(cacheName) === -1) {
-                        return caches.delete(cacheName);
-                    }
+                cacheNames.map(cache => {
+                    if ( cache !== cacheName){
+                        console.log('ServiceWorker: Clearing cache');
+                        return caches.delete(cache);
+                    }  
                 })
             );
         })
     );
 });
+
+
+// Cache and return requests
+self.addEventListener('fetch', e=> {
+    console.log('ServiceWorker: Fetching'); 
+    if (!(e.request.url.indexOf('http') === 0)) return; // skip the request. if request is not made with http protocol
+
+    e.respondWith( 
+        fetch(e.request)
+        .then(res=>{
+                const resClone = res.clone();
+                caches
+                .open(cacheName)
+                .then(cache=>{
+                    cache.put(e.request, resClone);
+                });
+                return res;
+        })
+          .catch(err =>caches.match(e.request).then(res=>res))
+    ); 
+});
+
+// Update a service worker

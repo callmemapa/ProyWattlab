@@ -1,18 +1,18 @@
 import React, { Component } from 'react'; 
 import i18n from '../i18next';
+import { useTranslation } from 'react-i18next';
 import Sidebar from '../componentes/Sidebar';
 import { Layout } from 'antd';
 import { Chart } from "react-google-charts";
 import Encabezado from './Encabezado';
 
-
 function Reportes() {
-
+    const i18n = useTranslation();
         return (
             <div className="container-fluid" style={{backgroundColor: "white", position: "absolute", top: "70px", left: "0px"}}>
                 <Encabezado
-                    titulo = "Panel de reportes"
-                    descripcion = "A continuación encontrará los reportes de ingresos económicos"/>
+                    titulo = {i18n.t('reports-panel.rpt_int-title')}
+                    descripcion = {i18n.t('reports-panel.rpt_int-description')}/>
                 <div className="container" style={{ display: 'flex', maxWidth: 900, marginBottom: "20px" }}>
                     <div className="row">
                         <div className="col">
@@ -72,7 +72,6 @@ function Reportes() {
                 </div>
             </div>
         );
-
 }
 
 export default Reportes;

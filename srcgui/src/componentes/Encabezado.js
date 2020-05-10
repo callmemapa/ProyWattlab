@@ -10,8 +10,8 @@ function Encabezado(props) {
             <div className="container" style={{justifyContent: "center"}}>
                 <div className="jumbotron" style={{backgroundColor: "#0f1323", color: "white", marginTop: "10px", textAlign: "center"}}>
                     <div className="container">
-                        <h1 className="display-7" style={{color: "white"}}>{titulo}</h1>
-                        <p className="lead">{descripcion}</p>
+                    <h1 className="display-7" style={{ color: "white" }}>{i18n.t(titulo)}</h1>
+                    <p className="lead">{i18n.t(descripcion)}</p>
                     </div>
                 </div>
             </div>

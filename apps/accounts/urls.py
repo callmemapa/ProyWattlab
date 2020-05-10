@@ -8,7 +8,7 @@ router.register('user', UserView)
 
 urlpatterns = [
     path('', include(router.urls)),
-    path('login/', LoginUserView.as_view()),
+    path('login/', LoginUserView.as_view(), name='password_reset_complete'),
     path('account/change-active/<pk>/', UpdateUser.as_view()),
     path('account/password-reset/', auth_views.PasswordResetView.as_view(), name='password_reset'),
     path('account/password-reset/done/', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),

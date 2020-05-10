@@ -1,5 +1,4 @@
 import React from 'react';
-
 import Menu from '../componentes/Menu';
 import { Layout } from 'antd';
 import Footer from '../componentes/Footer.js';
