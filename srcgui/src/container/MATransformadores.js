@@ -3,17 +3,21 @@ import Sidebar from '../componentes/Sidebar';
 import { Layout } from 'antd';
 import Maps from '../componentes/Maps'
 import Transformador from '../componentes/Transformador';
+import alerta from '../componentes/Alertas';
 
 
+const a = new alerta();
 
 class MATransformadores extends Component {
+  
     
+      
     render() {
         
         return (
             <Layout className="layout" style={{backgroundColor: "white"}}>
                 <div>
-                    <Sidebar/>
+                    <Sidebar/> 
                 </div>
                 <div className="container-fluid" style={{marginTop: "0px", position: "relative"}}>
                     <div className="row">
@@ -39,7 +43,7 @@ class MATransformadores extends Component {
                                             </select>
                                         </div>
                                         <div className="col-lg-2 col-md-2 col-sm-6 col-xs-6" style={{display: "auto"}}>
-                                            <button className="btn btn-success" type="button">Aceptar</button>
+                                            <button className="btn btn-success" onClick= {() => a.mostrar()} type="button">Aceptar</button>
                                         </div>
                                     </div>
                                 </div>
@@ -53,8 +57,12 @@ class MATransformadores extends Component {
             </Layout>
             
         );
+        
     }
+   
 
 }
+
+
 
 export default MATransformadores;
