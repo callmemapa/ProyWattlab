@@ -51,10 +51,6 @@ INSTALLED_APPS = [
     'apps.publicidad',
     'apps.accounts',
     'apps.factura',
-<<<<<<< HEAD
-=======
-
->>>>>>> 96081029ddba1ab58c7cb7b7829aed9ce1ccabcf
 ]
 
 MIDDLEWARE = [
