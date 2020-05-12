@@ -10,6 +10,7 @@ import BackService from '../store/PeticionesBack'; //CENTRALIZACION DE LAS SOLIC
 const solicitudBack = new BackService();
 const notificaciones = new alerta();
 
+
 const handleFormSubmit = e => {
     e.preventDefault();
 

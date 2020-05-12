@@ -109,7 +109,7 @@ class Transformador(models.Model):
     lngtd = models.FloatField(default=0)
     lttd= models.FloatField(default=0)
     estdo= models.BooleanField(default=True)
-    obsrvcn= models.CharField(max_length=150, default='')
+    obsrvcn= models.CharField(max_length=150, default='Trasformador')
     
     def __str__(self):
         return self.obsrvcn
