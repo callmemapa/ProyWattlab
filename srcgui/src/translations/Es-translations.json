@@ -124,16 +124,9 @@
          "act_int-description":"A continuación, encontrará la ubicación de los transformadores y subestaciones.",
          "act_msj-add": "¿Qué desea añadir?",         
          "actives-panel-transformer":{
-            "act_id-trfm":"ID Transformador",
+            "act_create-trfm": "Creacion de transformador",
             "act_sub-trfm":"Subestación",
-            "act-sub-trfm-sub1":"Subestación 1",
-            "act-sub-trfm-sub2":"Subestación 2",
-            "act-sub-trfm-sub3":"Subestación 3",
-            "act-sub-trfm-sub4":"Subestación 4",
             "act_grp-cnt-trfm":"Grupo de conexión",
-            "act_grp-cnt-trfm-star":"Estrella",
-            "act_grp-cnt-trfm-triangle":"Triángulo",
-            "act_grp-cnt-trfm-zigzag":"Zig Zag",
             "act_vprmy-trfm":"Tensión primaria",
             "act_vmax-trfm":"Tensión máxima",
             "act_vsecond-trfm":"Tensión secundaria",
@@ -147,7 +140,7 @@
             "act_btn-add-trfm":"Añadir"
          },
          "actives-panel-substation":{
-            "act_id-sub":"ID Subestacion",
+            "act_int-create": "Creación de subestación",
             "act_name-sub":"Nombre",
             "act_address-sub":"Dirección",
             "act_tel-sub":"Número de teléfono",

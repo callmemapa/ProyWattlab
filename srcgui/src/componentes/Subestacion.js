@@ -8,10 +8,10 @@ function Subestacion() {
             <form>
                 <div className="form-row">
                     <div className="form-group col-md-12" style={{textAlign: "center"}}>
-                        <h4>Creación de subestación</h4>
+                        <h4>{i18n.t('actives-panel.actives-panel-substation.act_int-create')}</h4>
                     </div>
                     <div className="form-group col-md-12">
-                        <label htmlFor="">Nombre</label>
+                        <label htmlFor="">{i18n.t('actives-panel.actives-panel-substation.act_name-sub')}</label>
                         <input type="text" className="form-control" id="nombreSubestacion"></input>
                     </div>
                     <div className="form-group col-md-8">

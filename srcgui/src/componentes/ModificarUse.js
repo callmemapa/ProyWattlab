@@ -75,18 +75,18 @@ function ModificarUse(props) {
                 <React.Fragment>
                     <div className='form-row'>
                         <div className="form-group col-md-6">
-                            <label for="inputContrasena">{i18n.t('login.login_pass-title')}</label>
-                            <input required onChange={onChange} name="password" type="password" value={usuario.password} class="form-control" id="inputContrasena" />
+                            <label htmlFor="inputContrasena">{i18n.t('login.login_pass-title')}</label>
+                            <input required onChange={onChange} name="password" type="password" value={usuario.password} className="form-control" id="inputContrasena" />
                         </div>
                         <div className="form-group col-md-6">
-                            <label for="inputCContrasena">{i18n.t('login.login_2pass-title')}</label>
+                            <label htmlFor="inputCContrasena">{i18n.t('login.login_2pass-title')}</label>
                             <input required name="cPassword" type="password" className="form-control" id="inputCContrasena" />
                         </div>
                     </div>
 
                     <h2>{i18n.t('users-panel.usr_profile')}</h2>
                     <div className="form-group">
-                        <label for="inputAddress">{i18n.t('users-panel.usr_id')}</label>
+                        <label htmlFor="inputAddress">{i18n.t('users-panel.usr_id')}</label>
                         <input required name="identificacion" onChange={onChange} type="text" value={usuario.profile.identificacion} className="form-control" id="inputAddress" />
                     </div>
                 </React.Fragment>
@@ -104,28 +104,28 @@ function ModificarUse(props) {
             <form method="POST" onSubmit={(event) => props.onSubmit(event, usuario)}>
                 <div className="form-row">
                     <div className="form-group col-md-6">
-                        <label for="inputUsuario">{i18n.t('users-panel.usr_user-name')}</label>
+                        <label htmlFor="inputUsuario">{i18n.t('users-panel.usr_user-name')}</label>
                         <input required name="username" onChange={onChange} ref={myRef} type="text" value={usuario.username} className="form-control" id="inputUsuario" />
                     </div>
                     <div className="form-group col-md-6">
-                        <label for="inputNombre">{i18n.t('users-panel.usr_name')}</label>
+                        <label htmlFor="inputNombre">{i18n.t('users-panel.usr_name')}</label>
                         <input required name="first_name" onChange={onChange} type="text" value={usuario.first_name} className="form-control" id="inputNombre" />
                     </div>
                 </div>
                 <div className="form-row">
                     <div className="form-group col-md-6">
-                        <label for="inputApellido">{i18n.t('users-panel.usr_last-name')}</label>
+                        <label htmlFor="inputApellido">{i18n.t('users-panel.usr_last-name')}</label>
                         <input required name="last_name" onChange={onChange} type="text" value={usuario.last_name} className="form-control" id="inputApellido" />
                     </div>
                     <div className="form-group col-md-6">
-                        <label for="inputEmail">{i18n.t('users-panel.usr_email')}</label>
+                        <label htmlFor="inputEmail">{i18n.t('users-panel.usr_email')}</label>
                         <input required name='email' type="email" onChange={onChange} className="form-control" value={usuario.email} id="inputEmail" placeholder="name@example.com" />
                     </div>
                 </div>
                 {mostrarFormulario()}
                 <div className="form-row">
                     <div className="form-group col-md-12">
-                        <label for="inputPerfil">{i18n.t('users-panel.usr_type')}</label>
+                        <label htmlFor="inputPerfil">{i18n.t('users-panel.usr_type')}</label>
                         <select onChange={onChange} name="tipo_usuario" id="inputPerfil" className="custom-select" >
                             <option >--- </option>
                             <option >Gerente</option>
