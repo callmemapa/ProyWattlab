@@ -19,6 +19,7 @@ import MAReportes from './container/MAReportes';
 import MAPagos from './container/MAPagos';
 import MAConfiguracion from './container/MAConfiguracion';
 import MAPublicidad from './container/MAPublicidad';
+import RegistroConsumo from './componentes/RegistroConsumo';
 import PageNotFound from './container/PageNotFound';
 
 function BaseRouter() {
@@ -38,6 +39,7 @@ function BaseRouter() {
                         <PrivateRoute exact path="/ModuloAdministrador/Reportes" component={MAReportes} />
                         <PrivateRoute exact path="/ModuloAdministrador/Pagos" component={MAPagos} />
                         <PrivateRoute exact path="/ModuloAdministrador/Configuracion" component={MAConfiguracion} />
+                        <PrivateRoute exact path="/RegistroConsumo" component={RegistroConsumo} />
                         <Route exact path="/Login" component={Login} />
                         <Route exact path="/ModuloAdministrador" component={ModuloAdministrador} />
                         <Route exact path="/ModuloAdministrador/Dashboard" component={MADashboard} />

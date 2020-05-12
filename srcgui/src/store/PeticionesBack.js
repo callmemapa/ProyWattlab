@@ -44,5 +44,4 @@ export default class BackService {
         return axios.put(url, publicidad).then(res => res.data)
             .catch(error => console.log(error));
     }
-
 }

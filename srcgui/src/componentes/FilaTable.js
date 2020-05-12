@@ -1,6 +1,7 @@
 import React from 'react';
 import BotonModificar from './BotonModificar';
 import BotonInactivar from './BotonInactivar';
+import BotonVisualizar from './BotonVisualizar';
 
 
 function FilaTable(props) {
@@ -39,13 +40,19 @@ function FilaTable(props) {
                     </React.Fragment>
                 )
             }
-            case 3: {
+            case 'factura': {
                 return (
                     <React.Fragment>
-                        {/*Para el usuo de una nueva tabla */}
-                        <td>{props.dato1}</td>
-                        <td>{props.dato2}</td>
-                        <td>{props.dato3}</td>
+                        <td>{props.contrato}</td>
+                        <td>{props.cliente}</td>
+                        <td>{props.fechaRegistro}</td>
+                        <td>{props.fechaPago}</td>
+                        <td>{props.valorAPagar}</td>
+                        <td>
+                            <BotonVisualizar/>
+                        </td>
+                        {}
+                        {mostrarBotonA({ "id": props.id, "estado": !props.estado })}
                     </React.Fragment>
                 )
             }
