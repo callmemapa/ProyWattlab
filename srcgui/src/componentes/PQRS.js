@@ -5,7 +5,6 @@ import Footer from './Footer';
 import Menu from './Menu';
 import alerta from '../componentes/Alertas';
 
-
 import BackService from '../store/PeticionesBack'; //CENTRALIZACION DE LAS SOLICITUDES
 const solicitudBack = new BackService();
 const notificaciones = new alerta();

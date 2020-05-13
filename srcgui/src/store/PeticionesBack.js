@@ -5,10 +5,28 @@ const API_URL = 'http://127.0.0.1:8000';
 export default class BackService {
 
     constructor() { }
-    ///PQRS
+    //PQRS
     async postPQRS(solitAtent) {
         const url = `${API_URL}/api/pqrs/`;
         return axios.post(url, solitAtent).then(res => res.data)
+            .catch(error => console.log(error));
+    }
+    //TARIFA
+    async postTarifa(tarifa) {
+        const url = `${API_URL}/oper/tarifa/`;
+        return axios.post(url, tarifa).then(res => res.data)
+            .catch(error => console.log(error));
+    }
+    //BANCO
+    async getBanco() {
+        const url = `${API_URL}/oper/banco/`;
+        return axios.get(url).then(res => res.data)
+            .catch(error => console.log(error));
+    }
+    //REPORTES
+    async getReporte() {
+        const url = `${API_URL}/oper/reporte/`;
+        return axios.get(url).then(res => res.data)
             .catch(error => console.log(error));
     }
     //USUARIOS

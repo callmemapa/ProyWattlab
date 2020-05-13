@@ -6,7 +6,8 @@ const initialState ={
     token:null, 
     error: null,
     loading: false, 
-    authenticate: false
+    authenticate: false,
+    usuario:null
 }
 
 
@@ -22,7 +23,8 @@ const authSuccess = (state, action) => {
         token: action.token,
         error: null,
         loading: false,
-        authenticate: true
+        authenticate: true, 
+        usuario: action.usuario
     });
 }
 
@@ -36,7 +38,8 @@ const authFail = (state, action) => {
 const authLogout = (state, action) => {
     return updateObject(state, {
         token: null, 
-        autheticate: false 
+        autheticate: false, 
+        usuario: null
     });
 }
 
