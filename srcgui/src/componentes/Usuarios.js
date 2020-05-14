@@ -113,6 +113,7 @@ class Usuarios extends Component {
                 h1={'users-panel.usr_change-user'}
                 nameBtn={'users-panel.usr_change-user'}
                 cancelar={this.cerrarFormulario}
+                
             />
             )
         }

@@ -71,6 +71,41 @@ class Table extends Component {
         </React.Fragment>)
     }
 
+    tablaCliente = () =>{
+        return (<React.Fragment>
+            <table className="table">
+                <thead className="thead-dark">
+                    <tr>
+                        <th scope="col">{this.props.t1}</th>
+                        <th scope="col">{this.props.t2}</th>
+                        <th scope="col">{this.props.t3}</th>
+                        <th scope="col">{this.props.t4}</th>
+                        <th scope="col">{this.props.t5}</th>
+                        <th scope="col">{this.props.t6}</th>
+                        <th scope="col">{this.props.t7}</th>
+                        <th scope="col">{this.props.t8}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {this.props.datos.map(cliente => (
+                        <FilaTable
+                            cambiarEstado={this.props.cambiarEstado}
+                            modificar={this.props.modificar}
+                            tipo='cliente'
+                            key={cliente.id}
+                            id={cliente.id}
+                            numeroIdent={cliente.nmro_idntfccn}
+                            nombre={cliente.prmr_nmbre}
+                            apellido={cliente.prmr_aplldo}
+                            tipoIdent={cliente.tpo_idntfcn}
+                            tipoClient={cliente.tpT_clnte}
+                        />
+                    ))}
+                </tbody>
+            </table>
+        </React.Fragment>)
+    }
+
 
 
 
@@ -80,9 +115,13 @@ class Table extends Component {
         }
         if (this.props.tabla === 'usuario') {
             return this.tablaUsuario()
-        } else {
+        }if(this.props.tabla==='cliente'){
+            return this.tablaCliente();
+        }
+         else {
             return null
         }
+        
     }
 
 

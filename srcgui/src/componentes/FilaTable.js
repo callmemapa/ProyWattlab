@@ -39,13 +39,17 @@ function FilaTable(props) {
                     </React.Fragment>
                 )
             }
-            case 3: {
+            case 'cliente': {
                 return (
                     <React.Fragment>
                         {/*Para el usuo de una nueva tabla */}
-                        <td>{props.dato1}</td>
-                        <td>{props.dato2}</td>
-                        <td>{props.dato3}</td>
+                        
+                        {mostrarTipoIdent()}
+                        <td>{props.numeroIdent}</td>
+                        <td>{props.nombre}</td>
+                        <td>{props.apellido}</td>
+                        {mostrarTipoCliente()}
+                        
                     </React.Fragment>
                 )
             }
@@ -75,6 +79,47 @@ function FilaTable(props) {
             )
         }
     }
+
+    const mostrarTipoIdent = () =>{
+        if(props.tipoIdent===1){
+            return(
+                <td>C.C</td>
+            )
+        }
+        if(props.tipoIdent===2){
+            return(
+                <td>Nit</td>
+            )
+        }
+        if(props.tipoIdent===3){
+            return(
+                <td>C.E</td>
+            )
+        }else{
+            return(
+                <td>nada</td>
+            )
+        }
+    }
+
+    const mostrarTipoCliente = () =>{
+        if(props.tipoClient===1){
+            return(
+                <td>Natural</td>
+            )
+        }
+        if(props.tipoClient===2){
+            return(
+                <td>Juridica</td>
+            )
+        }
+        else{
+            return(
+                <td>nada</td>
+            )
+        }
+    }
+
     /*Aqui pinta la fila, el id que es el pricipal y las celdas basicas*/
     const mostrarFila = () => {
         return (

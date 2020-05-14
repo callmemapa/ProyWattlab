@@ -45,4 +45,11 @@ export default class BackService {
             .catch(error => console.log(error));
     }
 
+    //CLIENTES
+    getListCliente(){
+        const url = `${API_URL}/oper/cliente/`;
+        return axios.get(url).then(res=> res.data)
+            .catch(error => console.log(error))
+    }
+
 }

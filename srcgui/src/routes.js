@@ -20,6 +20,7 @@ import MAPagos from './container/MAPagos';
 import MAConfiguracion from './container/MAConfiguracion';
 import MAPublicidad from './container/MAPublicidad';
 import PageNotFound from './container/PageNotFound';
+import MAClientes from './container/MAClientes';
 
 function BaseRouter() {
     return (
@@ -40,6 +41,7 @@ function BaseRouter() {
                         <Route exact path="/ModuloAdministrador/Configuracion" component={MAConfiguracion} />
                         <Route exact path="/ModuloAdministrador/Clientes" component={MADashboard } />
                         <Route exact path="/ModuloAdministrador/Publicidad" component={MAPublicidad} />
+                        <Route exact path="/ModuloAdministrador/Cliente" component={MAClientes} />
                         <Route exact path="/ModuloAdministrador/Bancos" component={MADashboard} />
                         <Route component={PageNotFound} />
                     </Switch>

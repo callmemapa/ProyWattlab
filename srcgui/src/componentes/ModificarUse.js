@@ -26,6 +26,13 @@ function ModificarUse(props) {
         },
     })
 
+    const [conPassword,setConPass]= useState({
+        cPassword: '',
+        confirmar: true,
+        texto: '',
+        clase: ''
+    })
+
     //Este hook me permite enfocar el input id, cada vez que intente crear o modificar.
     //Tambien me permite actualizar los estados de acuerdo a los datos que se envian a traves de los props.
     useEffect(() => {
@@ -49,13 +56,54 @@ function ModificarUse(props) {
         })
     }
 
+    const onChangeContrasena = e =>{    
+        setConPass({
+            ...conPassword,
+            [e.target.name]: e.target.value
+        })
+        
+         if(usuario.password!==e.target.value){
+            setConPass({
+                [e.target.name]: e.target.value,
+                confirmar:false,
+                texto:'las contraseñas no coinciden',
+                clase: 'badge badge-danger'
+                
+            })
+        }else if(e.target.value===''){
+            setConPass({
+                [e.target.name]: e.target.value,
+                confirmar:false,
+                texto:'Es necesario que los campos no estén vacios',
+                clase: 'badge badge-warning'
+                
+            })
+
+        }
+        else{
+            setConPass({
+                [e.target.name]: e.target.value,
+                confirmar:true,
+                texto:'las contraseñas coinciden',
+                clase: 'badge badge-success'
+                
+            })
+        }
+        console.log(conPassword)
+
+    }
+
+    
+
 
     //Cada vez que se escriba en un input el valor se almacena en los estados
     const onChange = e => {
+
         setUsuario({
             ...usuario,
             [e.target.name]: e.target.value,
         })
+
         if (e.target.name === 'identificacion' || e.target.name === 'tipo_usuario') {
             setUsuario({
                 ...usuario,
@@ -66,7 +114,36 @@ function ModificarUse(props) {
                 }
             })
         }
-        // console.log(usuario)
+
+        if(e.target.name==='password'){
+            if(conPassword.cPassword!==e.target.value){
+                setConPass({
+                    ...conPassword,
+                    confirmar:false,
+                    texto:'las contraseñas no coinciden',
+                    clase: 'badge badge-danger'
+                    
+                })
+            }else if(e.target.value===''){
+                setConPass({
+                    ...conPassword,
+                    confirmar:false,
+                    texto:'Es necesario que los campos no estén vacios',
+                    clase: 'badge badge-warning'
+                    
+                })
+    
+            }else{
+            setConPass({
+                ...conPassword,
+                confirmar:true,
+                texto:'las contraseñas coinciden',
+                clase: 'badge badge-success'
+                
+            })
+        }
+        }
+        console.log(usuario)
     }
 
     const mostrarFormulario = () => {
@@ -76,12 +153,13 @@ function ModificarUse(props) {
                     <div className='form-row'>
                         <div className="form-group col-md-6">
                             <label htmlFor="inputContrasena">{i18n.t('login.login_pass-title')}</label>
-                            <input required onChange={onChange} name="password" type="password" value={usuario.password} className="form-control" id="inputContrasena" />
+                            <input required onChange={onChange}  name="password" type="password" value={usuario.password} className="form-control" id="inputContrasena" />
                         </div>
                         <div className="form-group col-md-6">
                             <label htmlFor="inputCContrasena">{i18n.t('login.login_2pass-title')}</label>
-                            <input required name="cPassword" type="password" className="form-control" id="inputCContrasena" />
+                            <input required name="cPassword" onChange={onChangeContrasena} type="password" value={conPassword.cPassword} className="form-control" id="inputCContrasena" />
                         </div>
+                        <span className={conPassword.clase}>{conPassword.texto}</span>
                     </div>
 
                     <h2>{i18n.t('users-panel.usr_profile')}</h2>
@@ -96,12 +174,24 @@ function ModificarUse(props) {
         }
     }
 
+    const validar = (event) =>{
+        event.preventDefault();
+        if(conPassword.confirmar===true){
+            props.onSubmit(event,usuario)
+        }else{
+            console.log("Aqui va un mensaje de que no coincide las contraseñas")
+            console.log(conPassword.confirmar)
+
+        }
+
+    }
+
     return (
         <div className="container">
             <br /><br /><br /><br /><br />
             <h1 className="text-center">{i18n.t(titulo)}</h1>
             <br /><br /><br />
-            <form method="POST" onSubmit={(event) => props.onSubmit(event, usuario)}>
+            <form method="POST" onSubmit={(event) => validar(event)}>
                 <div className="form-row">
                     <div className="form-group col-md-6">
                         <label htmlFor="inputUsuario">{i18n.t('users-panel.usr_user-name')}</label>
