@@ -33,6 +33,18 @@ class BancoViewSet(viewsets.ModelViewSet):
     queryset = Banco.objects.all()
     serializer_class = BancoSerializer 
 
+class ConsumoViewSet(viewsets.ModelViewSet):
+    queryset = Consumo.objects.all()
+    serializer_class = ConsumoSerializer 
+
+class PagoViewSet(viewsets.ModelViewSet):
+    queryset = Pago.objects.all()
+    serializer_class = PagoSerializer 
+
+class FacturaViewSet(viewsets.ModelViewSet):
+    queryset = Facturacion.objects.all()
+    serializer_class = FacturaSerializer   
+    
 @api_view(['GET'])
 def ReporFinancieroView(request): 
     if request.method == 'GET': 
@@ -49,4 +61,3 @@ def ReporFinancieroView(request):
                          'trnsf': str(trnsf), 'banco_Activo': str(banco_Activo),
                          'banco_Inctivo': str(banco_Inctivo),'consu_ener':str(consumo), 
                          'dinero':str(pago)}, status= status.HTTP_200_OK)
-       

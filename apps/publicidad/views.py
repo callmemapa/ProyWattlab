@@ -41,11 +41,11 @@ def sendEmail(data):
                 asunto,
                 mensaje, 
                 email_from,
-                [email_to, email_from],
+                [email_to, email_from]
              )
             email.send()
         except (BadHeaderError, SMTPException):
-            return Response("NO SE PUDO ENVIAR", status= status.HTTP_400_BAD_REQUEST)
+            raise Response(status= status.HTTP_400_BAD_REQUEST)
         return Response("REALIZADO", status= status.HTTP_200_OK)
         
         

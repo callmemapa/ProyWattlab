@@ -19,20 +19,18 @@ const handleFormSubmit = e => {
             "contenido": e.target.elements.contenido.value,
             "email": e.target.elements.email.value
         }).then(res => {
-            console.log(res)
             notificaciones.exito()
-        })
-            .catch(error => {
+            console.log(res)
+            
+        }).catch(error => {
                 console.log(error)
                 notificaciones.error()
 
             })
-        e.target.elements.asunto.value = "";
-        e.target.elements.contenido.value = "";
-        e.target.elements.email.value = "";
+        e.target.asunto.value = ""
+        e.target.contenido.value = ""
+        e.target.email.value = ""
     }
-
-
 }
 
 function PQRS() {

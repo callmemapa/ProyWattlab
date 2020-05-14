@@ -20,7 +20,7 @@ class Tarifa (models.Model):
     
     def __str__(self):
         return self.obsrvcn
-    
+        
 class Cliente(models.Model): 
     nmro_idntfccn = models.CharField(max_length=11)
     prmr_nmbre = models.CharField(max_length=50)
@@ -44,8 +44,8 @@ class Contrato (models.Model):
 class Consumo (models.Model):
     idntfccn_cntrto = models.ForeignKey(Contrato, on_delete= models.CASCADE)
     kwh = models.IntegerField(default=0)
-    prdo_cnsmo = models.CharField(max_length=50, default='')
-    obsrvcn = models.CharField(max_length=150, default='')
+    prdo_cnsmo = models.CharField(max_length=50, default='202007')
+    obsrvcn = models.CharField(max_length=150, default='Registro de consumo')
     
     def __str__(self):
         return self.obsrvcn
@@ -77,8 +77,8 @@ class Facturacion(models.Model):
 class Pago(models.Model):
     idntfccn_bnco = models.ForeignKey(Banco, on_delete=models.CASCADE, null= True)
     cnsctvo_fctra = models.OneToOneField(Facturacion, on_delete=models.CASCADE)
-    vlr_pgdo = models.FloatField(default=0)
-    nmro_unco_idntfccn_usro = models.ForeignKey(User, on_delete=models.CASCADE)
+    vlr_pgdo = models.FloatField(default=0, null=False, blank=False)
+    nmro_unco_idntfccn_usro = models.ForeignKey(User, on_delete=models.CASCADE, null= True)
     fcha_pgo = models.DateTimeField(auto_now_add=True)
     obsrvcn = models.CharField(max_length=150, default='')
     

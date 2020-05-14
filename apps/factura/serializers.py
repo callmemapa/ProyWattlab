@@ -57,13 +57,35 @@ class TranforSerializer(serializers.ModelSerializer):
                       'tnsn_crto_crcto' :{"write_only": True},
                       'rlcn_trnsfrmcn' :{"write_only": True} }
 
+##################PAGOS
 class TarifaSerializer(serializers.ModelSerializer):
     class Meta: 
         model = Tarifa
         fields = ('id', 'vlr_kwh', 'obsrvcn', 'estdo')
 
-
 class BancoSerializer (serializers.ModelSerializer):
     class Meta:
         model=Banco
         fields=('id', 'nmbre_bnco', 'drccn', 'tlfno', 'estado')
+        
+class ConsumoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model= Consumo
+        fields =('id', 'idntfccn_cntrto', 'kwh', 'prdo_cnsmo')
+
+class PagoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model= Pago
+        fields = ('id', 'idntfccn_bnco', 'cnsctvo_fctra', 
+                  'vlr_pgdo', 'nmro_unco_idntfccn_usro', 
+                  'fcha_pgo', 'obsrvcn')
+        
+class FacturaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model= Facturacion
+        fields =('id', 'cnsctvo_cnsmo', 'cnsctvo_trfa', 
+                 'vlr_cnsmo', 'vlr_intrss_mra', 'vlr_rcnxn', 
+                  'vlr_ttl', 'fcha_lmte_pgo', 'cntdd_fctrs_pndts',
+                  'fcha_crte_srvco', 'obsrvcn')
+        
+        depth=2

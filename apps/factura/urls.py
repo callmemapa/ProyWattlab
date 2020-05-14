@@ -9,6 +9,9 @@ router.register('activo-sub', SubEstacionViewSet)
 router.register('activo-trans', TransfoViewSet)
 router.register('tarifa', TarifaViewSet)
 router.register('banco', BancoViewSet)
+router.register('consumo', ConsumoViewSet)
+router.register('pago', PagoViewSet)
+router.register('factura', FacturaViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
