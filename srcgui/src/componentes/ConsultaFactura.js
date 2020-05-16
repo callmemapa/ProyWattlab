@@ -6,17 +6,20 @@ import Menu from './Menu';
 import Table from '../container/Table'
 import ModificarUse from './ModificarUse'
 import BackService from '../store/PeticionesBack';
+import BotonVisualizar from './BotonVisualizar';
+import Factura from './Factura';
 const solicitudBack = new BackService();
 
 class ConsultaFactura extends React.Component {
 
     state = {
         id: '',
-        contrato: '',
-        cliente: '',
-        fechaRegistro: '',
-        fechaPago: '',
+        valorConsumo: '',
+        valorMora: '',
+        valorReconexion: '',
         valorAPagar: '',
+        fechaPago: '',
+        fechaCorte: '',
         datos: [],
         buscador: '',
         resultado: ''
@@ -43,18 +46,10 @@ class ConsultaFactura extends React.Component {
         return (
             <React.Fragment>
                 <div className="container pre-scrollable" style={{ marginTop: "10px", maxHeight: "350px", marginBottom: "20px" }}>
-                    <Table t1='ID' t2='Contrato' t3='Cliente' t4='Fecha registro' t5='Fecha pago' t6='Valor a pagar' t7='Visualizar' t8='Descargar' tabla='factura' datos={this.state.datos} visualizar={this.visualizar} imprimir={this.imprimir} />
+                    <Table t1='Id' t2='Valor consumo' t3='Valor mora' t4='Valor reconexión' t5='Valor a pagar' t6='Fecha pago' t7='Fecha corte' t8='Visualizar' tabla='factura' datos={this.state.datos}/>
                 </div>
             </React.Fragment>
         )
-    }
-
-    visualizar = (id, contrato, cliente, fechaRegistro, fechaPago, valorAPagar) => {
-        //Aquí va el código para ver el pdf
-    }
-
-    imprimir = () => {
-        //Aquí va el código para imprimir el pdf
     }
 
     onChange = (e) => {
@@ -121,11 +116,12 @@ class ConsultaFactura extends React.Component {
                                 <strong> {this.state.resultado} filas encontradas.</strong>
 
                             </div>
-                            <h1>Aquí iría una tabla, SI TAN SOLO HUBIERA UNA :'V</h1>
                             {this.mostrarTable()}
                         </div>
-
                     </form>
+                    <div><BotonVisualizar/></div>
+                    <div><Factura/></div>
+                    
                 </div>
             </Layout>
         );

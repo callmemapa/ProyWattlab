@@ -43,16 +43,15 @@ function FilaTable(props) {
             case 'factura': {
                 return (
                     <React.Fragment>
-                        <td>{props.contrato}</td>
-                        <td>{props.cliente}</td>
-                        <td>{props.fechaRegistro}</td>
-                        <td>{props.fechaPago}</td>
+                        <td>{props.valorConsumo}</td>
+                        <td>{props.valorMora}</td>
+                        <td>{props.valorReconexion}</td>
                         <td>{props.valorAPagar}</td>
+                        <td>{props.fechaPago}</td>
+                        <td>{props.fechaCorte}</td>
                         <td>
                             <BotonVisualizar/>
                         </td>
-                        {}
-                        {mostrarBotonA({ "id": props.id, "estado": !props.estado })}
                     </React.Fragment>
                 )
             }
