@@ -8,6 +8,7 @@ from rest_framework.mixins import UpdateModelMixin
 
 from .models import Articulo
 from .serializer import ArticuloSerializer
+from smtplib import SMTPException
 
 # Create and list  your views here Publicidad.
 class ArticuloView(viewsets.ModelViewSet): 
@@ -43,7 +44,7 @@ def sendEmail(data):
                 [email_to, email_from],
              )
             email.send()
-        except BadHeaderError:
+        except (BadHeaderError, SMTPException):
             return Response("NO SE PUDO ENVIAR", status= status.HTTP_400_BAD_REQUEST)
         return Response("REALIZADO", status= status.HTTP_200_OK)
         

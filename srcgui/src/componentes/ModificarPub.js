@@ -33,6 +33,7 @@ function ModificarPub(props) {
             titulo: props.titulo,
             descripcion: props.descripcion,
             url: props.url
+
         })
     }
 
@@ -51,7 +52,7 @@ function ModificarPub(props) {
         <br /><br /><br /><br /><br />
         <h1 className="text-center">{i18n.t(titulo)}</h1>
         <br /><br /><br />
-        <form onSubmit={(event) =>props.onSubmit(event,publicidad)}z>
+        <form onSubmit={(event) =>props.onSubmit(event,publicidad)}>
             <div className="form-row">
                 <div className="form-group col-md-12">
                     <label for="titulo">{i18n.t('publicidade.pb_titulo')}</label>

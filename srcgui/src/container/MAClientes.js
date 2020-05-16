@@ -13,8 +13,6 @@ function MAClientes (){
                 <Sidebar/>
             </div>
             <div>
-                hola
-                {console.log('hola')}
                 <Clientes/>
             </div>
         </Layout>

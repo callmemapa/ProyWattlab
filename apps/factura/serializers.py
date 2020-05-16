@@ -56,4 +56,14 @@ class TranforSerializer(serializers.ModelSerializer):
                       'intnsdd_nmnl_prmra' :{"write_only": True},
                       'tnsn_crto_crcto' :{"write_only": True},
                       'rlcn_trnsfrmcn' :{"write_only": True} }
-        
+
+class TarifaSerializer(serializers.ModelSerializer):
+    class Meta: 
+        model = Tarifa
+        fields = ('id', 'vlr_kwh', 'obsrvcn', 'estdo')
+
+
+class BancoSerializer (serializers.ModelSerializer):
+    class Meta:
+        model=Banco
+        fields=('id', 'nmbre_bnco', 'drccn', 'tlfno', 'estado')

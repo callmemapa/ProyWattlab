@@ -90,7 +90,7 @@ class Usuarios extends Component {
         return (
             <React.Fragment>
                 <div className="container pre-scrollable" style={{ marginTop: "10px", maxHeight: "350px", marginBottom: "20px" }}>
-                    <Table t1='Id' t2='Usuaio' t3='Nombre' t4='Apellido' t5='Email' t6='Perfil' t7='Modificar' t8='Estado' tabla='usuario' datos={this.state.datos} modificar={this.modificar} cambiarEstado={this.cambiarEstadoUser} />
+                    <Table t1='Id' t2='Usuario' t3='Nombre' t4='Apellido' t5='Email' t6='Perfil' t7='Modificar' t8='Estado' tabla='usuario' datos={this.state.datos} modificar={this.modificar} cambiarEstado={this.cambiarEstadoUser} />
                 </div>
             </React.Fragment>
         )
@@ -113,7 +113,6 @@ class Usuarios extends Component {
                 h1={'users-panel.usr_change-user'}
                 nameBtn={'users-panel.usr_change-user'}
                 cancelar={this.cerrarFormulario}
-                
             />
             )
         }

@@ -93,7 +93,7 @@ function ModificarUse(props) {
 
     }
 
-    
+
 
 
     //Cada vez que se escriba en un input el valor se almacena en los estados
@@ -143,7 +143,7 @@ function ModificarUse(props) {
             })
         }
         }
-        console.log(usuario)
+        console.log(usuario)       
     }
 
     const mostrarFormulario = () => {

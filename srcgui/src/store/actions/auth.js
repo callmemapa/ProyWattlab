@@ -7,10 +7,11 @@ export const authStart = () => {
     }
 }
 
-export const authSuccess = token => {
+export const authSuccess = (token, usuario) => {
     return {
         type: actionTypes.AUTH_SUCCESS,
-        token: token
+        token: token, 
+        usuario: usuario
     }
 }
 
@@ -43,9 +44,11 @@ export const authLogin = (username, password) => {
         }, config)
             .then(res => {
                 const token = res.data.token;
+                const usuario = res.data.user.profile.tipo_usuario;
                 localStorage.setItem('token', token);
                 localStorage.setItem('authenticate', true);
-                dispatch(authSuccess(token));
+                localStorage.setItem('usuario', usuario);
+                dispatch(authSuccess(token, usuario ));
             })
             .catch(err => {
                 dispatch(authFail(err));

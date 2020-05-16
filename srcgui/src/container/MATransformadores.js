@@ -1,21 +1,24 @@
 import React, { Component } from 'react';
 import { Translation, withTranslation } from 'react-i18next';
-import i18n from "i18next";
-import Sidebar from '../componentes/Sidebar';
 import { Layout } from 'antd';
+import Sidebar from '../componentes/Sidebar';
 import Maps from '../componentes/Maps'
 import Transformador from '../componentes/Transformador';
 import Subestacion from '../componentes/Subestacion';
+import BackService from '../store/PeticionesBack';
+const solicitudBack = new BackService();
 
 class MATransformadores extends Component {
+
+  state = {mode: 'sub', lngtd: '', lttd: '', subE:[]};
+
   constructor(props) {
     super(props);
-    this.state = { mode: 'trans' };
     this.handleChange = this.handleChange.bind(this);
     this.handleTrans = this.handleTrans.bind(this);
     this.handleSub = this.handleSub.bind(this);
-    //this.t = this.t.bind(this);
   }
+
   handleChange(e) {
     this.setState({ inputText: e.target.value });
   }
@@ -25,27 +28,54 @@ class MATransformadores extends Component {
   handleSub() {
     this.setState({ mode: 'sub' });
   }
-  renderInputSelection() {
+
+  //DATOS  del mapa
+  submitDatosMap = (e, map) => {
+    this.setState({ lngtd: map.lngtd, lttd: map.lttd })
+  }
+  
+  componentDidMount(){
+   this.submitSub();
+  }
+
+  submitSub = async () => {
+    solicitudBack.getSubestacion()
+      .then(res => {
+        this.setState({
+          subE: res
+        })
+      })
+  }
+
+  renderInputSelection(){
     if (this.state.mode === 'trans') {
       return (<div style={{ marginBottom: "20px" }}>
         <Layout style={{ backgroundColor: "white" }}>
-          <Transformador />
+
+          <Transformador
+            dato= {this.state.subE}
+            longitud={this.state.lngtd}
+            latitud={this.state.lttd} />
         </Layout>
       </div>);
     } else {
       return (
         <div style={{ marginBottom: "20px" }}>
-          <Subestacion />
+
+          <Subestacion
+            longitud={this.state.lngtd}
+            latitud={this.state.lttd} />
         </div>
       );
     }
   }
+
   renderButton() {
     if (this.state.mode === 'trans') {
       return (
         <button className="btn btn-success" onClick={this.handleSub}>
           <Translation>
-            {(t, { i18n }) => <p>{t('actives-panel.actives-panel-substation.act_btn-sub')}</p>}
+            {(t, { i18n }) => <a>{t('actives-panel.actives-panel-substation.act_btn-sub')}</a>}
           </Translation>
         </button>
 
@@ -54,12 +84,14 @@ class MATransformadores extends Component {
       return (
         <button className="btn btn-success" onClick={this.handleTrans}>
           <Translation>
-            {(t, { i18n }) => <p>{t('actives-panel.actives-panel-transformer.act_btn-trfm')}</p>}
+            {(t, { i18n }) => <a>{t('actives-panel.actives-panel-transformer.act_btn-trfm')}</a>}
           </Translation>
         </button>
       );
     }
   }
+
+
   render() {
     return (
       <Layout className="layout" style={{ backgroundColor: "white" }}>
@@ -70,7 +102,9 @@ class MATransformadores extends Component {
           <div className="row">
             <div className="col-lg-7">
               <div style={{ backgroundColor: "black", margin: "1em" }}>
-                <Maps />
+
+                <Maps subClick={this.submitDatosMap}/>
+
               </div>
             </div>
             <div className="col-lg-5">
@@ -83,9 +117,9 @@ class MATransformadores extends Component {
                 <div className="form-row">
                   <div className="input-group">
                     <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                      <input style={{ textAlign: "center" }} type="text" readOnly className="form-control-plaintext" id="staticEmail2" value="¿Qué desea añadir?" placeholder={i18n.t('actives-panel.act_msj-add')}></input>
+                      <input style={{ textAlign: "left" }} type="text" readOnly className="form-control-plaintext" id="staticEmail2" value="¿Qué desea añadir?"></input>
                     </div>
-                    <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12" style={{ justifyContent: "center" }}>
+                    <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12" style={{ justifyContent: "center", marginLeft: "5px" }}>
                       {this.renderButton()}
                     </div>
                   </div>

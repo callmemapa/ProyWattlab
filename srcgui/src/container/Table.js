@@ -84,6 +84,7 @@ class Table extends Component {
                         <th scope="col">{this.props.t6}</th>
                         <th scope="col">{this.props.t7}</th>
                         <th scope="col">{this.props.t8}</th>
+                        <th scope="col">{this.props.t9}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -91,6 +92,8 @@ class Table extends Component {
                         <FilaTable
                             cambiarEstado={this.props.cambiarEstado}
                             modificar={this.props.modificar}
+                            crearContrato={this.props.crearContrato}
+                            verContrato={this.props.verContrato}
                             tipo='cliente'
                             key={cliente.id}
                             id={cliente.id}
@@ -106,8 +109,39 @@ class Table extends Component {
         </React.Fragment>)
     }
 
+    tablaContrato = () =>{
 
+        return (<React.Fragment>
+            <table className="table">
+                <thead className="thead-dark">
+                    <tr>
+                        <th scope="col">{this.props.t1}</th>
+                        <th scope="col">{this.props.t2}</th>
+                        <th scope="col">{this.props.t3}</th>
+                        <th scope="col">{this.props.t4}</th>
+                        <th scope="col">{this.props.t5}</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    {this.props.datos.map(contrato => (
+                        <FilaTable
+                            cambiarEstado={this.props.cambiarEstado}
+                            modificar={this.props.modificar}
+                            crearContrato={this.props.crearContrato}
+                            tipo='contrato'
+                            key={contrato.id}
+                            id={contrato.id}
+                            estrato={contrato.estrt_scl}
+                            direccion={contrato.drccn}
+                            estado={contrato.estado}            
+                        />
+                    ))}
+                </tbody>
+            </table>
+        </React.Fragment>)
 
+    }
 
     mostrarTabla = () => {
         if (this.props.tabla === 'publicidad') {
@@ -117,12 +151,13 @@ class Table extends Component {
             return this.tablaUsuario()
         }if(this.props.tabla==='cliente'){
             return this.tablaCliente();
-        }
+        }if(this.props.tabla === 'contrato'){
+            return this.tablaContrato()
+        }   
          else {
             return null
+        } 
         }
-        
-    }
 
 
 

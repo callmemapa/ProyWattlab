@@ -7,8 +7,11 @@ router.register('cliente',ClienteViewSet)
 router.register('cliente-contrato', ContratoViewSet)
 router.register('activo-sub', SubEstacionViewSet)
 router.register('activo-trans', TransfoViewSet)
+router.register('tarifa', TarifaViewSet)
+router.register('banco', BancoViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('reporte/', ReporFinancieroView),
 ]
 

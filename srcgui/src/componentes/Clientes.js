@@ -2,23 +2,28 @@ import Encabezado from './Encabezado';
 import Table from '../container/Table'
 import './style/slides.css';
 
-import React, { Component } from 'react';
-import ModificarPub from './ModificarPub';
+import React, { Component} from 'react';
+import ModificarClie from './ModificarClie'
 import BackService from '../store/PeticionesBack';
 const solicitudBack = new BackService();
 
 
 class Clientes extends Component {
+   
 
     state = {
         banderaM: false,
         banderaN: false,
+        banderaC:false,
+        banderaCont:false,
         id: '',
         nmro_idntfccn: '',
         prmr_nmbre: '',
+        prmr_aplldo: '',
         tpo_idntfcn: '',
         tpT_clnte:'',
         datos: [],
+        contratos:[],
         buscador: '',
         resultado:''
     }
@@ -31,19 +36,29 @@ class Clientes extends Component {
                     datos: res
                 })
 
-               // this.buscador(this.state.buscador)
+               this.buscador(this.state.buscador)
+            })
+    }
+
+    solicitudContratos = () =>{
+        solicitudBack.getListContratos()
+            .then(res=>{
+                this.setState({
+                    contratos:res
+                })
             })
     }
 
     //Con este metodo hago el llamdo a solicitud una vez se renderize el componente.
     async componentDidMount() {
         this.solicitud()
+        this.solicitudContratos()
     }
 
-    handleCrearPublicidad = async (e, publicidad) => {
+    handleCrearCliente = async (e, cliente) => {
         e.preventDefault()
         //console.log(publicidad)
-        solicitudBack.postRegisterPublicidad(publicidad
+        solicitudBack.postRegisterCliente(cliente
         ).then(res => {
             this.solicitud()
         })
@@ -52,9 +67,21 @@ class Clientes extends Component {
 
     }
 
-    handleModificarPublicidad = async (e, publicidad) => {
+    handleCrearContrato = async (e, contrato) => {
         e.preventDefault()
-        solicitudBack.putUpdatePublicidad(publicidad
+        solicitudBack.postRegisterContrato(contrato
+        ).then(res => {
+            
+            this.solicitudContratos()
+        })
+            .catch(error => console.log(error))
+        this.cerrarFormulario()
+
+    }
+
+    handleModificarCliente = async (e, cliente) => {
+        e.preventDefault()
+        solicitudBack.putUpdateCliente(cliente
         ).then(res => {
             this.solicitud()
         })
@@ -62,9 +89,9 @@ class Clientes extends Component {
         this.cerrarFormulario()
     }
 
-    cambiarEstadoPublicidad = (publicidad) => {
-        //console.log(publicidad)
-        solicitudBack.putUpdatePublicidad(publicidad
+    cambiarEstadoPublicidad = (cliente) => {
+        //console.log(cliente)
+        solicitudBack.putUpdatePublicidad(cliente
         ).then(res => {
             this.solicitud()
         })
@@ -72,39 +99,59 @@ class Clientes extends Component {
     }
 
     cerrarFormulario = () => {
+        console.log('holaaa')
         this.setState({
             banderaM: false,
-            banderaN: false
+            banderaN: false,
+            banderaC:false
         })
     }
 
     //Con este metodo de acuerdo al boton que haya presionado si modificar o nuevo, se llama el componente formulario
     mostrarFormulario = () => {
         if (this.state.banderaM === true) {
-            return (<ModificarPub
+            return (<ModificarClie
                 id={'Modificar'}
-                onSubmit={this.handleModificarPublicidad}
+                onSubmit={this.handleModificarCliente}
                 idRow={this.state.id}
-                titulo={this.state.titulo}
-                descripcion={this.state.descripcion}
-                url={this.state.url}
-                h1={'publicidade.pb_change'}
-                nameBtn={'publicidade.pb_change'}
+                nombre={this.state.prmr_nmbre}
+                apellido={this.state.prmr_aplldo}
+                numeroIdent={this.state.nmro_idntfccn}
+                tipoIdent={this.state.tpo_idntfcn}
+                tipoClient={this.state.tpT_clnte}
+                h1={'Modificar Cliente'}
+                nameBtn={'Modificar Cliente'}
                 cancelar={this.cerrarFormulario} />
             )
         }
         else if (this.state.banderaN === true) {
-            return (<ModificarPub
+            return (<ModificarClie
                 id={'Nuevo'}
-                onSubmit={this.handleCrearPublicidad}
+                onSubmit={this.handleCrearCliente}
                 idRow={''}
-                dato1={''}
-                dato2={''}
-                dato3={''}
-                dato4={''}
-                h1={'publicidade.pb_new'}
-                nameBtn={'publicidade.pb_new'}
+                nombre=''
+                apellido=''
+                numeroIdent=''
+                tipoIdent=''
+                tipoClient=''
+                
+                h1={'Nuevo Cliente'}
+                nameBtn={'Crear Cliente'}
                 cancelar={this.cerrarFormulario} />)
+        }else if (this.state.banderaC === true){
+            return(<ModificarClie
+                id={'Crear'}
+                onSubmit={this.handleCrearContrato}
+                idRow={this.state.id}
+                nombre={this.state.prmr_nmbre}
+                apellido={this.state.prmr_aplldo}
+                numeroIdent={this.state.nmro_idntfccn}
+                tipoIdent={this.state.tpo_idntfcn}
+                tipoClient={this.state.tpT_clnte}
+                h1={'Nuevo Contrato'}
+                nameBtn={'Crear Contrato'}
+                cancelar={this.cerrarFormulario} />
+                )
         }
         return null
     }
@@ -113,33 +160,78 @@ class Clientes extends Component {
         return (
             <React.Fragment>
                 <div className="container pre-scrollable" style={{ marginTop: "10px", maxHeight: "350px", marginBottom: "20px" }}>
-                <Table t1={'Id'} t2={'Tipo ident'} t3={'Número ident'} t4={'Nombres'} t5={'Apellidos'} t6={'Tipo Cliente'} t7={'Crear'} t8={'Ver Contratos'} tabla='cliente' datos={this.state.datos} modificar={this.modificar} cambiarEstado={this.cambiarEstadoPublicidad} />
+                <Table t1={'Id'} t2={'Tipo ident'} t3={'Número ident'} t4={'Nombres'} t5={'Apellidos'} t6={'Tipo Cliente'} t7={'Modificar Cliente'} t8={'Crear Contrato'} t9={'Ver Contratos'} tabla='cliente' datos={this.state.datos} modificar={this.modificar} crearContrato={this.crearContrato} verContrato={this.verContratos}cambiarEstado={this.cambiarEstadoPublicidad} />
                 </div>
             </React.Fragment>
         )
     }
+
+    mostrarTablaCon = () =>{
+        
+        if(this.state.banderaCont===false){
+            return null
+        }else{
+            return (
+                <React.Fragment>
+                    <h1 className="display-4">Contratos</h1><br/>
+                    <div className="container pre-scrollable" style={{ marginTop: "10px", maxHeight: "350px", marginBottom: "20px" }}>
+                    <Table t1={'Id'} t2={'Direccion'} t3={'Estrato'}  t4={'Modificar Contrato'} t5={'Estado'} tabla='contrato' datos={this.state.contratos} modificar={this.modificar} crearContrato={this.crearContrato} cambiarEstado={this.cambiarEstadoPublicidad} />
+                    </div>
+                </React.Fragment>
+            )
+        }
+
+        
+    }
     //Este el metodo que le envio a la table para que se ejecute en ese componente y me traiga los datos de la fila que se va a modificar
     //y junto con este actualizo la banderaMa true para que se muestre el formulario correspondiente
-    modificar = (id, titulo, descripcion, url) => {
+    modificar = (id, nombre, apellido, ident, tipoIdent, tipoClient) => {
         this.setState({
             id: id,
-            titulo: titulo,
-            descripcion: descripcion,
-            url: url,
+            nmro_idntfccn: ident,
+            prmr_nmbre: nombre,
+            prmr_aplldo: apellido,
+            tpo_idntfcn: tipoIdent,
+            tpT_clnte: tipoClient,
             banderaM: true,
             banderaN: false,
+            banderaC:false,
+        })
+    }
+
+    crearContrato = (id, nombre, apellido, ident, tipoIdent, tipoClient) => {
+        this.setState({
+            id: id,
+            banderaC:true,
+            banderaM: false,
+            banderaN: false,
+            nmro_idntfccn: ident,
+            prmr_nmbre: nombre,
+            prmr_aplldo: apellido,
+            tpo_idntfcn: tipoIdent,
+            tpT_clnte: tipoClient,
+            
         })
     }
 
     //Cuando presione en nuevo cambia la banderaN a true para mostrar el formulario correspondiente
     nuevo = () => {
         this.setState({
-            banderaM: false,
             banderaN: true,
+            banderaC:false,
+            banderaM: false,
+            
+            
         });
     }
+
+    verContratos = () =>{
+        this.setState({
+            banderaCont:true
+        })
+    }
     
-    /* onChange = (e) => {
+     onChange = (e) => {
         this.setState({
             buscador: e.target.value.toLowerCase()
         })
@@ -151,22 +243,23 @@ class Clientes extends Component {
             this.solicitud()
         }
     }
- */
-    /* buscador = (letra) => {
+ 
+     buscador = (letra) => {
         const datosNuevos = this.state.datos.filter(function(fila){
-            if(fila.id.toLowerCase().indexOf(letra)!==-1){
+            if(fila.prmr_nmbre.toLowerCase().indexOf(letra)!==-1){
                 return fila;
-            }else if(fila.id.toLowerCase().indexOf(letra)!==-1)
-            {
+            }else if(fila.nmro_idntfccn.toLowerCase().indexOf(letra)!==-1){
                 return fila;
-            }   
+            }else if(fila.prmr_aplldo.toLowerCase().indexOf(letra)!==-1){
+                return fila;
+            }
         })
         this.setState({
             datos: datosNuevos,
             resultado:datosNuevos.length
         })
         
-    } */
+    } 
 
     default = (e) =>{
         e.preventDefault();
@@ -180,16 +273,16 @@ class Clientes extends Component {
 
     render() {
         return (
-            <div  className="container-fluid" style={{ backgroundColor: "white", position: "absolute", top: "70px", left: "0px" }}>
+            <div onKeyDown={this.onKeyPressed} className="container-fluid" style={{ backgroundColor: "white", position: "absolute", top: "70px", left: "0px" }}>
                 <Encabezado
                     titulo="Panel de Clientes"
                     descripcion="A contiuación, encontrará el listado de clientes" />
                 <div className="container" style={{ justifyContent: "center" }}>
-                    <form method="POST" >
+                    <form method="POST" onSubmit={this.default}>
                         <div className="form-row justify-content-between">
                             <div className="col-lg-8 col-md-8 col-sm-12 col-xs-12" style={{ marginBottom: "10px" }}>
                                 <div className="input-group">
-                                    <input type="text" name="buscador"   autoComplete="off" className="form-control" required />
+                                    <input type="text" name="buscador"  value={this.state.buscador}  onChange={this.onChange}  autoComplete="off" className="form-control" required />
                                     <div className="input-group-prepend">
                                         <span className="input-group-text" id="inputGroupPrepend2">
                                             <svg className="bi bi-search" width="20px" height="20px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -204,7 +297,7 @@ class Clientes extends Component {
                                 <button className="btn btn-success" type="button">Buscar</button>
                             </div>
                             <div className="col-auto">
-                                <button className="btn btn-danger" type="button" >
+                                <button className="btn btn-danger" onClick={this.nuevo} type="button" >
                                     <svg className="bi bi-file-plus" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M9 1H4a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V8h-1v5a1 1 0 01-1 1H4a1 1 0 01-1-1V3a1 1 0 011-1h5V1z" />
                                         <path fillRule="evenodd" d="M13.5 1a.5.5 0 01.5.5v2a.5.5 0 01-.5.5h-2a.5.5 0 010-1H13V1.5a.5.5 0 01.5-.5z" clipRule="evenodd" />
@@ -215,10 +308,11 @@ class Clientes extends Component {
                             </div>
                         </div>
                      
-                        
+                        {this.mostrarTable()}
+                        {this.mostrarTablaCon()}
                     </form>
                 </div>
-                {this.mostrarTable()}
+                {this.mostrarFormulario()}
             </div>
         )
     }
