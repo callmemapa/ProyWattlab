@@ -45,7 +45,7 @@ def sendEmail(data):
              )
             email.send()
         except (BadHeaderError, SMTPException):
-            raise Response(status= status.HTTP_400_BAD_REQUEST)
+            return Response("NO SE PUDO ENVIAR", status= status.HTTP_400_BAD_REQUEST)
         return Response("REALIZADO", status= status.HTTP_200_OK)
         
         

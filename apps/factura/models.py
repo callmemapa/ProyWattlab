@@ -14,7 +14,7 @@ class TipoCliente(models.Model):
 
 class Tarifa (models.Model):
     vlr_kwh = models.FloatField(default=0)
-    inco_vgca = models.DateTimeField(auto_now_add=True)
+    inco_vgca = models.DateField(auto_now_add=True)
     obsrvcn =models.CharField(max_length=150)
     estdo = models.BooleanField(default=True)
     
@@ -70,6 +70,7 @@ class Facturacion(models.Model):
     cntdd_fctrs_pndts= models.IntegerField(default=0.0)
     fcha_crte_srvco = models.DateField()
     obsrvcn = models.CharField(max_length=150, default='')
+    estado= models.BooleanField(default='False')
     
     def __str__(self):
         return self.obsrvcn

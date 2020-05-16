@@ -19,10 +19,10 @@ const handleFormSubmit = e => {
             "contenido": e.target.elements.contenido.value,
             "email": e.target.elements.email.value
         }).then(res => {
-            notificaciones.exito()
             console.log(res)
-            
-        }).catch(error => {
+            notificaciones.exito()
+        })
+            .catch(error => {
                 console.log(error)
                 notificaciones.error()
 

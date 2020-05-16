@@ -2,20 +2,12 @@ from django.shortcuts import render
 from .models import *
 from .serializers import *
 
-from rest_framework import status,viewsets
+from rest_framework import status,viewsets, mixins,generics
 from rest_framework.response import Response
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, action
 from django.db.models import Count
 from django.db.models import Avg, Max, Min, Sum
- 
- 
-class ClienteViewSet(viewsets.ModelViewSet): 
-    queryset = Cliente.objects.all()
-    serializer_class = ClienteSerializer    
-    
-class ContratoViewSet(viewsets.ModelViewSet):
-    queryset = Contrato.objects.all()
-    serializer_class= ContrIndiSerializer
+  
     
 class SubEstacionViewSet(viewsets.ModelViewSet):
     queryset = SubEstacion.objects.all()
@@ -40,11 +32,48 @@ class ConsumoViewSet(viewsets.ModelViewSet):
 class PagoViewSet(viewsets.ModelViewSet):
     queryset = Pago.objects.all()
     serializer_class = PagoSerializer 
-
-class FacturaViewSet(viewsets.ModelViewSet):
-    queryset = Facturacion.objects.all()
-    serializer_class = FacturaSerializer   
     
+    
+class ClienteViewSet(generics.GenericAPIView, mixins.CreateModelMixin, 
+                     mixins.ListModelMixin, mixins.UpdateModelMixin): 
+    
+    queryset = Cliente.objects.all()
+    serializer_class = ClienteSerializer
+    
+    def get(self, request):
+        return self.list(request)
+    
+    def post(self, request):
+        return self.create(request)
+
+    def put(self, request, *args, **kwargs):    
+        return self.partial_update(request, *args, **kwargs)
+
+class ContratoViewSet(generics.GenericAPIView, mixins.CreateModelMixin,
+                       mixins.ListModelMixin, mixins.UpdateModelMixin):
+    queryset = Contrato.objects.all()
+    serializer_class= ContrIndiSerializer
+    
+    def get(self, request):
+        return self.list(request)
+    
+    def post(self, request):
+        return self.create(request)
+
+    def put(self, request, *args, **kwargs):    
+        return self.partial_update(request, *args, **kwargs)
+
+
+@api_view(['POST'])
+def FactViewSet(request): 
+    if request.method == 'POST': 
+        contrat = Contrato.objects.get(id=request.data['contrato'])
+        consumo = Consumo.objects.filter(idntfccn_cntrto=contrat.id).last()
+        query = Facturacion.objects.filter(cnsctvo_cnsmo=consumo.id)
+        serializer = FacturaSerializer(query, many=True)
+        
+        return Response(serializer.data,status= status.HTTP_200_OK)
+        
 @api_view(['GET'])
 def ReporFinancieroView(request): 
     if request.method == 'GET': 

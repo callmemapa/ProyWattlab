@@ -12,8 +12,7 @@ class ContrIndiSerializer(serializers.ModelSerializer):
 class ContrSerializer(serializers.ModelSerializer):
     class Meta:
         model= Contrato
-        fields=('id','estrt_scl','drccn','cliente','estado')
-        extra_kwargs={'cliente' :{"read_only":True}} 
+        fields=('id','estrt_scl','drccn')
         
 class ClienteSerializer (serializers.ModelSerializer):
     contrato= ContrSerializer(write_only=True)
@@ -86,6 +85,6 @@ class FacturaSerializer(serializers.ModelSerializer):
         fields =('id', 'cnsctvo_cnsmo', 'cnsctvo_trfa', 
                  'vlr_cnsmo', 'vlr_intrss_mra', 'vlr_rcnxn', 
                   'vlr_ttl', 'fcha_lmte_pgo', 'cntdd_fctrs_pndts',
-                  'fcha_crte_srvco', 'obsrvcn')
+                  'fcha_crte_srvco', 'obsrvcn', 'estado')
         
         depth=2
