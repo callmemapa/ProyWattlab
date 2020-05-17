@@ -146,7 +146,7 @@ export default class BackService {
     }
     
     async putUpdateContrato(contrato) {
-        const url = `${API_URL}/oper/cliente-contrato/${contrato.id}`;
+        const url = `${API_URL}/oper/cliente-contrato/${contrato.id}/`;
         return axios.put(url, contrato)
             .then(res => res.data)
             .catch(error => console.log(error));

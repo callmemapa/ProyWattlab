@@ -156,7 +156,7 @@ function ModificarClie(props) {
                     </div>
 
                     <div className="form-row">
-                        <div class="form-group col-md-6">
+                        <div className="form-group col-md-6">
                             <label htmlFor="inputFecha">Fecha de nacimiento</label>
                             <input required type="date" name="fcha_ncmnto" onChange={onChange} value={cliente.fcha_ncmnto} className="form-control" id="inputFecha" max="3000-12-31"
                                 min="1000-01-01" class="form-control" />
