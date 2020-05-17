@@ -6,8 +6,9 @@ import './style/slides.css';
 import React, { Component } from 'react';
 import ModificarPub from './ModificarPub';
 import BackService from '../store/PeticionesBack';
+import alerta from '../componentes/Alertas';
 const solicitudBack = new BackService();
-
+const notificaciones = new alerta();
 class Publicidad extends Component {
 
     state = {
@@ -28,6 +29,7 @@ class Publicidad extends Component {
             .then(res => {
                 this.setState({
                     datos: res
+                    
                 })
                 this.buscador(this.state.buscador)
             })
@@ -44,8 +46,12 @@ class Publicidad extends Component {
         solicitudBack.postRegisterPublicidad(publicidad
         ).then(res => {
             this.solicitud()
+            notificaciones.exito()
         })
-            .catch(error => console.log(error))
+            .catch(error => {
+                console.log(error)
+                notificaciones.error()
+            })
         this.cerrarFormulario()
 
     }
@@ -55,8 +61,12 @@ class Publicidad extends Component {
         solicitudBack.putUpdatePublicidad(publicidad
         ).then(res => {
             this.solicitud()
+            notificaciones.exito()
         })
-            .catch(error => console.log(error))
+            .catch(error => {
+                console.log(error)
+                notificaciones.error()
+            })
         this.cerrarFormulario()
     }
 
