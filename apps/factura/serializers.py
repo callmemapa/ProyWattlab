@@ -75,9 +75,8 @@ class ConsumoSerializer(serializers.ModelSerializer):
 class PagoSerializer(serializers.ModelSerializer):
     class Meta:
         model= Pago
-        fields = ('id', 'idntfccn_bnco', 'cnsctvo_fctra', 
-                  'vlr_pgdo', 'nmro_unco_idntfccn_usro', 
-                  'fcha_pgo', 'obsrvcn')
+        fields = ('id', 'idntfccn_bnco', 'cnsctvo_fctra', 'nmro_unco_idntfccn_usro',
+                  'vlr_pgdo','tp_pgdo','nmro_trjt', 'fcha_pgo', 'obsrvcn')
         
 class FacturaSerializer(serializers.ModelSerializer):
     class Meta:
