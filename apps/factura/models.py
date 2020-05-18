@@ -14,18 +14,18 @@ class TipoCliente(models.Model):
 
 class Tarifa (models.Model):
     vlr_kwh = models.FloatField(default=0)
-    inco_vgca = models.DateTimeField(auto_now_add=True)
+    inco_vgca = models.DateField(auto_now_add=True)
     obsrvcn =models.CharField(max_length=150)
     estdo = models.BooleanField(default=True)
     
     def __str__(self):
         return self.obsrvcn
-    
+        
 class Cliente(models.Model): 
     nmro_idntfccn = models.CharField(max_length=11)
     prmr_nmbre = models.CharField(max_length=50)
     prmr_aplldo = models.CharField(max_length=50)
-    fcha_ncmnto = models.DateField(null= True)
+    fcha_ncmnto = models.DateField(null=True, blank=True)
     tpo_idntfcn = models.ForeignKey(TipoId, on_delete=models.CASCADE)
     tpT_clnte = models.ForeignKey(TipoCliente, on_delete=models.CASCADE)
     
@@ -34,8 +34,9 @@ class Cliente(models.Model):
     
 class Contrato (models.Model): 
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
-    estrt_scl = models.CharField(max_length=2, default='0')
+    estrt_scl = models.PositiveIntegerField(default=0)
     drccn = models.CharField(max_length=150, default='')
+    estado= models.BooleanField(default=True)
     
     def __str__(self):
         return self.drccn
@@ -43,8 +44,8 @@ class Contrato (models.Model):
 class Consumo (models.Model):
     idntfccn_cntrto = models.ForeignKey(Contrato, on_delete= models.CASCADE)
     kwh = models.IntegerField(default=0)
-    prdo_cnsmo = models.CharField(max_length=50, default='')
-    obsrvcn = models.CharField(max_length=150, default='')
+    prdo_cnsmo = models.CharField(max_length=50, default='202007')
+    obsrvcn = models.CharField(max_length=150, default='Registro de consumo')
     
     def __str__(self):
         return self.obsrvcn
@@ -69,6 +70,7 @@ class Facturacion(models.Model):
     cntdd_fctrs_pndts= models.IntegerField(default=0.0)
     fcha_crte_srvco = models.DateField()
     obsrvcn = models.CharField(max_length=150, default='')
+    estado= models.BooleanField(default='False')
     
     def __str__(self):
         return self.obsrvcn
@@ -76,13 +78,15 @@ class Facturacion(models.Model):
 class Pago(models.Model):
     idntfccn_bnco = models.ForeignKey(Banco, on_delete=models.CASCADE, null= True)
     cnsctvo_fctra = models.OneToOneField(Facturacion, on_delete=models.CASCADE)
-    vlr_pgdo = models.FloatField(default=0)
-    nmro_unco_idntfccn_usro = models.ForeignKey(User, on_delete=models.CASCADE)
-    fcha_pgo = models.DateTimeField(auto_now_add=True)
+    nmro_unco_idntfccn_usro = models.ForeignKey(User, on_delete=models.CASCADE, null= True)
+    vlr_pgdo = models.FloatField(default=0, null=False, blank=False)
+    tp_pgdo=models.CharField(max_length=20, default='Efectivo')
+    nmro_trjt = models.CharField(max_length=20, null=True, blank=True)
+    fcha_pgo = models.DateField(auto_now_add=True)
     obsrvcn = models.CharField(max_length=150, default='')
     
     def __str__(self):
-        return self.obsrvcn
+        return self.tp_pgdo
 
 class SubEstacion (models.Model):
     nombre = models.CharField(max_length=50)
@@ -108,7 +112,7 @@ class Transformador(models.Model):
     lngtd = models.FloatField(default=0)
     lttd= models.FloatField(default=0)
     estdo= models.BooleanField(default=True)
-    obsrvcn= models.CharField(max_length=150, default='')
+    obsrvcn= models.CharField(max_length=150, default='Trasformador')
     
     def __str__(self):
         return self.obsrvcn

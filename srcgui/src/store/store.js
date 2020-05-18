@@ -8,7 +8,8 @@ const initialState = {
     token: null,
     error: null,
     loading: false,
-    authenticate: null
+    authenticate: null, 
+    usuario: null
 }
 
 function saveToLocalStorage(state){
@@ -39,7 +40,8 @@ const reduc = combineReducers({
      token: (state = {}) => state,
      error: (state = {}) => state,
      loading: (state = {}) => state,
-     authenticate: (state = {}) => state
+     authenticate: (state = {}) => state,
+     usuario: (state = {}) => state
 });
 
 const store = createStore(

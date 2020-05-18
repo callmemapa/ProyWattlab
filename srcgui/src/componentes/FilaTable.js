@@ -2,6 +2,7 @@ import React from 'react';
 import BotonModificar from './BotonModificar';
 import BotonInactivar from './BotonInactivar';
 import BotonVisualizar from './BotonVisualizar';
+import BotonCrear from './BotonCrear';
 
 
 function FilaTable(props) {
@@ -16,10 +17,7 @@ function FilaTable(props) {
                         <td>{props.apellido}</td>
                         <td>{props.email}</td>
                         <td>{props.perfil}</td>
-                        <td>
-                            <BotonModificar
-                                modificar={props.modificar.bind(this, props.id, props.usuario, props.nombre, props.apellido, props.email, props.perfil)} />
-                        </td>
+                        <td><BotonModificar modificar={props.modificar.bind(this, props.id, props.usuario, props.nombre, props.apellido, props.email, props.perfil)} /></td>
                         {/*Con este metodo le mando la informacion con el cambio de estado*/}
                         {mostrarBotonA({ "id": props.id, "is_active": !props.estado, "profile": {} })}
                     </React.Fragment>
@@ -40,6 +38,23 @@ function FilaTable(props) {
                     </React.Fragment>
                 )
             }
+            case 'cliente': {
+                return (
+                    <React.Fragment>
+                        {/*Para el usuo de una nueva tabla */}
+                        
+                        {mostrarTipoIdent()}
+                        <td>{props.numeroIdent}</td>
+                        <td>{props.nombre}</td>
+                        <td>{props.apellido}</td>
+                        {mostrarTipoCliente()}
+                        <td><BotonModificar modificar={props.modificar.bind(this, props.id, props.nombre, props.apellido, props.numeroIdent, props.tipoIdent, props.tipoClient)}/></td>
+                        <td><BotonCrear crearContrato={props.crearContrato.bind(this, props.id, props.nombre, props.apellido, props.numeroIdent, props.tipoIdent, props.tipoClient)} /></td>
+                        <td><BotonVisualizar verContrato={props.verContrato}/></td>
+                        
+                    </React.Fragment>
+                )
+            }
             case 'factura': {
                 return (
                     <React.Fragment>
@@ -55,9 +70,13 @@ function FilaTable(props) {
                     </React.Fragment>
                 )
             }
-            case 4: {
+            case 'contrato': {
                 return (
                     <React.Fragment>
+                        <td>{props.direccion}</td>
+                        <td>{props.estrato}</td>
+                        <td><BotonModificar/></td>
+                        {mostrarBotonA({ "id": props.id, "estado": !props.estado })}
                     </React.Fragment>
                 )
             }
@@ -70,18 +89,59 @@ function FilaTable(props) {
         if (props.estado === true) {
             return (
                 <td>
-                    <BotonInactivar cambiarEstado={props.cambiarEstado.bind(this, fila)} nombre='users-panel.usr_btn-inactive' claseBoton='btn btn-danger' />
+                    <BotonInactivar cambiarEstado={props.cambiarEstado.bind(this, fila)} nombre='Inactivar' claseBoton='btn btn-danger' />
                 </td>
             )
         } else {
             return (
                 <td>
-                    <BotonInactivar cambiarEstado={props.cambiarEstado.bind(this, fila)} nombre='users-panel.usr_btn-activate' claseBoton='btn btn-primary' />
+                    <BotonInactivar cambiarEstado={props.cambiarEstado.bind(this, fila)} nombre='activar' claseBoton='btn btn-primary' />
                 </td>
             )
         }
     }
-    /*Aqui pinta la fila, el id que es el pricipal y las celdas basicas*/
+
+        const mostrarTipoIdent = () =>{
+        if(props.tipoIdent===1){
+            return(
+                <td>C.C</td>
+            )
+        }
+        if(props.tipoIdent===2){
+            return(
+                <td>Nit</td>
+            )
+        }
+        if(props.tipoIdent===3){
+            return(
+                <td>C.E</td>
+            )
+        }else{
+            return(
+                <td>nada</td>
+            )
+        }
+    }
+
+    const mostrarTipoCliente = () =>{
+        if(props.tipoClient===1){
+            return(
+                <td>Natural</td>
+            )
+        }
+        if(props.tipoClient===2){
+            return(
+                <td>Juridica</td>
+            )
+        }
+        else{
+            return(
+                <td>nada</td>
+            )
+        }
+    }
+
+        /*Aqui pinta la fila, el id que es el pricipal y las celdas basicas*/
     const mostrarFila = () => {
         return (
             <React.Fragment>

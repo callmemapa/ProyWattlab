@@ -129,6 +129,7 @@ class Publicidad extends Component {
         })
     }
 
+
     //Cuando presione en nuevo cambia la banderaN a true para mostrar el formulario correspondiente
     nuevo = () => {
         this.setState({
