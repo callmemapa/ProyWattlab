@@ -155,7 +155,15 @@
          "rpt_ext-title":"Reports",
          "rpt_ext-description":"Company income report",
          "rpt_int-title":"Reports panel",
-         "rpt_int-description":"Below, you will find the economic income reports"
+         "rpt_int-description":"Below, you will find the economic income reports",
+         "rpt_clientes": "Number of Registered Clients",
+         "rpt_cntrt-activo": "Number of Active Contracts",
+         "rpt_cntd-sube": "Number of Substations",
+         "rpt_cntd-trns": "Number of Transformers",
+         "rpt_conv-act-banco": "Active Agreements with Banks",
+         "rpt_conv-inct-banco": "Inactive Agreements with Banks",
+         "rpt_prm-enrg": "Average energy consumption",
+         "rpt_ingr-dinero": "Money income"
       },
       "publicidade": {
          "pb_int-title": "Advertising panel",

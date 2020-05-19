@@ -1,12 +1,9 @@
-import React, { Component } from 'react';
-import i18n from '../i18next';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
-import Sidebar from '../componentes/Sidebar';
-import { Layout } from 'antd';
 import { Chart } from "react-google-charts";
 import Encabezado from './Encabezado';
 
-function Reportes() {
+function Reportes(props) {
     const i18n = useTranslation();
     return (
         <div className="container-fluid" style={{ backgroundColor: "white", position: "absolute", top: "70px", left: "0px" }}>
@@ -17,69 +14,53 @@ function Reportes() {
                 <div className="col" >
                     <div className="row" style={{width: "900px", height:"200px", padding: "10px"}} >
                         <div className="col" >
-                            <h3 align="center"> Numero de Clientes Registrados</h3>
+                            <h3 align="center"> {i18n.t('reports-panel.rpt_clientes')}</h3>
                             <p></p>
-                            <h2 align="center">0</h2>
+                            <h2 align="center">{props.reporte.clientes}</h2>
                         </div>
                         <div className="col">
-                            <h3 align="center">Cantidad de Contratos Activos</h3>
+                            <h3 align="center">{i18n.t('reports-panel.rpt_cntrt-activo')}</h3>
                             <p></p>
-                            <h2 align="center">0</h2>
+                            <h2 align="center">{props.reporte.contrato}</h2>
                         </div>
                         <div className="col" >
-                            <h3 align="center">Cantidad de Subestaciones</h3>
+                            <h3 align="center">{i18n.t('reports-panel.rpt_cntd-sube')}</h3>
                             <p></p>
-                            <h2 align="center">0</h2>
+                            <h2 align="center">{props.reporte.subE}</h2>
                         </div>
                     </div>
 
                     <div className="row" style={{width: "900px", height:"200px", padding: "10px"}}>
                         <div className="col">
-                            <h3 align="center">Cantidad de Transformadores</h3>
+                            <h3 align="center">{i18n.t('reports-panel.rpt_cntd-trns')}</h3>
                             <p></p>
-                            <h2 align="center">0</h2>
+                            <h2 align="center">{props.reporte.trnsf}</h2>
                         </div>
                         <div className="col" >
-                            <h3 align="center">Convenios Activos con Bancos</h3>
+                            <h3 align="center">{i18n.t('reports-panel.rpt_conv-act-banco')}</h3>
                             <p></p>
-                            <h2 align="center">0</h2>
+                            <h2 align="center">{props.reporte.banco_Activo}</h2>
                         </div>
                         <div className="col" >
-                            <h3 align="center">Convenios Inactivos con Bancos</h3>
+                            <h3 align="center">{i18n.t('reports-panel.rpt_conv-inct-banco')}</h3>
                             <p></p>
-                            <h2 align="center">0</h2>
+                            <h2 align="center">{props.reporte.banco_Inctivo}</h2>
+                        </div>
+                    </div>
+                    <div className="row" style={{ width: "900px", height: "200px", padding: "10px" }}>
+                        <div className="col">
+                            <h3 align="center">{i18n.t('reports-panel.rpt_prm-enrg')}</h3>
+                            <p></p>
+                            <h2 align="center">{props.reporte.consu_ener}</h2>
+                        </div>
+                        <div className="col" >
+                            <h3 align="center">{i18n.t('reports-panel.rpt_ingr-dinero')}</h3>
+                            <p></p>
+                            <h2 align="center">{props.reporte.dinero}</h2>
                         </div>
                     </div>
 
                     <div className="row">
-                        <div className="col">
-                            <Chart
-                                width={400}
-                                height={300}
-                                chartType="ColumnChart"
-                                loader={<div>Loading Chart</div>}
-                                data={[
-                                    ['City', '2010 Population', '2000 Population'],
-                                    ['New York City, NY', 8175000, 8008000],
-                                    ['Los Angeles, CA', 3792000, 3694000],
-                                    ['Chicago, IL', 2695000, 2896000],
-                                    ['Houston, TX', 2099000, 1953000],
-                                    ['Philadelphia, PA', 1526000, 1517000],
-                                ]}
-                                options={{
-                                    title: 'Population of Largest U.S. Cities',
-                                    chartArea: { width: '30%' },
-                                    hAxis: {
-                                        title: 'Total Population',
-                                        minValue: 0,
-                                    },
-                                    vAxis: {
-                                        title: 'City',
-                                    },
-                                }}
-                                legendToggle
-                            />
-                        </div>
                         <div className="col">
                             <Chart
                                 width={400}
@@ -88,12 +69,10 @@ function Reportes() {
                                 loader={<div>Loading Chart</div>}
                                 data={[
                                     ['Año', 'Ingresos', 'Gastos'],
-                                    ['2015', 1000, 400],
-                                    ['2016', 1000, 400],
-                                    ['2017', 1000, 400],
-                                    ['2018', 1170, 460],
-                                    ['2019', 660, 1120],
-                                    ['2020', 1030, 540],
+                                    ['2019', 600, 400],
+                                    ['2020', 1000, 600],
+                                    ['2021', 0, 0],
+                                    ['2022', 0, 0],
                                 ]}
                                 options={{
                                     title: 'Reporte de ingresos',

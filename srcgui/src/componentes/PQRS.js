@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Layout, Empty } from 'antd';
+import { Layout} from 'antd';
 import Footer from './Footer';
 import Menu from './Menu';
 import alerta from '../componentes/Alertas';
