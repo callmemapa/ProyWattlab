@@ -11,8 +11,8 @@ import Factura from './Factura';
 const solicitudBack = new BackService();
 
 class ConsultaFactura extends React.Component {
-
     state = {
+        bandera: false,
         id: '',
         valorConsumo: '',
         valorMora: '',
@@ -32,7 +32,7 @@ class ConsultaFactura extends React.Component {
 
     //Con este metodo haga el llamado a los datos al back para guardarlos en el estado.
     /*solicitud = () => {
-        solicitudBack.getListFacturas()
+        solicitudBack.postFactura()
             .then(res => {
                 this.setState({
                     datos: res
@@ -61,7 +61,7 @@ class ConsultaFactura extends React.Component {
 
     onKeyPressed = (e) => {
         if (e.keyCode === 8) {
-            //this.solicitud()
+           // this.solicitud()
         }
     }
 

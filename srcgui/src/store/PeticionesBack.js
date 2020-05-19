@@ -34,7 +34,7 @@ export default class BackService {
             .catch(error => console.log(error));
     }
     //FACTURA
-    async postTarifa(factura) {
+    async postFactura(factura) {
         const url = `${API_URL}/oper/factura/`;
         return axios.post(url, factura)
             .then(res => res.data)
