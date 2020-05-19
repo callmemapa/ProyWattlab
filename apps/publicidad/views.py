@@ -41,7 +41,7 @@ def sendEmail(data):
                 asunto,
                 mensaje, 
                 email_from,
-                [email_to, email_from],
+                [email_to, email_from]
              )
             email.send()
         except (BadHeaderError, SMTPException):

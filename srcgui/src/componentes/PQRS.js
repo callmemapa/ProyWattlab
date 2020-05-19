@@ -27,12 +27,10 @@ const handleFormSubmit = e => {
                 notificaciones.error()
 
             })
-        e.target.elements.asunto.value = "";
-        e.target.elements.contenido.value = "";
-        e.target.elements.email.value = "";
+        e.target.asunto.value = ""
+        e.target.contenido.value = ""
+        e.target.email.value = ""
     }
-
-
 }
 
 function PQRS() {
