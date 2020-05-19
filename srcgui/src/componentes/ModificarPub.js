@@ -52,23 +52,23 @@ function ModificarPub(props) {
         <br /><br /><br /><br /><br />
         <h1 className="text-center">{i18n.t(titulo)}</h1>
         <br /><br /><br />
-        <form onSubmit={(event) =>props.onSubmit(event,publicidad)}>
+        <form onSubmit={(event) => props.onSubmit(event, publicidad)}>
             <div className="form-row">
                 <div className="form-group col-md-12">
-                    <label for="titulo">{i18n.t('publicidade.pb_titulo')}</label>
-                    <input ref={myRef} name="titulo" onChange={onChange}  required type="text" value={publicidad.titulo} className="form-control" id="inputPassword4" />
+                    <label htmlFor="titulo">{i18n.t('publicidade.pb_titulo')}</label>
+                    <input ref={myRef} name="titulo" onChange={onChange} required type="text" value={publicidad.titulo} className="form-control" id="inputPassword4" />
                 </div>
             </div>
             <div className="form-group">
-                <label for="descripcion">{i18n.t('publicidade.pb_description')}</label>
-                <input name="descripcion" onChange={onChange} required type="text" value={publicidad.descripcion} className="form-control" id="inputAddress"/>
+                <label htmlFor="descripcion">{i18n.t('publicidade.pb_description')}</label>
+                <input name="descripcion" onChange={onChange} required type="text" value={publicidad.descripcion} className="form-control" id="inputAddress" />
             </div>
             <div className="form-row">
                 <div className="form-group col-md-12">
-                    <label for="url">{i18n.t('publicidade.pb_url')}</label>
+                    <label htmlFor="url">{i18n.t('publicidade.pb_url')}</label>
                     <input name="url" onChange={onChange} required type="text" className="form-control" id="inputCity" value={publicidad.url} />
                 </div>
-               
+
             </div>
             <br /><br />
             <div className="form-row">

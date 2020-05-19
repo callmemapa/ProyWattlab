@@ -1,23 +1,23 @@
 import React from 'react';
 import Publicidad from '../componentes/Publicidad';
-import Sidebar from  '../componentes/Sidebar'
+import Sidebar from '../componentes/Sidebar'
 import { Layout } from 'antd';
 
-function MAPublicidad (){
-    
+function MAPublicidad() {
+
     return (
         <Layout className="layout">
             <div>
-                <Sidebar/>
+                <Sidebar />
             </div>
             <div>
-                <Publicidad/>
+                <Publicidad />
             </div>
-        </Layout> 
-       
+        </Layout>
+
 
     )
-    
+
 }
 
 export default MAPublicidad

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Layout, Empty } from 'antd';
+import { Layout } from 'antd';
 import Footer from './Footer';
 import Menu from './Menu';
 import alerta from '../componentes/Alertas';
@@ -72,7 +72,7 @@ function PQRS() {
                                 <input name="contenido" className="form-control" placeholder={i18n.t('homepage.pqrs-homepage.pqrs_dcptn-title')} style={{ height: "200px", verticalAlign: "top" }} required></input>
                             </div>
                             <div style={{ marginTop: "20px" }}>
-                                <button type="submit"  className="btn btn-success btn-block">{i18n.t('homepage.pqrs-homepage.pqrs_btn-subm')}</button>
+                                <button type="submit" className="btn btn-success btn-block">{i18n.t('homepage.pqrs-homepage.pqrs_btn-subm')}</button>
                             </div>
                         </form>
                     </div>

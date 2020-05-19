@@ -61,12 +61,12 @@ const handleLogout = (props) => { //ENVIO DE DATOS AL BACK
 
 function Sidebar(props) {
   const i18n = useTranslation();
- 
+
 
   const acceso = () => {
- 
+
     switch (props.auth.usuario) {
-       
+
       case 'Administrador': {
         return (
           <React.Fragment>
@@ -141,7 +141,7 @@ function Sidebar(props) {
                     &nbsp; {i18n.t('buttons-panel.buttons_btn-banks')}
               </a>
             </li>
-            
+
           </React.Fragment>
         )
       }
@@ -154,7 +154,7 @@ function Sidebar(props) {
       }
     }
   }
-  
+
 
   const mostrarSider = () => {
     return (
@@ -169,7 +169,7 @@ function Sidebar(props) {
                           &nbsp; {i18n.t('buttons-panel.buttons_btn-home')}
                   </a>
                 </li>
-                
+
                 {acceso()}
 
                 <li className="nav-item active">

@@ -8,38 +8,37 @@ const notificaciones = new alerta();
 
 
 const submitDatoSub = (e, transf, props) => {
-    
+
     transf.lngtd = props.longitud
     transf.lttd = props.latitud
 
     if (transf.lngtd !== '' && transf.grpo_cnxn !== '') {
         solicitudBack.postTransformador(transf)
-            .then(res => 
-                { console.log('Realizado') 
-                    notificaciones.exito()
-                }) //ALERTA DE EXITO
-            .catch(error => 
-                { 
-                    console.log('falla') 
-                    notificaciones.error()
-                })//ALERTA DE ERROR 
+            .then(res => {
+                console.log('Realizado')
+                notificaciones.exito()
+            }) //ALERTA DE EXITO
+            .catch(error => {
+                console.log('falla')
+                notificaciones.error()
+            })//ALERTA DE ERROR 
     }
 }
 
 function Transformador(props) {
     const i18n = useTranslation();
     const [transf, setTransf] = useState({
-        sub_estcn:'',
-        grpo_cnxn:'',
-        tnsn_prmra  :'',
-        tnsn_mxma_srvco :'',
-        tnsn_scndra :'',
-        ptnca_nmnl :'',
-        intnsdd_nmnl_prmra :'',
-        tnsn_crto_crcto :'',
-        rlcn_trnsfrmcn :'',
-        lngtd :'',
-        lttd :''
+        sub_estcn: '',
+        grpo_cnxn: '',
+        tnsn_prmra: '',
+        tnsn_mxma_srvco: '',
+        tnsn_scndra: '',
+        ptnca_nmnl: '',
+        intnsdd_nmnl_prmra: '',
+        tnsn_crto_crcto: '',
+        rlcn_trnsfrmcn: '',
+        lngtd: '',
+        lttd: ''
     })
 
     const onChange = e => {
@@ -60,16 +59,16 @@ function Transformador(props) {
                         <label htmlFor="">{i18n.t('actives-panel.actives-panel-transformer.act_sub-trfm')}</label>
                         <select name="sub_estcn" className="form-control" onChange={onChange}>
                             <option defaultValue>---------</option>
-                            {props.dato.map(subE=>(
+                            {props.dato.map(subE => (
                                 <option key={subE.id} value={subE.id}>{subE.nombre}</option>
-                            ))}       
-                        
+                            ))}
+
                         </select>
                     </div>
                     <div className="form-group col-md-6">
                         <label htmlFor="">{i18n.t('actives-panel.actives-panel-transformer.act_grp-cnt-trfm')}</label>
                         <select name="grpo_cnxn" className="form-control" onChange={onChange}>
-                            <option  defaultValue>Estrella</option>
+                            <option defaultValue>Estrella</option>
                             <option  >Triangulo</option>
                             <option  >Zigzag</option>
                         </select>
@@ -78,35 +77,35 @@ function Transformador(props) {
                 <div className="form-row">
                     <div className="form-group col-md-4">
                         <label htmlFor="">{i18n.t('actives-panel.actives-panel-transformer.act_vprmy-trfm')}</label>
-                        <input type="text" name="tnsn_prmra"  className="form-control" onChange={onChange}></input>
+                        <input type="text" name="tnsn_prmra" className="form-control" onChange={onChange}></input>
                     </div>
                     <div className="form-group col-md-4">
                         <label htmlFor="">{i18n.t('actives-panel.actives-panel-transformer.act_vmax-trfm')}</label>
-                        <input type="text" name="tnsn_mxma_srvco" className="form-control"  onChange={onChange}></input>
+                        <input type="text" name="tnsn_mxma_srvco" className="form-control" onChange={onChange}></input>
                     </div>
                     <div className="form-group col-md-4">
                         <label htmlFor="">{i18n.t('actives-panel.actives-panel-transformer.act_vsecond-trfm')}</label>
-                        <input type="text" name="tnsn_scndra" className="form-control"  onChange={onChange}></input>
+                        <input type="text" name="tnsn_scndra" className="form-control" onChange={onChange}></input>
                     </div>
                 </div>
                 <div className="form-row">
                     <div className="form-group col-md-4">
                         <label htmlFor="">{i18n.t('actives-panel.actives-panel-transformer.act_npw-trfm')}</label>
-                        <input type="text" name="ptnca_nmnl" className="form-control"  onChange={onChange}></input>
+                        <input type="text" name="ptnca_nmnl" className="form-control" onChange={onChange}></input>
                     </div>
                     <div className="form-group col-md-4">
                         <label htmlFor="">{i18n.t('actives-panel.actives-panel-transformer.act_nity-trfm')}</label>
-                        <input type="text" name="intnsdd_nmnl_prmra" className="form-control"  onChange={onChange}></input>
+                        <input type="text" name="intnsdd_nmnl_prmra" className="form-control" onChange={onChange}></input>
                     </div>
                     <div className="form-group col-md-4">
                         <label htmlFor="">{i18n.t('actives-panel.actives-panel-transformer.act_scvltg-trfm')}</label>
-                        <input type="text" name="tnsn_crto_crcto" className="form-control"  onChange={onChange}></input>
+                        <input type="text" name="tnsn_crto_crcto" className="form-control" onChange={onChange}></input>
                     </div>
                 </div>
                 <div className="form-row">
                     <div className="form-group col-md-6">
                         <label htmlFor="">{i18n.t('actives-panel.actives-panel-transformer.act_rt-trfm')}</label>
-                        <input type="text" name="rlcn_trnsfrmcn" className="form-control"  onChange={onChange}></input>
+                        <input type="text" name="rlcn_trnsfrmcn" className="form-control" onChange={onChange}></input>
                     </div>
                     <div className="form-group col-md-6">
                         <label htmlFor="">{i18n.t('actives-panel.actives-panel-transformer.act_lctn-trfm')}</label>

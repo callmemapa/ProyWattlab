@@ -212,7 +212,7 @@ function ModificarClie(props) {
 
                         <div className="form-group col-md-6">
                             <label htmlFor="inputDire">Dirección de la residencia</label>
-                            <input required name="drccn" onChange={onChange} type="text" value={cliente.drccn} className="form-control" id="inputDire" required/>
+                            <input required name="drccn" onChange={onChange} type="text" value={cliente.drccn} className="form-control" id="inputDire" required />
                         </div>
 
                     </div>
@@ -225,20 +225,24 @@ function ModificarClie(props) {
 
     const validar = (event) => {
         event.preventDefault();
-        if(props.id==='Nuevo') {
+        if (props.id === 'Nuevo') {
             props.onSubmit(event, cliente)
-        }else if(props.id==='Crear'){
-            props.onSubmit(event,{"estrt_scl": cliente.contrato.estrt_scl,
-                                    "drccn": cliente.contrato.drccn,
-                                    "cliente":props.idRow})
-        }else if(props.id==='Modificar')  {
-            props.onSubmit(event,{"id": cliente.id,
-            "nmro_idntfccn": cliente.nmro_idntfccn,
-            "prmr_nmbre": cliente.prmr_nmbre,
-            "prmr_aplldo": cliente.prmr_aplldo,
-            "tpo_idntfcn": cliente.tpo_idntfcn,
-            "tpT_clnte": cliente.tpT_clnte})
-        } 
+        } else if (props.id === 'Crear') {
+            props.onSubmit(event, {
+                "estrt_scl": cliente.contrato.estrt_scl,
+                "drccn": cliente.contrato.drccn,
+                "cliente": props.idRow
+            })
+        } else if (props.id === 'Modificar') {
+            props.onSubmit(event, {
+                "id": cliente.id,
+                "nmro_idntfccn": cliente.nmro_idntfccn,
+                "prmr_nmbre": cliente.prmr_nmbre,
+                "prmr_aplldo": cliente.prmr_aplldo,
+                "tpo_idntfcn": cliente.tpo_idntfcn,
+                "tpT_clnte": cliente.tpT_clnte
+            })
+        }
     }
 
     return (

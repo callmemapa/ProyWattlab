@@ -155,7 +155,15 @@
          "rpt_ext-title":"Reportes",
          "rpt_ext-description":"Reporte de ingresos de la empresa",
          "rpt_int-title":"Panel de reportes",
-         "rpt_int-description":"A continuación, encontrará los reportes de ingresos económicos"
+         "rpt_int-description":"A continuación, encontrará los reportes de ingresos económicos",
+         "rpt_clientes":"Numero de Clientes Registrados",
+         "rpt_cntrt-activo":"Cantidad de Contratos Activos",
+         "rpt_cntd-sube":"Cantidad de Subestaciones",
+         "rpt_cntd-trns":"Cantidad de Transformadores",
+         "rpt_conv-act-banco": "Convenios Activos con Bancos",
+         "rpt_conv-inct-banco":"Convenios Inactivos con Bancos",
+         "rpt_prm-enrg": "Consumo energia promedio",
+         "rpt_ingr-dinero": "Ingreso de dinero"
       },
       "publicidade": {
          "pb_int-title": "Panel publicidad",

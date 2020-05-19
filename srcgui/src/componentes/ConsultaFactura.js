@@ -8,35 +8,35 @@ import Footer from './Footer';
 class ConsultaFactura extends React.Component {
     render() {
         return (
-            <Layout className="layout" style={{backgroundColor: "white"}}>
+            <Layout className="layout" style={{ backgroundColor: "white" }}>
                 <div>
-                    <Menu/>
+                    <Menu />
                 </div>
-                <div style={{marginTop: "70px", marginLeft: "0px", marginRight: "0px"}}>
-                    <img className="img-fluid" alt="Responsive image" src='../imagenes/ConsultaFactura.jpg'/>
+                <div style={{ marginTop: "70px", marginLeft: "0px", marginRight: "0px" }}>
+                    <img className="img-fluid" alt="Responsive image" src='../imagenes/ConsultaFactura.jpg' />
                 </div>
-                <div className="container-fluid" style={{marginTop: "10px", marginBottom: "10px"}}>
-                    <div className="form-row justify-content-lg-center justify-content-md-center" style={{marginTop: "20px"}}>
+                <div className="container-fluid" style={{ marginTop: "10px", marginBottom: "10px" }}>
+                    <div className="form-row justify-content-lg-center justify-content-md-center" style={{ marginTop: "20px" }}>
                         <div className="col-lg-3 col-md-4 col-sm-3 col-xs-12">
                             <p>{i18n.t('homepage.bill-homepage.bill_dig-doc')}</p>
                         </div>
                         <div className="col-lg-3 col-md-4 col-sm-3 col-xs-12">
-                            <input className="form-control" placeholder="" style={{marginBottom: "10px"}}></input>
+                            <input className="form-control" placeholder="" style={{ marginBottom: "10px" }}></input>
                         </div>
                         <div className="btn-group col-lg-3 col-md-4 col-sm-3 col-xs-12">
-                            <button type="button" className="btn btn-success btn-default" style={{marginRight: "10px", width: "80px", height: "40px"}}>
+                            <button type="button" className="btn btn-success btn-default" style={{ marginRight: "10px", width: "80px", height: "40px" }}>
                                 <Translation>
                                     {(t, { i18n }) => <p>{t('homepage.bill-homepage.bill_btn-search')}</p>}
-                                </Translation>                            
+                                </Translation>
                             </button>
-                            <button type="button" className="btn btn-success btn-default" style={{ width: "80px", height: "40px"}}>
+                            <button type="button" className="btn btn-success btn-default" style={{ width: "80px", height: "40px" }}>
                                 <Translation>
                                     {(t, { i18n }) => <p>{t('homepage.bill-homepage.bill_btn-clean')}</p>}
-                                </Translation>   
+                                </Translation>
                             </button>
                         </div>
                     </div>
-                    <div className="container pre-scrollable" style={{marginTop: "10px", maxHeight: "350px", marginBottom: "20px"}}>
+                    <div className="container pre-scrollable" style={{ marginTop: "10px", maxHeight: "350px", marginBottom: "20px" }}>
                         <table className="table">
                             <thead className="thead-dark">
                                 <tr>
@@ -48,7 +48,7 @@ class ConsultaFactura extends React.Component {
                                     <th scope="col">
                                         <Translation>
                                             {(t, { i18n }) => <p>{t('homepage.bill-homepage.bill_prd')}</p>}
-                                        </Translation>       
+                                        </Translation>
                                     </th>
                                     <th scope="col">
                                         <Translation>
@@ -176,7 +176,7 @@ class ConsultaFactura extends React.Component {
                     </div>
                 </div>
                 <div>
-                    <Footer/>
+                    <Footer />
                 </div>
             </Layout>
         );

@@ -71,7 +71,7 @@ class Table extends Component {
         </React.Fragment>)
     }
 
-    tablaCliente = () =>{
+    tablaCliente = () => {
         return (<React.Fragment>
             <table className="table">
                 <thead className="thead-dark">
@@ -109,7 +109,7 @@ class Table extends Component {
         </React.Fragment>)
     }
 
-    tablaContrato = () =>{
+    tablaContrato = () => {
 
         return (<React.Fragment>
             <table className="table">
@@ -120,7 +120,7 @@ class Table extends Component {
                         <th scope="col">{this.props.t3}</th>
                         <th scope="col">{this.props.t4}</th>
                         <th scope="col">{this.props.t5}</th>
-                        
+
                     </tr>
                 </thead>
                 <tbody>
@@ -134,7 +134,7 @@ class Table extends Component {
                             id={contrato.id}
                             estrato={contrato.estrt_scl}
                             direccion={contrato.drccn}
-                            estado={contrato.estado}            
+                            estado={contrato.estado}
                         />
                     ))}
                 </tbody>
@@ -149,15 +149,15 @@ class Table extends Component {
         }
         if (this.props.tabla === 'usuario') {
             return this.tablaUsuario()
-        }if(this.props.tabla==='cliente'){
+        } if (this.props.tabla === 'cliente') {
             return this.tablaCliente();
-        }if(this.props.tabla === 'contrato'){
+        } if (this.props.tabla === 'contrato') {
             return this.tablaContrato()
-        }   
-         else {
-            return null
-        } 
         }
+        else {
+            return null
+        }
+    }
 
 
 
