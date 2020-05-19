@@ -6,6 +6,7 @@ import { slide as Menu } from 'react-burger-menu'
 import { Layout } from 'antd';
 import Language from './Language';
 
+
 var styles = {
   bmBurgerButton: {
     position: 'fixed',
@@ -60,9 +61,12 @@ const handleLogout = (props) => { //ENVIO DE DATOS AL BACK
 
 function Sidebar(props) {
   const i18n = useTranslation();
+ 
 
   const acceso = () => {
+ 
     switch (props.auth.usuario) {
+       
       case 'Administrador': {
         return (
           <React.Fragment>

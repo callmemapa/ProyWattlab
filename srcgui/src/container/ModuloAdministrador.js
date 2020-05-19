@@ -3,9 +3,13 @@ import { Layout } from 'antd';
 
 import Sidebar from '../componentes/Sidebar';
 import Inicio from '../componentes/Inicio';
+import alerta from '../componentes/Alertas';
+const notificaciones = new alerta();
+
+
   
 class ModuloAdministrador extends Component {   
-    render() {     
+    render() {   
         return (
             <Layout className="layout">
                 <div>
@@ -14,9 +18,13 @@ class ModuloAdministrador extends Component {
                 <div className="container" style={{marginTop: "20px", marginBottom: "20px"}}>
                     <Inicio/>
                 </div>
-            </Layout>       
+            </Layout> 
+
+            
         );
     }
+
+ 
 }
 
 export default ModuloAdministrador;

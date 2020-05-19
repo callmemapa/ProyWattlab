@@ -8,6 +8,9 @@ import Menu from './Menu';
 import Recaptcha from 'react-recaptcha';
 import { Layout } from 'antd';
 import './style/recaptcha.css';
+import alerta from '../componentes/Alertas';
+const notificaciones = new alerta();
+
 
 //FUNCIONES DEL CAPTCHA
 let valido=null;
@@ -23,15 +26,20 @@ const handleFormSubmit = (e, props) => { //ENVIO DE DATOS  AL BACK
     if (valido != null) {
         props.onAuth(e.target.elements.username.value, e.target.elements.password.value);
         props.history.push("/ModuloAdministrador"); //Ruta a la cual me redigira si el login es verdadero
-    } else {
-        alert("Debes confirmar el captcha antes de iniciar sesión.")
+        } else {
+       alertas()
     }
+}
+   const alertas = () =>  {
+    notificaciones.captcha()
 }
 
 function Login(props) {
     const i18n = useTranslation();
     if ( props.auth.authenticate ){
-        return (<Redirect to="/ModuloAdministrador" />)
+        return (<Redirect to="/ModuloAdministrador" />
+        )
+        
     } 
     return (
         <Layout className="layout">
