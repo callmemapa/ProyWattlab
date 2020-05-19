@@ -63,7 +63,7 @@ function Sidebar(props) {
 
   const acceso = () => {
     switch (props.auth.usuario) {
-      case 'administrador': {
+      case 'Administrador': {
         return (
           <React.Fragment>
             <li className="nav-item active">
@@ -93,7 +93,7 @@ function Sidebar(props) {
           </React.Fragment>
         )
       }
-      case 'gerente': {
+      case 'Gerente': {
         return (
           <React.Fragment>
             <li className="nav-item active">
@@ -122,7 +122,7 @@ function Sidebar(props) {
           </React.Fragment>
         )
       }
-      case 'operador': {
+      case 'Operador': {
         return (
           <React.Fragment>
             <li className="nav-item active">
@@ -141,7 +141,7 @@ function Sidebar(props) {
           </React.Fragment>
         )
       }
-      case 'revisor': {
+      case 'Revisor': {
         return (
           <React.Fragment>
 

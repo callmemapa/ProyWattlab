@@ -5,8 +5,9 @@ import './style/slides.css';
 import React, { Component} from 'react';
 import ModificarClie from './ModificarClie'
 import BackService from '../store/PeticionesBack';
+import alerta from '../componentes/Alertas';
 const solicitudBack = new BackService();
-
+const notificaciones = new alerta();
 
 class Clientes extends Component {
    
@@ -61,8 +62,12 @@ class Clientes extends Component {
         solicitudBack.postRegisterCliente(cliente
         ).then(res => {
             this.solicitud()
+            notificaciones.exito()
         })
-            .catch(error => console.log(error))
+            .catch(error => {
+                console.log(error)
+                notificaciones.error()
+            })
         this.cerrarFormulario()
 
     }
@@ -73,8 +78,12 @@ class Clientes extends Component {
         ).then(res => {
             
             this.solicitudContratos()
+            notificaciones.exito()
         })
-            .catch(error => console.log(error))
+            .catch(error => {
+                console.log(error)
+                notificaciones.error()
+            })
         this.cerrarFormulario()
 
     }
@@ -84,8 +93,12 @@ class Clientes extends Component {
         solicitudBack.putUpdateCliente(cliente
         ).then(res => {
             this.solicitud()
+            notificaciones.exito()
         })
-            .catch(error => console.log(error))
+            .catch(error => {
+                console.log(error)
+                notificaciones.error()
+            })
         this.cerrarFormulario()
     }
 

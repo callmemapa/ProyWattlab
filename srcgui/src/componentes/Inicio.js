@@ -10,7 +10,7 @@ function Inicio(props) {
 
   const acceso = () => {
     switch (props.auth.usuario) {
-      case 'administrador': {
+      case 'Administrador': {
         return (
           <React.Fragment>
             <CardOpt
@@ -37,7 +37,7 @@ function Inicio(props) {
               informacion={i18n.t('banks-panel.bks_ext-description')} />
           </React.Fragment>)
       }
-      case 'gerente': {
+      case 'Gerente': {
         return (
           <React.Fragment>
             <CardOpt
@@ -66,8 +66,8 @@ function Inicio(props) {
               icono="bi bi-book-half"
               informacion={i18n.t('advertising-panel.adv_ext-description')} />
           </React.Fragment>)
-      }
-      case 'operador': {
+      } 
+      case 'Operador':{
         return (
           <React.Fragment>
             <CardOpt

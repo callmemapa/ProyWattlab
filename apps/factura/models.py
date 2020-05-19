@@ -78,13 +78,15 @@ class Facturacion(models.Model):
 class Pago(models.Model):
     idntfccn_bnco = models.ForeignKey(Banco, on_delete=models.CASCADE, null= True)
     cnsctvo_fctra = models.OneToOneField(Facturacion, on_delete=models.CASCADE)
-    vlr_pgdo = models.FloatField(default=0, null=False, blank=False)
     nmro_unco_idntfccn_usro = models.ForeignKey(User, on_delete=models.CASCADE, null= True)
-    fcha_pgo = models.DateTimeField(auto_now_add=True)
+    vlr_pgdo = models.FloatField(default=0, null=False, blank=False)
+    tp_pgdo=models.CharField(max_length=20, default='Efectivo')
+    nmro_trjt = models.CharField(max_length=20, null=True, blank=True)
+    fcha_pgo = models.DateField(auto_now_add=True)
     obsrvcn = models.CharField(max_length=150, default='')
     
     def __str__(self):
-        return self.obsrvcn
+        return self.tp_pgdo
 
 class SubEstacion (models.Model):
     nombre = models.CharField(max_length=50)
