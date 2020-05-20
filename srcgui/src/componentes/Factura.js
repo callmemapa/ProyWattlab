@@ -27,10 +27,6 @@ function Factura(props) {
     const myRef = useRef();
     const myRef2 = useRef();
 
-    //Para inactivar o activar tomar el id del cliente, el estado, y el profile vacio, 
-    //Para modificar crear un segundo estado con el id, nmro_idntfccn, prmr_nmbre, prmr_aplldo, email, tpo_idntfcn
-
-    //Los estados, los cuales almacenan los valores de los inputs
     const [factura, setFactura] = useState({
       id: 2,
       cnsctvo_cnsmo: {

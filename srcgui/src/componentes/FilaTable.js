@@ -65,7 +65,7 @@ function FilaTable(props) {
                         <td>{props.fechaPago}</td>
                         <td>{props.fechaCorte}</td>
                         <td> <BotonVisualizar
-                            verFactura={
+                            verContrato={
                                 props.verFactura.bind(this)
                             }
                         />

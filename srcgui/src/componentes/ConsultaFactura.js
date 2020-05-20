@@ -74,13 +74,9 @@ class ConsultaFactura extends Component {
     }
 
     mostrarFactura = () => {
-        
         if (this.state.banderaVer === true) {
             return (
-                <Suspense fallback={<Spinner />}>
-                    <Factura />
-                    <div>holi</div>
-                </Suspense>
+                <div><a target="_blank" href="/ModuloAdministrador/Factura">Click aquí para ver tu factura</a></div>
             )
         } else {
                 return null
