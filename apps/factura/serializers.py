@@ -21,7 +21,6 @@ class ClienteSerializer (serializers.ModelSerializer):
         model= Cliente
         fields = ('id','nmro_idntfccn', 'prmr_nmbre', 'prmr_aplldo',  'fcha_ncmnto', 
                   'tpo_idntfcn', 'tpT_clnte', 'contrato')
-        extra_kwargs={'fcha_ncmnto' :{"write_only": True}}
 
     @transaction.atomic
     def create(self, validated_data):

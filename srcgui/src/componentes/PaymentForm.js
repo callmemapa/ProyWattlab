@@ -1,39 +1,63 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Cards from 'react-credit-cards';
 import 'react-credit-cards/es/styles-compiled.css';
+import BackService from '../store/PeticionesBack';
+const solicitudBack = new BackService();
 
-const PaymentForm = () => {
+const PaymentForm = (props) => {
 
     const [state, setState] = useState({
         number: '',
         name: '',
         cvc: '',
         expiry: '',
-        focus: ''
+        focus: '',
+        banco: [],
+        nBanco:''
     })
 
+    useEffect(() => {
+
+        submitSub()
+
+    }, [])
+
+    const submitSub = async () => {
+        solicitudBack.getBanco()
+            .then(res => {
+                setState({
+                    ...state,
+                    banco: res
+                })
+            })
+    }
+
     const handleFocus = (e) => {
-        setState({ 
+        setState({
             ...state,
-            focus: e.target.name 
+            focus: e.target.name
         });
     }
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setState({ 
+        setState({
             ...state,
-            [name]: value 
+            [name]: value
         });
+
+        console.log(state)
     }
 
     const submitPayment = () => {
-        console.log("name => " , state.name)
-        console.log("number => " , state.number)
-        console.log("expiry => " , state.expiry)
-        console.log("cvc => " , state.cvc)
+        console.log("name => ", state.name)
+        console.log("number => ", state.number)
+        console.log("expiry => ", state.expiry)
+        console.log("cvc => ", state.cvc)
         alert(JSON.stringify(state))
     }
+
+
 
     return (
         <div className="card" >
@@ -58,17 +82,31 @@ const PaymentForm = () => {
                             onFocus={handleFocus}
                         />
                     </div>
-                    <div className="form-group">
-                        <label htmlFor="Nombre">Nombre</label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            name="name"
-                            maxLength="30"
-                            placeholder="Nombre"
-                            onChange={handleChange}
-                            onFocus={handleFocus}
-                        />
+                    <div className="form-row">
+                        <div className="form-group col-md-6">
+                            <label htmlFor="Nombre">Nombre</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                name="name"
+                                maxLength="30"
+                                placeholder="Nombre"
+                                onChange={handleChange}
+                                onFocus={handleFocus}
+                            />
+                        </div>
+                        <div className="form-group col-md-6">
+                            <label htmlFor="inputIdentfBanco">Lista bancos</label>
+                            <select name="nBanco" onChange={handleChange} value={state.nBanco} id="inputIdentfBanco" className="custom-select">
+                                <option defaultValue>---</option>
+                                {state.banco.map(banco => (
+                                    <option key={banco.id} value={banco.id}>{banco.nmbre_bnco}</option>
+                                ))}
+                                {/*<option>Banco popular</option>
+                            <option>Bancolombia</option>
+                            <option>Banco de Bogota</option>*/}
+                            </select>
+                        </div>
                     </div>
                     <div className="form-row">
                         <div className="form-group col-md-6">
@@ -96,6 +134,7 @@ const PaymentForm = () => {
                             />
                         </div>
                     </div>
+
                     <button
                         type="button"
                         className="btn btn-success btn-block btn-lg"

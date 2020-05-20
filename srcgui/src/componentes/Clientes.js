@@ -32,6 +32,7 @@ class Clientes extends Component {
         resultado: '',
         estrt_scl: '',
         drccn: '',
+        idCont:''
 
 
     }
@@ -43,7 +44,6 @@ class Clientes extends Component {
                 this.setState({
                     datos: res
                 })
-
                 this.buscador(this.state.buscador)
 
             })
@@ -76,7 +76,6 @@ class Clientes extends Component {
             notificaciones.exito()
         })
             .catch(error => {
-                console.log(error)
                 notificaciones.error()
             })
         this.cerrarFormulario()
@@ -87,12 +86,10 @@ class Clientes extends Component {
         e.preventDefault()
         solicitudBack.postRegisterContrato(contrato
         ).then(res => {
-            console.log(this.state.id)
             this.solicitudContratos(this.state.id)
 
         })
             .catch(error => {
-                console.log(error)
                 notificaciones.error()
             })
         this.cerrarFormulario()
@@ -107,7 +104,6 @@ class Clientes extends Component {
             notificaciones.exito()
         })
             .catch(error => {
-                console.log(error)
                 notificaciones.error()
             })
         this.cerrarFormulario()
@@ -117,10 +113,13 @@ class Clientes extends Component {
         e.preventDefault()
         solicitudBack.putUpdateContrato(contrato
         ).then(res => {
-            console.log(this.state.id)
             this.solicitudContratos(this.state.id)
+            notificaciones.exito()
         })
-            .catch(error => console.log(error))
+            .catch(error => {
+                notificaciones.error()
+            })
+            
         this.cerrarFormulario()
     }
 
@@ -129,14 +128,16 @@ class Clientes extends Component {
         solicitudBack.putUpdateContrato(contrato
         ).then(res => {
             this.solicitudContratos(this.state.id)
+            notificaciones.exito()
         })
-            .catch(error => console.log(error))
+            .catch(error => {
+                notificaciones.error()
+            })
     }
 
 
 
     cerrarFormulario = () => {
-        console.log('holaaa')
         this.setState({
             banderaM: false,
             banderaN: false,
@@ -201,7 +202,7 @@ class Clientes extends Component {
             return (<ModificarClie
                 id={'ModificarCont'}
                 onSubmit={this.handleModificarContrato}
-                idRow={this.state.id}
+                idRow={this.state.idCont}
                 estrato={this.state.estrt_scl}
                 direccion={this.state.drccn}
                 h1={'Modificar Contrato'}
@@ -278,7 +279,7 @@ class Clientes extends Component {
     modificarContrato = (id, estrato, direccion) => {
         this.setState({
             banderaMCont: true,
-            id: id,
+            idCont: id,
             estrt_scl: estrato,
             drccn: direccion
         })
@@ -465,6 +466,11 @@ class Clientes extends Component {
                                 &nbsp; Nuevo
                             </button>
                             </div>
+                        </div>
+                        <div className="alert alert-success col-md-6">
+                                Resultados:
+                                <strong> {this.state.resultado} filas encontradas.</strong>
+
                         </div>
 
                         {this.mostrarTable()}

@@ -1,7 +1,7 @@
 import React from 'react'; 
 import Sidebar from '../componentes/Sidebar';
 import { Layout } from 'antd';
-import PagosClientes from '../componentes/PagosClientes';
+import PagosBancos from '../componentes/PagosBancos';
 
 function MAPagosBancos() {
     return (
@@ -10,7 +10,7 @@ function MAPagosBancos() {
                 <Sidebar/>
             </div>
             <div>
-                <PagosClientes/>
+                <PagosBancos/>
             </div>
         </Layout>        
     );
