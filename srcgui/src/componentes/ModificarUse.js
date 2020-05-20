@@ -216,11 +216,11 @@ function ModificarUse(props) {
                 <div className="form-row">
                     <div className="form-group col-md-12">
                         <label htmlFor="inputPerfil">{i18n.t('users-panel.usr_type')}</label>
-                        <select onChange={onChange} name="tipo_usuario" id="inputPerfil" className="custom-select" >
+                        <select onChange={onChange} name="tipo_usuario" value={usuario.profile.tipo_usuario} id="inputPerfil" className="custom-select" >
                             <option >--- </option>
-                            <option >Gerente</option>
-                            <option >Administrador</option>
-                            <option >Operador</option>
+                            <option value="Gerente">Gerente</option>
+                            <option value="Administrador">Administrador</option>
+                            <option value="Operador">Operador</option>
                         </select>
                     </div>
                 </div>
