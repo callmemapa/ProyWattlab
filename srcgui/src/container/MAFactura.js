@@ -6,7 +6,9 @@ class MAFactura extends Component {
     render() {
         return (
             <Layout className="layout">
-                <Factura/>
+                <Factura
+                    valorConsumo='3000'
+                />
             </Layout>
         );
     }
