@@ -11,22 +11,29 @@ const notificaciones = new alerta();
 
 class Clientes extends Component {
 
+    myRef = React.createRef();
 
     state = {
         banderaM: false,
         banderaN: false,
         banderaC: false,
         banderaCont: false,
+        banderaMCont: false,
         id: '',
         nmro_idntfccn: '',
         prmr_nmbre: '',
         prmr_aplldo: '',
         tpo_idntfcn: '',
         tpT_clnte: '',
+        fcha_ncmnto: '',
         datos: [],
         contratos: [],
         buscador: '',
-        resultado: ''
+        resultado: '',
+        estrt_scl: '',
+        drccn: '',
+
+
     }
 
     //Con este metodo haga el llamado a los datos al back para guardarlos en el estado.
@@ -38,15 +45,19 @@ class Clientes extends Component {
                 })
 
                 this.buscador(this.state.buscador)
+
             })
     }
 
-    solicitudContratos = () => {
+    solicitudContratos = (id) => {
         solicitudBack.getListContratos()
             .then(res => {
                 this.setState({
                     contratos: res
                 })
+                this.buscadorCont(id)
+
+
             })
     }
 
@@ -76,9 +87,9 @@ class Clientes extends Component {
         e.preventDefault()
         solicitudBack.postRegisterContrato(contrato
         ).then(res => {
+            console.log(this.state.id)
+            this.solicitudContratos(this.state.id)
 
-            this.solicitudContratos()
-            notificaciones.exito()
         })
             .catch(error => {
                 console.log(error)
@@ -102,22 +113,42 @@ class Clientes extends Component {
         this.cerrarFormulario()
     }
 
-    cambiarEstadoPublicidad = (cliente) => {
-        //console.log(cliente)
-        solicitudBack.putUpdatePublicidad(cliente
+    handleModificarContrato = async (e, contrato) => {
+        e.preventDefault()
+        solicitudBack.putUpdateContrato(contrato
         ).then(res => {
-            this.solicitud()
+            console.log(this.state.id)
+            this.solicitudContratos(this.state.id)
+        })
+            .catch(error => console.log(error))
+        this.cerrarFormulario()
+    }
+
+    cambiarEstadoContrato = (contrato) => {
+        //console.log(cliente)
+        solicitudBack.putUpdateContrato(contrato
+        ).then(res => {
+            this.solicitudContratos(this.state.id)
         })
             .catch(error => console.log(error))
     }
+
+
 
     cerrarFormulario = () => {
         console.log('holaaa')
         this.setState({
             banderaM: false,
             banderaN: false,
-            banderaC: false
+            banderaC: false,
+            banderaMCont: false
         })
+    }
+
+
+
+    focusRef() {
+        this.myRef.current.focus();
     }
 
     //Con este metodo de acuerdo al boton que haya presionado si modificar o nuevo, se llama el componente formulario
@@ -132,6 +163,7 @@ class Clientes extends Component {
                 numeroIdent={this.state.nmro_idntfccn}
                 tipoIdent={this.state.tpo_idntfcn}
                 tipoClient={this.state.tpT_clnte}
+                fechaNa={this.state.fcha_ncmnto}
                 h1={'Modificar Cliente'}
                 nameBtn={'Modificar Cliente'}
                 cancelar={this.cerrarFormulario} />
@@ -165,31 +197,131 @@ class Clientes extends Component {
                 nameBtn={'Crear Contrato'}
                 cancelar={this.cerrarFormulario} />
             )
+        } else if (this.state.banderaMCont === true) {
+            return (<ModificarClie
+                id={'ModificarCont'}
+                onSubmit={this.handleModificarContrato}
+                idRow={this.state.id}
+                estrato={this.state.estrt_scl}
+                direccion={this.state.drccn}
+                h1={'Modificar Contrato'}
+                nameBtn={'Modificar Contrato'}
+                cancelar={this.cerrarFormulario} />)
         }
         return null
+    }
+
+    buscadorCont = (id) => {
+        const datosNuevos = this.state.contratos.filter(function (fila) {
+            if (fila.cliente === id) {
+                return fila;
+            }
+        })
+        this.setState({
+            contratos: datosNuevos,
+            resultado: datosNuevos.length
+        })
+
     }
 
     mostrarTable = () => {
         return (
             <React.Fragment>
                 <div className="container pre-scrollable" style={{ marginTop: "10px", maxHeight: "350px", marginBottom: "20px" }}>
-                    <Table t1={'Id'} t2={'Tipo ident'} t3={'Número ident'} t4={'Nombres'} t5={'Apellidos'} t6={'Tipo Cliente'} t7={'Modificar Cliente'} t8={'Crear Contrato'} t9={'Ver Contratos'} tabla='cliente' datos={this.state.datos} modificar={this.modificar} crearContrato={this.crearContrato} verContrato={this.verContratos} cambiarEstado={this.cambiarEstadoPublicidad} />
+                    <Table t1={'Id'} t2={'Tipo ident'} t3={'Número ident'} t4={'Nombres'} t5={'Apellidos'} t6={'Tipo Cliente'} t7={'Modificar Cliente'} t8={'Crear Contrato'} t9={'Ver Contratos'} tabla='cliente' datos={this.state.datos} modificar={this.modificar} crearContrato={this.crearContrato} verContrato={this.verContratos} />
                 </div>
             </React.Fragment>
         )
     }
 
+    mostrarTipoIdent = () => {
+        if (this.state.tpo_idntfcn === 1) {
+            return (
+                <p class="lead">C.C: {this.state.nmro_idntfccn}</p>
+            )
+        }
+        if (this.state.tpo_idntfcn === 2) {
+            return (
+                <p class="lead">NIT:  {this.state.nmro_idntfccn}</p>
+            )
+        }
+        if (this.state.tpo_idntfcn === 3) {
+            return (
+                <p class="lead">C.E: {this.state.nmro_idntfccn}</p>
+            )
+        } else {
+            return (
+                <td>nada</td>
+            )
+        }
+    }
+
+    mostrarTipoCliente = () => {
+        if (this.state.tpT_clnte === 1) {
+            return (
+                <p class="lead">TIPO DE CLIENTE: NATURAL</p>
+
+            )
+        }
+        if (this.state.tpT_clnte === 2) {
+            return (
+                <p class="lead">TIPO DE CLIENTE: JURIDICA</p>
+            )
+        }
+        else {
+            return (
+                <td>nada</td>
+            )
+        }
+    }
+
+    modificarContrato = (id, estrato, direccion) => {
+        this.setState({
+            banderaMCont: true,
+            id: id,
+            estrt_scl: estrato,
+            drccn: direccion
+        })
+
+
+    }
+
     mostrarTablaCon = () => {
+
 
         if (this.state.banderaCont === false) {
             return null
         } else {
             return (
                 <React.Fragment>
-                    <h1 className="display-4">Contratos</h1><br />
-                    <div className="container pre-scrollable" style={{ marginTop: "10px", maxHeight: "350px", marginBottom: "20px" }}>
-                        <Table t1={'Id'} t2={'Direccion'} t3={'Estrato'} t4={'Modificar Contrato'} t5={'Estado'} tabla='contrato' datos={this.state.contratos} modificar={this.modificar} crearContrato={this.crearContrato} cambiarEstado={this.cambiarEstadoPublicidad} />
+
+                    <h1 className="display-4" >Contratos</h1><br />
+                    <div className="jumbotron" >
+                        <div className="container">
+                            <div className="form-row">
+                                <div className="form-group col-md-3">
+                                    <svg className="bi bi-person-square" width="10em" height="10em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M14 1H2a1 1 0 00-1 1v12a1 1 0 001 1h12a1 1 0 001-1V2a1 1 0 00-1-1zM2 0a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V2a2 2 0 00-2-2H2z" clip-rule="evenodd" />
+                                        <path fill-rule="evenodd" d="M2 15v-1c0-1 1-4 6-4s6 3 6 4v1H2zm6-6a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                                <div className="form-group col-md-6">
+
+                                    <h3 className="display-8">CLIENTE: {this.state.prmr_nmbre.toUpperCase() + ' ' + this.state.prmr_aplldo.toUpperCase()}</h3>
+                                    {this.mostrarTipoIdent()}
+                                    {this.mostrarTipoCliente()}
+
+                                </div>
+
+
+                            </div>
+                        </div>
                     </div>
+
+                    <div className="container pre-scrollable" style={{ marginTop: "10px", maxHeight: "350px", marginBottom: "20px" }}>
+                        <Table ref={this.myRef} t1={'Id'} t2={'Direccion'} t3={'Estrato'} t4={'Modificar Contrato'} t5={'Estado'} tabla='contrato' datos={this.state.contratos} modificar={this.modificarContrato} crearContrato={this.crearContrato} cambiarEstado={this.cambiarEstadoContrato} />
+                    </div>
+
                 </React.Fragment>
             )
         }
@@ -198,7 +330,7 @@ class Clientes extends Component {
     }
     //Este el metodo que le envio a la table para que se ejecute en ese componente y me traiga los datos de la fila que se va a modificar
     //y junto con este actualizo la banderaMa true para que se muestre el formulario correspondiente
-    modificar = (id, nombre, apellido, ident, tipoIdent, tipoClient) => {
+    modificar = (id, nombre, apellido, ident, tipoIdent, tipoClient, fechaNa) => {
         this.setState({
             id: id,
             nmro_idntfccn: ident,
@@ -206,9 +338,11 @@ class Clientes extends Component {
             prmr_aplldo: apellido,
             tpo_idntfcn: tipoIdent,
             tpT_clnte: tipoClient,
+            fcha_ncmnto: fechaNa,
             banderaM: true,
             banderaN: false,
             banderaC: false,
+            banderaCont: false,
         })
     }
 
@@ -218,6 +352,7 @@ class Clientes extends Component {
             banderaC: true,
             banderaM: false,
             banderaN: false,
+            banderaCont: false,
             nmro_idntfccn: ident,
             prmr_nmbre: nombre,
             prmr_aplldo: apellido,
@@ -225,6 +360,7 @@ class Clientes extends Component {
             tpT_clnte: tipoClient,
 
         })
+
     }
 
     //Cuando presione en nuevo cambia la banderaN a true para mostrar el formulario correspondiente
@@ -233,14 +369,26 @@ class Clientes extends Component {
             banderaN: true,
             banderaC: false,
             banderaM: false,
+            banderaCont: false
 
 
         });
     }
 
-    verContratos = () => {
+    verContratos = (id, nombre, apellido, ident, tipoIdent, tipoClient) => {
+
+        this.solicitudContratos(id)
         this.setState({
-            banderaCont: true
+            banderaCont: true,
+            banderaC: false,
+            banderaM: false,
+            banderaN: false,
+            nmro_idntfccn: ident,
+            prmr_nmbre: nombre,
+            prmr_aplldo: apellido,
+            tpo_idntfcn: tipoIdent,
+            tpT_clnte: tipoClient,
+            id: id
         })
     }
 
@@ -279,17 +427,15 @@ class Clientes extends Component {
     }
 
 
-
-
-
-
-
     render() {
         return (
+
             <div onKeyDown={this.onKeyPressed} className="container-fluid" style={{ backgroundColor: "white", position: "absolute", top: "70px", left: "0px" }}>
                 <Encabezado
                     titulo="Panel de Clientes"
                     descripcion="A contiuación, encontrará el listado de clientes" />
+
+
                 <div className="container" style={{ justifyContent: "center" }}>
                     <form method="POST" onSubmit={this.default}>
                         <div className="form-row justify-content-between">

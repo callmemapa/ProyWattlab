@@ -48,9 +48,9 @@ function FilaTable(props) {
                         <td>{props.nombre}</td>
                         <td>{props.apellido}</td>
                         {mostrarTipoCliente()}
-                        <td><BotonModificar modificar={props.modificar.bind(this, props.id, props.nombre, props.apellido, props.numeroIdent, props.tipoIdent, props.tipoClient)}/></td>
+                        <td><BotonModificar modificar={props.modificar.bind(this, props.id, props.nombre, props.apellido, props.numeroIdent, props.tipoIdent, props.tipoClient,props.fechaNa)}/></td>
                         <td><BotonCrear crearContrato={props.crearContrato.bind(this, props.id, props.nombre, props.apellido, props.numeroIdent, props.tipoIdent, props.tipoClient)} /></td>
-                        <td><BotonVisualizar verContrato={props.verContrato}/></td>
+                        <td><BotonVisualizar verContrato={props.verContrato.bind(this,props.id, props.nombre, props.apellido, props.numeroIdent, props.tipoIdent, props.tipoClient)}/></td>
                         
                     </React.Fragment>
                 )
@@ -75,7 +75,7 @@ function FilaTable(props) {
                     <React.Fragment>
                         <td>{props.direccion}</td>
                         <td>{props.estrato}</td>
-                        <td><BotonModificar/></td>
+                        <td><BotonModificar modificar={props.modificar.bind(this,props.id, props.estrato, props.direccion)}/></td>
                         {mostrarBotonA({ "id": props.id, "estado": !props.estado })}
                     </React.Fragment>
                 )
@@ -89,7 +89,7 @@ function FilaTable(props) {
         if (props.estado === true) {
             return (
                 <td>
-                    <BotonInactivar cambiarEstado={props.cambiarEstado.bind(this, fila)} nombre='Inactivar' claseBoton='btn btn-danger' />
+                    <BotonInactivar cambiarEstado={props.cambiarEstado.bind(this, fila)} nombre='inactivar' claseBoton='btn btn-danger' />
                 </td>
             )
         } else {
