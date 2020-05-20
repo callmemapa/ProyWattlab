@@ -17,7 +17,9 @@
          },
          "services-homepage":{
             "svcs_title":"Pensamos en tu comodidad",
-            "svcs_description":"Encuentra aquí todos nuestros servicios y transacciones en línea"
+            "svcs_description":"Encuentra aquí todos nuestros servicios y transacciones en línea",
+            "svcs_info-titulo": "¿Quiénes somos?",
+            "svcs_info-descrip": "Wattlab es una empresa de servicios públicos domiciliarios, responsable social y ambientalmente, por eso nos interesa mantener un buen relacionamiento con nuestros grupos de interés. Para ello adoptamos las medidas de seguridad contempladas por la ley para proteger y preservar la confidencialidad, integridad y disponibilidad de la información."
          },
          "bill-homepage":{
             "bill_title":"Consulta tu factura",

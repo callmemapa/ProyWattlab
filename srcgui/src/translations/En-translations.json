@@ -17,7 +17,9 @@
          },
          "services-homepage":{
             "svcs_title":"We think about your comfort",
-            "svcs_description":"Find here all our services and online transactions"
+            "svcs_description":"Find here all our services and online transactions",
+            "svcs_info-titulo": "About us?",
+            "svcs_info-descrip": "Wattlab It is a company of domiciliary public services, socially and environmentally responsible, that is why we are interested in maintaining a good relationship with our stakeholders. For this we adopt the security measures contemplated by law to protect and preserve the confidentiality, integrity and availability of the information."
          },
          "bill-homepage":{
             "bill_title":"Check your bill",

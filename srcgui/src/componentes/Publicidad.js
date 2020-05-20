@@ -36,7 +36,7 @@ class Publicidad extends Component {
     }
 
     //Con este metodo hago el llamdo a solicitud una vez se renderize el componente.
-    async componentDidMount() {
+    componentDidMount() {
         this.solicitud()
     }
 

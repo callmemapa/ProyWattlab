@@ -6,9 +6,13 @@ class Servicio extends Component {
     render() {
         return (
             <div className="container" style={{ marginTop: '15px', marginBottom: "20px", textAlign: "center" }}>
-                <h1>¿Quiénes somos?</h1>
+                <Translation>
+                    {(t, { i18n }) => <h1>{t('homepage.services-homepage.svcs_info-titulo')}</h1>}
+                </Translation>
                 <div style={{ marginBottom: "20px", marginTop: "20px", textAlign: "justify" }}>
-                    <h5>Wattlab es una empresa de servicios públicos domiciliarios, responsable social y ambientalmente, por eso nos interesa mantener un buen relacionamiento con nuestros grupos de interés. Para ello adoptamos las medidas de seguridad contempladas por la ley para proteger y preservar la confidencialidad, integridad y disponibilidad de la información. </h5>
+                    <Translation>
+                        {(t, { i18n }) => <h5>{t('homepage.services-homepage.svcs_info-descrip')}</h5>}
+                    </Translation>
 
                 </div>
                 <div style={{ marginBottom: "20px", marginTop: "20px" }}>

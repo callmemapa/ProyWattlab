@@ -1,9 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Translation } from 'react-i18next';
 import CardNoticia from '../componentes/CardNoticia';
-import FilaTable from '../componentes/FilaTable';
-
 
 function Noticias(props) {
     const i18n = useTranslation();
@@ -11,9 +8,7 @@ function Noticias(props) {
     return (
         <div className="container" style={{ marginTop: '15px', marginBottom: "20px", textAlign: "center" }}>
             <div style={{ marginBottom: "20px", marginTop: "20px" }}>
-                <Translation>
-                    {(t, { i18n }) => <h1>{t('homepage.news-homepage.news_title')}</h1>}
-                </Translation>
+                <h1>{i18n.t('homepage.news-homepage.news_title')}</h1>
             </div>
             <div className="row" >
                 <div className="col" >

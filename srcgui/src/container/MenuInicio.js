@@ -14,24 +14,21 @@ class MenuInicio extends Component {
     state = {
         datos: []
     }
-    componentWillUpdate() {
-        this.submitSub()
-    }
 
     componentDidMount() {
-        this.submitSub();
+        this.enviopubli();
 
     }
 
-    submitSub = () => {
+    enviopubli = () => {
         solicitudBack.getListPublicidad()
             .then(res => {
                 this.setState({
                     datos: res
                 })
             })
-
     }
+
     render() {
         return (
             <Layout className="layout">
