@@ -100,6 +100,7 @@ class Table extends Component {
                             numeroIdent={cliente.nmro_idntfccn}
                             nombre={cliente.prmr_nmbre}
                             apellido={cliente.prmr_aplldo}
+                            fechaNa={cliente.fcha_ncmnto}
                             tipoIdent={cliente.tpo_idntfcn}
                             tipoClient={cliente.tpT_clnte}
                         />

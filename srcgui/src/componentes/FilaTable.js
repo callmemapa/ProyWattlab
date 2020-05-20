@@ -48,7 +48,7 @@ function FilaTable(props) {
                         <td>{props.nombre}</td>
                         <td>{props.apellido}</td>
                         {mostrarTipoCliente()}
-                        <td><BotonModificar modificar={props.modificar.bind(this, props.id, props.nombre, props.apellido, props.numeroIdent, props.tipoIdent, props.tipoClient)}/></td>
+                        <td><BotonModificar modificar={props.modificar.bind(this, props.id, props.nombre, props.apellido, props.numeroIdent, props.tipoIdent, props.tipoClient,props.fechaNa)}/></td>
                         <td><BotonCrear crearContrato={props.crearContrato.bind(this, props.id, props.nombre, props.apellido, props.numeroIdent, props.tipoIdent, props.tipoClient)} /></td>
                         <td><BotonVisualizar verContrato={props.verContrato.bind(this,props.id, props.nombre, props.apellido, props.numeroIdent, props.tipoIdent, props.tipoClient)}/></td>
                         
@@ -60,7 +60,7 @@ function FilaTable(props) {
                     <React.Fragment>
                         <td>{props.direccion}</td>
                         <td>{props.estrato}</td>
-                        <td><BotonModificar/></td>
+                        <td><BotonModificar modificar={props.modificar.bind(this,props.id, props.estrato, props.direccion)}/></td>
                         {mostrarBotonA({ "id": props.id, "estado": !props.estado })}
                     </React.Fragment>
                 )

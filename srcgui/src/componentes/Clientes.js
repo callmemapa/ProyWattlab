@@ -10,23 +10,29 @@ const solicitudBack = new BackService();
 
 class Clientes extends Component {
 
-    myRef = React.createRef()
+    myRef = React.createRef();
 
     state = {
         banderaM: false,
         banderaN: false,
         banderaC: false,
         banderaCont: false,
+        banderaMCont: false,
         id: '',
         nmro_idntfccn: '',
         prmr_nmbre: '',
         prmr_aplldo: '',
         tpo_idntfcn: '',
         tpT_clnte: '',
+        fcha_ncmnto: '',
         datos: [],
         contratos: [],
         buscador: '',
-        resultado: ''
+        resultado: '',
+        estrt_scl: '',
+        drccn: '',
+
+
     }
 
     //Con este metodo haga el llamado a los datos al back para guardarlos en el estado.
@@ -79,7 +85,7 @@ class Clientes extends Component {
             console.log("juan")
             console.log(this.state.id)
             this.solicitudContratos(this.state.id)
-            
+
         })
             .catch(error => console.log(error))
         this.cerrarFormulario()
@@ -96,6 +102,17 @@ class Clientes extends Component {
         this.cerrarFormulario()
     }
 
+    handleModificarContrato = async (e, contrato) => {
+        e.preventDefault()
+        solicitudBack.putUpdateContrato(contrato
+        ).then(res => {
+            console.log(this.state.id)
+            this.solicitudContratos(this.state.id)
+        })
+            .catch(error => console.log(error))
+        this.cerrarFormulario()
+    }
+
     cambiarEstadoContrato = (contrato) => {
         //console.log(cliente)
         solicitudBack.putUpdateContrato(contrato
@@ -105,12 +122,15 @@ class Clientes extends Component {
             .catch(error => console.log(error))
     }
 
+
+
     cerrarFormulario = () => {
         console.log('holaaa')
         this.setState({
             banderaM: false,
             banderaN: false,
-            banderaC: false
+            banderaC: false,
+            banderaMCont: false
         })
     }
 
@@ -132,6 +152,7 @@ class Clientes extends Component {
                 numeroIdent={this.state.nmro_idntfccn}
                 tipoIdent={this.state.tpo_idntfcn}
                 tipoClient={this.state.tpT_clnte}
+                fechaNa={this.state.fcha_ncmnto}
                 h1={'Modificar Cliente'}
                 nameBtn={'Modificar Cliente'}
                 cancelar={this.cerrarFormulario} />
@@ -165,6 +186,16 @@ class Clientes extends Component {
                 nameBtn={'Crear Contrato'}
                 cancelar={this.cerrarFormulario} />
             )
+        } else if (this.state.banderaMCont === true) {
+            return (<ModificarClie
+                id={'ModificarCont'}
+                onSubmit={this.handleModificarContrato}
+                idRow={this.state.id}
+                estrato={this.state.estrt_scl}
+                direccion={this.state.drccn}
+                h1={'Modificar Contrato'}
+                nameBtn={'Modificar Contrato'}
+                cancelar={this.cerrarFormulario} />)
         }
         return null
     }
@@ -233,6 +264,17 @@ class Clientes extends Component {
         }
     }
 
+    modificarContrato = (id, estrato, direccion) => {
+        this.setState({
+            banderaMCont: true,
+            id: id,
+            estrt_scl: estrato,
+            drccn: direccion
+        })
+
+
+    }
+
     mostrarTablaCon = () => {
 
 
@@ -242,8 +284,10 @@ class Clientes extends Component {
             return (
                 <React.Fragment>
 
-                    <h1 className="display-4" ref={this.myRef}>Contratos</h1><br />
-                    <div ref={this.myRef} className="jumbotron" >
+                    <h1 className="display-4" >Contratos</h1><br />
+
+
+                    <div className="jumbotron" >
                         <div className="container">
                             <div className="form-row">
                                 <div className="form-group col-md-3">
@@ -265,8 +309,8 @@ class Clientes extends Component {
                         </div>
                     </div>
 
-                    <div ref={this.myRef} className="container pre-scrollable" style={{ marginTop: "10px", maxHeight: "350px", marginBottom: "20px" }}>
-                        <Table t1={'Id'} t2={'Direccion'} t3={'Estrato'} t4={'Modificar Contrato'} t5={'Estado'} tabla='contrato' datos={this.state.contratos} modificar={this.modificar} crearContrato={this.crearContrato} cambiarEstado={this.cambiarEstadoContrato} />
+                    <div className="container pre-scrollable" style={{ marginTop: "10px", maxHeight: "350px", marginBottom: "20px" }}>
+                        <Table ref={this.myRef} t1={'Id'} t2={'Direccion'} t3={'Estrato'} t4={'Modificar Contrato'} t5={'Estado'} tabla='contrato' datos={this.state.contratos} modificar={this.modificarContrato} crearContrato={this.crearContrato} cambiarEstado={this.cambiarEstadoContrato} />
                     </div>
 
                 </React.Fragment>
@@ -277,7 +321,7 @@ class Clientes extends Component {
     }
     //Este el metodo que le envio a la table para que se ejecute en ese componente y me traiga los datos de la fila que se va a modificar
     //y junto con este actualizo la banderaMa true para que se muestre el formulario correspondiente
-    modificar = (id, nombre, apellido, ident, tipoIdent, tipoClient) => {
+    modificar = (id, nombre, apellido, ident, tipoIdent, tipoClient, fechaNa) => {
         this.setState({
             id: id,
             nmro_idntfccn: ident,
@@ -285,6 +329,7 @@ class Clientes extends Component {
             prmr_aplldo: apellido,
             tpo_idntfcn: tipoIdent,
             tpT_clnte: tipoClient,
+            fcha_ncmnto: fechaNa,
             banderaM: true,
             banderaN: false,
             banderaC: false,
@@ -322,7 +367,7 @@ class Clientes extends Component {
     }
 
     verContratos = (id, nombre, apellido, ident, tipoIdent, tipoClient) => {
-        this.focusRef = this.focusRef.bind(this)
+
         this.solicitudContratos(id)
         this.setState({
             banderaCont: true,
@@ -380,10 +425,13 @@ class Clientes extends Component {
 
     render() {
         return (
+
             <div onKeyDown={this.onKeyPressed} className="container-fluid" style={{ backgroundColor: "white", position: "absolute", top: "70px", left: "0px" }}>
                 <Encabezado
                     titulo="Panel de Clientes"
                     descripcion="A contiuación, encontrará el listado de clientes" />
+
+
                 <div className="container" style={{ justifyContent: "center" }}>
                     <form method="POST" onSubmit={this.default}>
                         <div className="form-row justify-content-between">

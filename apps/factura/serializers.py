@@ -21,7 +21,7 @@ class ClienteSerializer (serializers.ModelSerializer):
         model= Cliente
         fields = ('id','nmro_idntfccn', 'prmr_nmbre', 'prmr_aplldo',  'fcha_ncmnto', 
                   'tpo_idntfcn', 'tpT_clnte', 'contrato')
-        extra_kwargs={'fcha_ncmnto' :{"write_only": True}}
+        
 
     @transaction.atomic
     def create(self, validated_data):
@@ -75,9 +75,8 @@ class ConsumoSerializer(serializers.ModelSerializer):
 class PagoSerializer(serializers.ModelSerializer):
     class Meta:
         model= Pago
-        fields = ('id', 'idntfccn_bnco', 'cnsctvo_fctra', 
-                  'vlr_pgdo', 'nmro_unco_idntfccn_usro', 
-                  'fcha_pgo', 'obsrvcn')
+        fields = ('id', 'idntfccn_bnco', 'cnsctvo_fctra', 'nmro_unco_idntfccn_usro',
+                  'vlr_pgdo','tp_pgdo','nmro_trjt', 'fcha_pgo', 'obsrvcn')
         
 class FacturaSerializer(serializers.ModelSerializer):
     class Meta:
