@@ -5,8 +5,9 @@ import './style/slides.css';
 import React, { Component } from 'react';
 import ModificarClie from './ModificarClie'
 import BackService from '../store/PeticionesBack';
+import alerta from '../componentes/Alertas';
 const solicitudBack = new BackService();
-
+const notificaciones = new alerta();
 
 class Clientes extends Component {
 
@@ -72,8 +73,12 @@ class Clientes extends Component {
         solicitudBack.postRegisterCliente(cliente
         ).then(res => {
             this.solicitud()
+            notificaciones.exito()
         })
-            .catch(error => console.log(error))
+            .catch(error => {
+                console.log(error)
+                notificaciones.error()
+            })
         this.cerrarFormulario()
 
     }
@@ -82,12 +87,14 @@ class Clientes extends Component {
         e.preventDefault()
         solicitudBack.postRegisterContrato(contrato
         ).then(res => {
-            console.log("juan")
             console.log(this.state.id)
             this.solicitudContratos(this.state.id)
 
         })
-            .catch(error => console.log(error))
+            .catch(error => {
+                console.log(error)
+                notificaciones.error()
+            })
         this.cerrarFormulario()
 
     }
@@ -97,8 +104,12 @@ class Clientes extends Component {
         solicitudBack.putUpdateCliente(cliente
         ).then(res => {
             this.solicitud()
+            notificaciones.exito()
         })
-            .catch(error => console.log(error))
+            .catch(error => {
+                console.log(error)
+                notificaciones.error()
+            })
         this.cerrarFormulario()
     }
 
@@ -285,8 +296,6 @@ class Clientes extends Component {
                 <React.Fragment>
 
                     <h1 className="display-4" >Contratos</h1><br />
-
-
                     <div className="jumbotron" >
                         <div className="container">
                             <div className="form-row">
@@ -416,11 +425,6 @@ class Clientes extends Component {
     default = (e) => {
         e.preventDefault();
     }
-
-
-
-
-
 
 
     render() {

@@ -17,7 +17,9 @@
          },
          "services-homepage":{
             "svcs_title":"We think about your comfort",
-            "svcs_description":"Find here all our services and online transactions"
+            "svcs_description":"Find here all our services and online transactions",
+            "svcs_info-titulo": "About us?",
+            "svcs_info-descrip": "Wattlab It is a company of domiciliary public services, socially and environmentally responsible, that is why we are interested in maintaining a good relationship with our stakeholders. For this we adopt the security measures contemplated by law to protect and preserve the confidentiality, integrity and availability of the information."
          },
          "bill-homepage":{
             "bill_title":"Check your bill",
@@ -155,7 +157,15 @@
          "rpt_ext-title":"Reports",
          "rpt_ext-description":"Company income report",
          "rpt_int-title":"Reports panel",
-         "rpt_int-description":"Below, you will find the economic income reports"
+         "rpt_int-description":"Below, you will find the economic income reports",
+         "rpt_clientes": "Number of Registered Clients",
+         "rpt_cntrt-activo": "Number of Active Contracts",
+         "rpt_cntd-sube": "Number of Substations",
+         "rpt_cntd-trns": "Number of Transformers",
+         "rpt_conv-act-banco": "Active Agreements with Banks",
+         "rpt_conv-inct-banco": "Inactive Agreements with Banks",
+         "rpt_prm-enrg": "Average energy consumption",
+         "rpt_ingr-dinero": "Money income"
       },
       "publicidade": {
          "pb_int-title": "Advertising panel",

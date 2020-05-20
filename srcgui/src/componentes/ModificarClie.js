@@ -228,7 +228,7 @@ function ModificarClie(props) {
 
     const validar = (event) => {
         event.preventDefault();
-        if(props.id==='Nuevo') {
+        if (props.id === 'Nuevo') {
             props.onSubmit(event, cliente)
         }else if(props.id==='Crear'){
             props.onSubmit(event,{"estrt_scl": cliente.contrato.estrt_scl,

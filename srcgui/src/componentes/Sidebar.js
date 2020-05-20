@@ -6,6 +6,7 @@ import { slide as Menu } from 'react-burger-menu'
 import { Layout } from 'antd';
 import Language from './Language';
 
+
 var styles = {
   bmBurgerButton: {
     position: 'fixed',
@@ -61,7 +62,9 @@ const handleLogout = (props) => { //ENVIO DE DATOS AL BACK
 function Sidebar(props) {
   const i18n = useTranslation();
 
+
   const acceso = () => {
+
     switch (props.auth.usuario) {
       case 'Administrador': {
         return (
@@ -137,7 +140,7 @@ function Sidebar(props) {
                     &nbsp; {i18n.t('buttons-panel.buttons_btn-banks')}
               </a>
             </li>
-            
+
           </React.Fragment>
         )
       }
@@ -150,7 +153,7 @@ function Sidebar(props) {
       }
     }
   }
-  
+
 
   const mostrarSider = () => {
     return (
@@ -165,7 +168,7 @@ function Sidebar(props) {
                           &nbsp; {i18n.t('buttons-panel.buttons_btn-home')}
                   </a>
                 </li>
-                
+
                 {acceso()}
 
                 <li className="nav-item active">

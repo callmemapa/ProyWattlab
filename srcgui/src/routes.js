@@ -17,8 +17,10 @@ import MADashboard from './container/MADashboard';
 import MATransformadores from './container/MATransformadores';
 import MAReportes from './container/MAReportes';
 import MAPagos from './container/MAPagos';
+import MAPagosBancos from './container/MAPagosBancos'; // NUEVO
 import MAConfiguracion from './container/MAConfiguracion';
 import MAPublicidad from './container/MAPublicidad';
+import RegistroConsumo from './componentes/RegistroConsumo';
 import PageNotFound from './container/PageNotFound';
 import MAClientes from './container/MAClientes';
 
@@ -41,7 +43,8 @@ function BaseRouter() {
                         <Route exact path="/ModuloAdministrador/Configuracion" component={MAConfiguracion}/>                      
                         <Route exact path="/ModuloAdministrador/Publicidad" component={MAPublicidad} />
                         <Route exact path="/ModuloAdministrador/Clientes" component={MAClientes} />
-                        <Route exact path="/ModuloAdministrador/Bancos" component={MADashboard} />
+                        <Route exact path="/ModuloAdministrador/Bancos" component={MAPagosBancos} />
+                        <Route exact path="/RegistroConsumo" component={RegistroConsumo} />
                         <Route component={PageNotFound} />
                     </Switch>
                 </BrowserRouter>

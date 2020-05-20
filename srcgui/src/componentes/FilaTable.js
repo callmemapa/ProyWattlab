@@ -55,6 +55,21 @@ function FilaTable(props) {
                     </React.Fragment>
                 )
             }
+            case 'factura': {
+                return (
+                    <React.Fragment>
+                        <td>{props.valorConsumo}</td>
+                        <td>{props.valorMora}</td>
+                        <td>{props.valorReconexion}</td>
+                        <td>{props.valorAPagar}</td>
+                        <td>{props.fechaPago}</td>
+                        <td>{props.fechaCorte}</td>
+                        <td>
+                            <BotonVisualizar/>
+                        </td>
+                    </React.Fragment>
+                )
+            }
             case 'contrato': {
                 return (
                     <React.Fragment>
@@ -62,6 +77,19 @@ function FilaTable(props) {
                         <td>{props.estrato}</td>
                         <td><BotonModificar modificar={props.modificar.bind(this,props.id, props.estrato, props.direccion)}/></td>
                         {mostrarBotonA({ "id": props.id, "estado": !props.estado })}
+                    </React.Fragment>
+                )
+            }
+            case 'pagos': { // ¡NUEVO! ELIMINAR SI NO FUNCIONA. (@bryansbr)
+                return(
+                    <React.Fragment>
+                        <td>{props.idntfccn_bnco}</td>
+                        <td>{props.cnsctvo_fctra}</td>
+                        <td>{props.nmro_unco_idntfccn_usro}</td>
+                        <td>{props.vlr_pgdo}</td>
+                        <td>{props.tp_pgdo}</td>
+                        <td>{props.nmro_trjt}</td> 
+                        <td>{props.obsrvcn}</td>                                      
                     </React.Fragment>
                 )
             }

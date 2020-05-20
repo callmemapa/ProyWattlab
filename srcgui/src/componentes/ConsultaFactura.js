@@ -1,182 +1,110 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Translation, withTranslation } from 'react-i18next';
 import i18n from "i18next";
 import { Layout } from 'antd';
 import Menu from './Menu';
-import Footer from './Footer';
+import Table from '../container/Table'
+import ModificarUse from './ModificarUse'
+import BackService from '../store/PeticionesBack';
+import BotonVisualizar from './BotonVisualizar';
+import Factura from './Factura';
+const solicitudBack = new BackService();
 
 class ConsultaFactura extends React.Component {
+    state = {
+        bandera: false,
+        id: '',
+        valorConsumo: '',
+        valorMora: '',
+        valorReconexion: '',
+        valorAPagar: '',
+        fechaPago: '',
+        fechaCorte: '',
+        datos: [],
+        buscador: '',
+        resultado: ''
+    }
+
+    mostrarTable = () => {
+        return (
+            <React.Fragment>
+                <div className="container pre-scrollable" style={{ marginTop: "10px", maxHeight: "350px", marginBottom: "20px" }}>
+                    <Table t1='Id' t2='Valor consumo' t3='Valor mora' t4='Valor reconexión' t5='Valor a pagar' t6='Fecha pago' t7='Fecha corte' t8='Visualizar' tabla='factura' datos={this.state.datos}/>
+                </div>
+            </React.Fragment>
+        )
+    }
+
+    onChange = (e) => {
+        this.setState({
+            buscador: e.target.value.toLowerCase()
+        })
+        this.buscador(e.target.value.toLowerCase());
+    }
+
+    onKeyPressed = (e) => {
+        if (e.keyCode === 8) {
+           // this.solicitud()
+        }
+    }
+
+    buscador = (numero) => {
+        const datosNuevos = this.state.datos.filter(function (fila) {
+            if (fila.contrato.toLowerCase().indexOf(numero) !== -1) {
+                return fila;
+            } else if (fila.id.toLowerCase().indexOf(numero) !== -1) {
+                return fila;
+            }
+        })
+        this.setState({
+            datos: datosNuevos,
+            resultado: datosNuevos.length
+        })
+    }
+
+    default = (e) => {
+        e.preventDefault();
+    }
+
     render() {
         return (
-            <Layout className="layout" style={{backgroundColor: "white"}}>
+            <Layout className="layout" style={{ backgroundColor: "white" }}>
                 <div>
-                    <Menu/>
+                    <Menu />
                 </div>
-                <div style={{marginTop: "70px", marginLeft: "0px", marginRight: "0px"}}>
-                    <img className="img-fluid" alt="Responsive image" src='../imagenes/ConsultaFactura.jpg'/>
+                <div style={{ marginTop: "70px", marginLeft: "0px", marginRight: "0px" }}>
+                    <img className="img-fluid" alt="Responsive image" src='../imagenes/ConsultaFactura.jpg' />
                 </div>
-                <div className="container-fluid" style={{marginTop: "10px", marginBottom: "10px"}}>
-                    <div className="form-row justify-content-lg-center justify-content-md-center" style={{marginTop: "20px"}}>
-                        <div className="col-lg-3 col-md-4 col-sm-3 col-xs-12">
-                            <p>{i18n.t('homepage.bill-homepage.bill_dig-doc')}</p>
+                <div className="container" style={{ justifyContent: "center", marginTop: "20px" }}>
+                    <form onSubmit={this.default} className="needs-validation" noValidate>
+                        <div className="form-row justify-content-between">
+                            <div className="col-lg-8 col-md-12 col-sm-12 col-xs-12" style={{ marginBottom: "10px" }}>
+                                <div className="input-group">
+                                    <input type="text" className="form-control" value={this.state.buscador} onChange={this.onChange} autoComplete="off" id="validationDefaultUsername" aria-describedby="inputGroupPrepend2" required></input>
+                                    <div className="input-group-prepend">
+                                        <span className="input-group-text" id="inputGroupPrepend2">
+                                            <svg className="bi bi-search" width="20px" height="20px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                <path fillRule="evenodd" d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z" clipRule="evenodd" />
+                                                <path fillRule="evenodd" d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z" clipRule="evenodd" />
+                                            </svg>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-lg-1 col-md-1 col-auto mr-auto">
+                                <button className="btn btn-success" type="button">Buscar</button>
+                            </div>
+                            <div className="alert alert-success col-md-6">
+                                Resultados:
+                                <strong> {this.state.resultado} filas encontradas.</strong>
+
+                            </div>
+                            {this.mostrarTable()}
                         </div>
-                        <div className="col-lg-3 col-md-4 col-sm-3 col-xs-12">
-                            <input className="form-control" placeholder="" style={{marginBottom: "10px"}}></input>
-                        </div>
-                        <div className="btn-group col-lg-3 col-md-4 col-sm-3 col-xs-12">
-                            <button type="button" className="btn btn-success btn-default" style={{marginRight: "10px", width: "80px", height: "40px"}}>
-                                <Translation>
-                                    {(t, { i18n }) => <p>{t('homepage.bill-homepage.bill_btn-search')}</p>}
-                                </Translation>                            
-                            </button>
-                            <button type="button" className="btn btn-success btn-default" style={{ width: "80px", height: "40px"}}>
-                                <Translation>
-                                    {(t, { i18n }) => <p>{t('homepage.bill-homepage.bill_btn-clean')}</p>}
-                                </Translation>   
-                            </button>
-                        </div>
-                    </div>
-                    <div className="container pre-scrollable" style={{marginTop: "10px", maxHeight: "350px", marginBottom: "20px"}}>
-                        <table className="table">
-                            <thead className="thead-dark">
-                                <tr>
-                                    <th scope="col">
-                                        <Translation>
-                                            {(t, { i18n }) => <p>{t('homepage.bill-homepage.bill_num-fact')}</p>}
-                                        </Translation>
-                                    </th>
-                                    <th scope="col">
-                                        <Translation>
-                                            {(t, { i18n }) => <p>{t('homepage.bill-homepage.bill_prd')}</p>}
-                                        </Translation>       
-                                    </th>
-                                    <th scope="col">
-                                        <Translation>
-                                            {(t, { i18n }) => <p>{t('homepage.bill-homepage.bill_valwouts')}</p>}
-                                        </Translation>
-                                    </th>
-                                    <th scope="col">
-                                        <Translation>
-                                            {(t, { i18n }) => <p>{t('homepage.bill-homepage.bill_datewouts')}</p>}
-                                        </Translation>
-                                    </th>
-                                    <th scope="col">
-                                        <Translation>
-                                            {(t, { i18n }) => <p>{t('homepage.bill-homepage.bill_valws')}</p>}
-                                        </Translation>
-                                    </th>
-                                    <th scope="col">
-                                        <Translation>
-                                            {(t, { i18n }) => <p>{t('homepage.bill-homepage.bill_datews')}</p>}
-                                        </Translation>
-                                    </th>
-                                    <th scope="col">
-                                        <Translation>
-                                            {(t, { i18n }) => <p>{t('homepage.bill-homepage.bill_state')}</p>}
-                                        </Translation>
-                                    </th>
-                                    <th scope="col">
-                                        <Translation>
-                                            {(t, { i18n }) => <p>{t('homepage.bill-homepage.bill_datepay')}</p>}
-                                        </Translation>
-                                    </th>
-                                    <th scope="col">
-                                        <Translation>
-                                            {(t, { i18n }) => <p>{t('homepage.bill-homepage.bill_valpay')}</p>}
-                                        </Translation>
-                                    </th>
-                                    <th scope="col">
-                                        <Translation>
-                                            {(t, { i18n }) => <p>{t('homepage.bill-homepage.bill_fts')}</p>}
-                                        </Translation>
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <td>20050</td>
-                                    <td>Enero 2020</td>
-                                    <td>$70.000</td>
-                                    <td>30-01-2020</td>
-                                    <td>$100.000</td>
-                                    <td>30-03-2020</td>
-                                    <td><span className="badge badge-danger">
-                                        <Translation>
-                                            {(t, { i18n }) => <p>{t('homepage.bill-homepage.bill_btn-wpay')}</p>}
-                                        </Translation>
-                                    </span></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>65200</td>
-                                    <td>Diciembre 2019</td>
-                                    <td>$80.000</td>
-                                    <td>30-12-2019</td>
-                                    <td>$110.000</td>
-                                    <td>30-02-2020</td>
-                                    <td><span className="badge badge-success">
-                                        <Translation>
-                                            {(t, { i18n }) => <p>{t('homepage.bill-homepage.bill_btn-pay')}</p>}
-                                        </Translation>
-                                    </span></td>
-                                    <td>28-12-2019</td>
-                                    <td>$80.000</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>65200</td>
-                                    <td>Noviembre 2019</td>
-                                    <td>$80.000</td>
-                                    <td>30-12-2019</td>
-                                    <td>$110.000</td>
-                                    <td>30-02-2020</td>
-                                    <td><span className="badge badge-success">
-                                        <Translation>
-                                            {(t, { i18n }) => <p>{t('homepage.bill-homepage.bill_btn-pay')}</p>}
-                                        </Translation>
-                                    </span></td>
-                                    <td>28-12-2019</td>
-                                    <td>$80.000</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>65200</td>
-                                    <td>Octubre 2019</td>
-                                    <td>$80.000</td>
-                                    <td>30-12-2019</td>
-                                    <td>$110.000</td>
-                                    <td>30-02-2020</td>
-                                    <td><span className="badge badge-success">
-                                        <Translation>
-                                            {(t, { i18n }) => <p>{t('homepage.bill-homepage.bill_btn-pay')}</p>}
-                                        </Translation>
-                                    </span></td>
-                                    <td>28-12-2019</td>
-                                    <td>$80.000</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>65200</td>
-                                    <td>Septiembre 2019</td>
-                                    <td>$80.000</td>
-                                    <td>30-12-2019</td>
-                                    <td>$110.000</td>
-                                    <td>30-02-2020</td>
-                                    <td><span className="badge badge-success">
-                                        <Translation>
-                                            {(t, { i18n }) => <p>{t('homepage.bill-homepage.bill_btn-pay')}</p>}
-                                        </Translation>
-                                    </span></td>
-                                    <td>28-12-2019</td>
-                                    <td>$80.000</td>
-                                    <td></td>
-                                </tr>
-                            </thead>
-                        </table>
-                    </div>
-                </div>
-                <div>
-                    <Footer/>
+                    </form>
+                    <div><BotonVisualizar/></div>
+                    <div><Factura/></div>
+                    
                 </div>
             </Layout>
         );

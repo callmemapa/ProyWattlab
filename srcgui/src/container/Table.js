@@ -1,8 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import FilaTable from '../componentes/FilaTable';
 
 class Table extends Component {
-
     tablaPublicidad = () => {
         return (<React.Fragment>
             <table className="table">
@@ -71,6 +70,40 @@ class Table extends Component {
         </React.Fragment>)
     }
 
+    tablaFacturas = () => {
+        return (<React.Fragment>
+            <table className="table">
+                <thead className="thead-dark">
+                    <tr>
+                        <th scope="col">{this.props.t1}</th>
+                        <th scope="col">{this.props.t2}</th>
+                        <th scope="col">{this.props.t3}</th>
+                        <th scope="col">{this.props.t4}</th>
+                        <th scope="col">{this.props.t5}</th>
+                        <th scope="col">{this.props.t6}</th>
+                        <th scope="col">{this.props.t7}</th>
+                        <th scope="col">{this.props.t8}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {this.props.datos.map(factura => (
+                        <FilaTable
+                            tipo='factura'
+                            key={factura.id}
+                            id={factura.id}
+                            valorConsumo={factura.valorConsumo}
+                            valorMora={factura.valorMora}
+                            valorReconexion={factura.valorReconexion}
+                            valorAPagar={factura.valorAPagar}
+                            fechaPago={factura.fechaPago}
+                            fechaCorte={factura.fechaCorte}
+                        />
+                    ))}
+                </tbody>
+            </table>
+        </React.Fragment>)
+    }
+
     tablaCliente = () =>{
         return (<React.Fragment>
             <table className="table">
@@ -110,8 +143,7 @@ class Table extends Component {
         </React.Fragment>)
     }
 
-    tablaContrato = () =>{
-
+    tablaContrato = () => {
         return (<React.Fragment>
             <table className="table">
                 <thead className="thead-dark">
@@ -121,7 +153,7 @@ class Table extends Component {
                         <th scope="col">{this.props.t3}</th>
                         <th scope="col">{this.props.t4}</th>
                         <th scope="col">{this.props.t5}</th>
-                        
+
                     </tr>
                 </thead>
                 <tbody>
@@ -135,14 +167,52 @@ class Table extends Component {
                             id={contrato.id}
                             estrato={contrato.estrt_scl}
                             direccion={contrato.drccn}
-                            estado={contrato.estado}            
+                            estado={contrato.estado}
                         />
                     ))}
                 </tbody>
             </table>
         </React.Fragment>)
-
     }
+
+    tablaPagos = () => { // ¡NUEVO! ELIMINAR SI NO FUNCIONA. (@bryansbr)
+            return(
+                <React.Fragment>
+                    <table className="table">
+                        <thead className="thead-dark">
+                            <tr>
+                                <th scope="col">{this.props.t1}</th>
+                                <th scope="col">{this.props.t2}</th>
+                                <th scope="col">{this.props.t3}</th>
+                                <th scope="col">{this.props.t4}</th>
+                                <th scope="col">{this.props.t5}</th>
+                                <th scope="col">{this.props.t6}</th>
+                                <th scope="col">{this.props.t7}</th>
+                                <th scope="col">{this.props.t8}</th>                          
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {this.props.datos.map(pagos => (
+                                <FilaTable
+                                    cambiarEstado={this.props.cambiarEstado}
+                                    modificar={this.props.modificar}
+                                    tipo='pagos'
+                                    key={pagos.id}
+                                    id={pagos.id}
+                                    idntfccn_bnco={pagos.idntfccn_bnco}
+                                    cnsctvo_fctra={pagos.cnsctvo_fctra}
+                                    nmro_unco_idntfccn_usro={pagos.nmro_unco_idntfccn_usro}
+                                    vlr_pgdo={pagos.vlr_pgdo}
+                                    tp_pgdo={pagos.tp_pgdo}
+                                    nmro_trjt={pagos.nmro_trjt}
+                                    obsrvcn={pagos.obsrvcn}
+                                />                            
+                            ))}
+                        </tbody>
+                    </table>
+                </React.Fragment>
+            )
+        }
 
     mostrarTabla = () => {
         if (this.props.tabla === 'publicidad') {
@@ -150,24 +220,28 @@ class Table extends Component {
         }
         if (this.props.tabla === 'usuario') {
             return this.tablaUsuario()
-        }if(this.props.tabla==='cliente'){
+        } 
+        if (this.props.tabla === 'factura') {
+            return this.tablaFacturas()
+        }
+        if(this.props.tabla==='cliente'){
             return this.tablaCliente();
-        }if(this.props.tabla === 'contrato'){
+        }
+        if(this.props.tabla === 'contrato'){
             return this.tablaContrato()
-        }   
-         else {
+        }
+        if(this.props.tabla === 'pagos'){
+            return this.tablaPagos()
+        } else {
             return null
         } 
-        }
-
-
+    }
 
     render() {
-        return (
+        return(
             this.mostrarTabla()
         )
     }
-
 }
 
 export default Table

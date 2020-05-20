@@ -88,6 +88,13 @@ function Inicio(props) {
               informacion={i18n.t('banks-panel.bks_ext-description')} />
           </React.Fragment>)
       }
+      case 'Revisor':{
+        return (
+          <React.Fragment>
+          
+          </React.Fragment>
+        )
+      }
     }
   }
 
