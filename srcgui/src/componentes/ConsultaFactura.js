@@ -25,23 +25,6 @@ class ConsultaFactura extends React.Component {
         resultado: ''
     }
 
-    //Con este metodo hago el llamdo a solicitud una vez se renderize el componente.
-    /*async componentDidMount() {
-        this.solicitud()
-    }*/
-
-    //Con este metodo haga el llamado a los datos al back para guardarlos en el estado.
-    /*solicitud = () => {
-        solicitudBack.postFactura()
-            .then(res => {
-                this.setState({
-                    datos: res
-                })
-                this.buscador(this.state.buscador)
-
-            })
-    }*/
-
     mostrarTable = () => {
         return (
             <React.Fragment>
@@ -85,12 +68,12 @@ class ConsultaFactura extends React.Component {
 
     render() {
         return (
-            <Layout className="layout" style={{backgroundColor: "white"}}>
+            <Layout className="layout" style={{ backgroundColor: "white" }}>
                 <div>
-                    <Menu/>
+                    <Menu />
                 </div>
-                <div style={{marginTop: "70px", marginLeft: "0px", marginRight: "0px"}}>
-                    <img className="img-fluid" alt="Responsive image" src='../imagenes/ConsultaFactura.jpg'/>
+                <div style={{ marginTop: "70px", marginLeft: "0px", marginRight: "0px" }}>
+                    <img className="img-fluid" alt="Responsive image" src='../imagenes/ConsultaFactura.jpg' />
                 </div>
                 <div className="container" style={{ justifyContent: "center", marginTop: "20px" }}>
                     <form onSubmit={this.default} className="needs-validation" noValidate>

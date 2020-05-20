@@ -2,30 +2,31 @@ import Encabezado from './Encabezado';
 import Table from '../container/Table'
 import './style/slides.css';
 
-import React, { Component} from 'react';
+import React, { Component } from 'react';
 import ModificarClie from './ModificarClie'
 import BackService from '../store/PeticionesBack';
+import alerta from '../componentes/Alertas';
 const solicitudBack = new BackService();
-
+const notificaciones = new alerta();
 
 class Clientes extends Component {
-   
+
 
     state = {
         banderaM: false,
         banderaN: false,
-        banderaC:false,
-        banderaCont:false,
+        banderaC: false,
+        banderaCont: false,
         id: '',
         nmro_idntfccn: '',
         prmr_nmbre: '',
         prmr_aplldo: '',
         tpo_idntfcn: '',
-        tpT_clnte:'',
+        tpT_clnte: '',
         datos: [],
-        contratos:[],
+        contratos: [],
         buscador: '',
-        resultado:''
+        resultado: ''
     }
 
     //Con este metodo haga el llamado a los datos al back para guardarlos en el estado.
@@ -36,15 +37,15 @@ class Clientes extends Component {
                     datos: res
                 })
 
-               this.buscador(this.state.buscador)
+                this.buscador(this.state.buscador)
             })
     }
 
-    solicitudContratos = () =>{
+    solicitudContratos = () => {
         solicitudBack.getListContratos()
-            .then(res=>{
+            .then(res => {
                 this.setState({
-                    contratos:res
+                    contratos: res
                 })
             })
     }
@@ -61,8 +62,12 @@ class Clientes extends Component {
         solicitudBack.postRegisterCliente(cliente
         ).then(res => {
             this.solicitud()
+            notificaciones.exito()
         })
-            .catch(error => console.log(error))
+            .catch(error => {
+                console.log(error)
+                notificaciones.error()
+            })
         this.cerrarFormulario()
 
     }
@@ -71,10 +76,14 @@ class Clientes extends Component {
         e.preventDefault()
         solicitudBack.postRegisterContrato(contrato
         ).then(res => {
-            
+
             this.solicitudContratos()
+            notificaciones.exito()
         })
-            .catch(error => console.log(error))
+            .catch(error => {
+                console.log(error)
+                notificaciones.error()
+            })
         this.cerrarFormulario()
 
     }
@@ -84,8 +93,12 @@ class Clientes extends Component {
         solicitudBack.putUpdateCliente(cliente
         ).then(res => {
             this.solicitud()
+            notificaciones.exito()
         })
-            .catch(error => console.log(error))
+            .catch(error => {
+                console.log(error)
+                notificaciones.error()
+            })
         this.cerrarFormulario()
     }
 
@@ -103,7 +116,7 @@ class Clientes extends Component {
         this.setState({
             banderaM: false,
             banderaN: false,
-            banderaC:false
+            banderaC: false
         })
     }
 
@@ -134,12 +147,12 @@ class Clientes extends Component {
                 numeroIdent=''
                 tipoIdent=''
                 tipoClient=''
-                
+
                 h1={'Nuevo Cliente'}
                 nameBtn={'Crear Cliente'}
                 cancelar={this.cerrarFormulario} />)
-        }else if (this.state.banderaC === true){
-            return(<ModificarClie
+        } else if (this.state.banderaC === true) {
+            return (<ModificarClie
                 id={'Crear'}
                 onSubmit={this.handleCrearContrato}
                 idRow={this.state.id}
@@ -151,7 +164,7 @@ class Clientes extends Component {
                 h1={'Nuevo Contrato'}
                 nameBtn={'Crear Contrato'}
                 cancelar={this.cerrarFormulario} />
-                )
+            )
         }
         return null
     }
@@ -160,28 +173,28 @@ class Clientes extends Component {
         return (
             <React.Fragment>
                 <div className="container pre-scrollable" style={{ marginTop: "10px", maxHeight: "350px", marginBottom: "20px" }}>
-                <Table t1={'Id'} t2={'Tipo ident'} t3={'Número ident'} t4={'Nombres'} t5={'Apellidos'} t6={'Tipo Cliente'} t7={'Modificar Cliente'} t8={'Crear Contrato'} t9={'Ver Contratos'} tabla='cliente' datos={this.state.datos} modificar={this.modificar} crearContrato={this.crearContrato} verContrato={this.verContratos}cambiarEstado={this.cambiarEstadoPublicidad} />
+                    <Table t1={'Id'} t2={'Tipo ident'} t3={'Número ident'} t4={'Nombres'} t5={'Apellidos'} t6={'Tipo Cliente'} t7={'Modificar Cliente'} t8={'Crear Contrato'} t9={'Ver Contratos'} tabla='cliente' datos={this.state.datos} modificar={this.modificar} crearContrato={this.crearContrato} verContrato={this.verContratos} cambiarEstado={this.cambiarEstadoPublicidad} />
                 </div>
             </React.Fragment>
         )
     }
 
-    mostrarTablaCon = () =>{
-        
-        if(this.state.banderaCont===false){
+    mostrarTablaCon = () => {
+
+        if (this.state.banderaCont === false) {
             return null
-        }else{
+        } else {
             return (
                 <React.Fragment>
-                    <h1 className="display-4">Contratos</h1><br/>
+                    <h1 className="display-4">Contratos</h1><br />
                     <div className="container pre-scrollable" style={{ marginTop: "10px", maxHeight: "350px", marginBottom: "20px" }}>
-                    <Table t1={'Id'} t2={'Direccion'} t3={'Estrato'}  t4={'Modificar Contrato'} t5={'Estado'} tabla='contrato' datos={this.state.contratos} modificar={this.modificar} crearContrato={this.crearContrato} cambiarEstado={this.cambiarEstadoPublicidad} />
+                        <Table t1={'Id'} t2={'Direccion'} t3={'Estrato'} t4={'Modificar Contrato'} t5={'Estado'} tabla='contrato' datos={this.state.contratos} modificar={this.modificar} crearContrato={this.crearContrato} cambiarEstado={this.cambiarEstadoPublicidad} />
                     </div>
                 </React.Fragment>
             )
         }
 
-        
+
     }
     //Este el metodo que le envio a la table para que se ejecute en ese componente y me traiga los datos de la fila que se va a modificar
     //y junto con este actualizo la banderaMa true para que se muestre el formulario correspondiente
@@ -195,14 +208,14 @@ class Clientes extends Component {
             tpT_clnte: tipoClient,
             banderaM: true,
             banderaN: false,
-            banderaC:false,
+            banderaC: false,
         })
     }
 
     crearContrato = (id, nombre, apellido, ident, tipoIdent, tipoClient) => {
         this.setState({
             id: id,
-            banderaC:true,
+            banderaC: true,
             banderaM: false,
             banderaN: false,
             nmro_idntfccn: ident,
@@ -210,7 +223,7 @@ class Clientes extends Component {
             prmr_aplldo: apellido,
             tpo_idntfcn: tipoIdent,
             tpT_clnte: tipoClient,
-            
+
         })
     }
 
@@ -218,50 +231,50 @@ class Clientes extends Component {
     nuevo = () => {
         this.setState({
             banderaN: true,
-            banderaC:false,
+            banderaC: false,
             banderaM: false,
-            
-            
+
+
         });
     }
 
-    verContratos = () =>{
+    verContratos = () => {
         this.setState({
-            banderaCont:true
+            banderaCont: true
         })
     }
-    
-     onChange = (e) => {
+
+    onChange = (e) => {
         this.setState({
             buscador: e.target.value.toLowerCase()
         })
-        this.buscador(e.target.value.toLowerCase());    
+        this.buscador(e.target.value.toLowerCase());
     }
 
     onKeyPressed = (e) => {
-        if(e.keyCode===8){
+        if (e.keyCode === 8) {
             this.solicitud()
         }
     }
- 
-     buscador = (letra) => {
-        const datosNuevos = this.state.datos.filter(function(fila){
-            if(fila.prmr_nmbre.toLowerCase().indexOf(letra)!==-1){
+
+    buscador = (letra) => {
+        const datosNuevos = this.state.datos.filter(function (fila) {
+            if (fila.prmr_nmbre.toLowerCase().indexOf(letra) !== -1) {
                 return fila;
-            }else if(fila.nmro_idntfccn.toLowerCase().indexOf(letra)!==-1){
+            } else if (fila.nmro_idntfccn.toLowerCase().indexOf(letra) !== -1) {
                 return fila;
-            }else if(fila.prmr_aplldo.toLowerCase().indexOf(letra)!==-1){
+            } else if (fila.prmr_aplldo.toLowerCase().indexOf(letra) !== -1) {
                 return fila;
             }
         })
         this.setState({
             datos: datosNuevos,
-            resultado:datosNuevos.length
+            resultado: datosNuevos.length
         })
-        
-    } 
 
-    default = (e) =>{
+    }
+
+    default = (e) => {
         e.preventDefault();
     }
 
@@ -282,7 +295,7 @@ class Clientes extends Component {
                         <div className="form-row justify-content-between">
                             <div className="col-lg-8 col-md-8 col-sm-12 col-xs-12" style={{ marginBottom: "10px" }}>
                                 <div className="input-group">
-                                    <input type="text" name="buscador"  value={this.state.buscador}  onChange={this.onChange}  autoComplete="off" className="form-control" required />
+                                    <input type="text" name="buscador" value={this.state.buscador} onChange={this.onChange} autoComplete="off" className="form-control" required />
                                     <div className="input-group-prepend">
                                         <span className="input-group-text" id="inputGroupPrepend2">
                                             <svg className="bi bi-search" width="20px" height="20px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -307,7 +320,7 @@ class Clientes extends Component {
                             </button>
                             </div>
                         </div>
-                     
+
                         {this.mostrarTable()}
                         {this.mostrarTablaCon()}
                     </form>

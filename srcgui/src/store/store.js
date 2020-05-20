@@ -1,31 +1,31 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux';
-import  {composeWithDevTools} from 'redux-devtools-extension';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 import reducer from './reduces/auth';
 
-const middleware=[thunk]; 
+const middleware = [thunk];
 const initialState = {
     token: null,
     error: null,
     loading: false,
-    authenticate: null, 
+    authenticate: null,
     usuario: null
 }
 
-function saveToLocalStorage(state){
-    try{
+function saveToLocalStorage(state) {
+    try {
         const serializedState = JSON.stringify(state)
         localStorage.setItem('state', serializedState)
-    }catch(e){
+    } catch (e) {
         console.log(e)
     }
 }
 
-function loadFromLocalStorage(){
+function loadFromLocalStorage() {
     try {
-        
-        const serializedState= localStorage.getItem('state')
-        if(serializedState === null) return initialState
+
+        const serializedState = localStorage.getItem('state')
+        if (serializedState === null) return initialState
         return JSON.parse(serializedState)
     } catch (e) {
         console.log(e)
@@ -36,12 +36,12 @@ function loadFromLocalStorage(){
 const persistedState = loadFromLocalStorage()
 
 const reduc = combineReducers({
-     reducer, 
-     token: (state = {}) => state,
-     error: (state = {}) => state,
-     loading: (state = {}) => state,
-     authenticate: (state = {}) => state,
-     usuario: (state = {}) => state
+    reducer,
+    token: (state = {}) => state,
+    error: (state = {}) => state,
+    loading: (state = {}) => state,
+    authenticate: (state = {}) => state,
+    usuario: (state = {}) => state
 });
 
 const store = createStore(
@@ -51,6 +51,6 @@ const store = createStore(
         applyMiddleware(...middleware))
 );
 
-store.subscribe(()=> saveToLocalStorage(store.getState()))
-export default store; 
+store.subscribe(() => saveToLocalStorage(store.getState()))
+export default store;
 

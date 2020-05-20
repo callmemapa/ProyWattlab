@@ -1,5 +1,5 @@
 export const updateObject = (oldObject, updateProperties) => {
-    return{
+    return {
         ...oldObject,
         ...updateProperties
     }

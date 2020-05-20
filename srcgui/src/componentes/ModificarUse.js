@@ -1,7 +1,5 @@
 import { useTranslation } from 'react-i18next';
-
 import React, { useRef, useEffect, useState } from 'react'
-import Password from 'antd/lib/input/Password';
 
 function ModificarUse(props) {
     const i18n = useTranslation();

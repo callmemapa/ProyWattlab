@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import BackService from '../store/PeticionesBack';
 import alerta from '../componentes/Alertas';
@@ -12,11 +12,10 @@ const submitDatoSub = (e, subE, props) => {
     subE.lttd = props.latitud
     if (subE.lngtd !== '' && subE.nombre !== '') {
         solicitudBack.postSubestacion(subE)
-            .then(res => 
-                { 
-                    console.log('Realizado')  
-                    notificaciones.exito()
-                }) //ALERTA DE EXITO
+            .then(res => {
+                console.log('Realizado')
+                notificaciones.exito()
+            }) //ALERTA DE EXITO
             .catch(error => {
                 console.log('falla')
                 notificaciones.error()
@@ -30,7 +29,7 @@ function Subestacion(props) {
     const [subE, setSubE] = useState({
         nombre: '',
         drccn: '',
-        tlfno: '', 
+        tlfno: '',
         lngtd: '',
         lttd: ''
     })
@@ -40,17 +39,17 @@ function Subestacion(props) {
         setSubE({
             ...subE,
             [e.target.name]: e.target.value,
-        })  
+        })
     }
 
-    
-    
+
+
 
     return (
         <div className="container">
-            <form  onSubmit={(e)=> submitDatoSub(e, subE, props)}>
+            <form onSubmit={(e) => submitDatoSub(e, subE, props)}>
                 <div className="form-row">
-                    <div className="form-group col-md-12" style={{textAlign: "center"}}>
+                    <div className="form-group col-md-12" style={{ textAlign: "center" }}>
                         <h4>{i18n.t('actives-panel.actives-panel-substation.act_int-create')}</h4>
                     </div>
                     <div className="form-group col-md-12">

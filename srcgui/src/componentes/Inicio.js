@@ -66,8 +66,8 @@ function Inicio(props) {
               icono="bi bi-book-half"
               informacion={i18n.t('advertising-panel.adv_ext-description')} />
           </React.Fragment>)
-      } 
-      case 'Operador':{
+      }
+      case 'Operador': {
         return (
           <React.Fragment>
             <CardOpt

@@ -10,7 +10,7 @@ const solicitudBack = new BackService();
 
 class MATransformadores extends Component {
 
-  state = {mode: 'sub', lngtd: '', lttd: '', subE:[]};
+  state = { mode: 'sub', lngtd: '', lttd: '', subE: [] };
 
   constructor(props) {
     super(props);
@@ -33,9 +33,9 @@ class MATransformadores extends Component {
   submitDatosMap = (e, map) => {
     this.setState({ lngtd: map.lngtd, lttd: map.lttd })
   }
-  
-  componentDidMount(){
-   this.submitSub();
+
+  componentDidMount() {
+    this.submitSub();
   }
 
   submitSub = async () => {
@@ -47,13 +47,13 @@ class MATransformadores extends Component {
       })
   }
 
-  renderInputSelection(){
+  renderInputSelection() {
     if (this.state.mode === 'trans') {
       return (<div style={{ marginBottom: "20px" }}>
         <Layout style={{ backgroundColor: "white" }}>
 
           <Transformador
-            dato= {this.state.subE}
+            dato={this.state.subE}
             longitud={this.state.lngtd}
             latitud={this.state.lttd} />
         </Layout>
@@ -103,7 +103,7 @@ class MATransformadores extends Component {
             <div className="col-lg-7">
               <div style={{ backgroundColor: "black", margin: "1em" }}>
 
-                <Maps subClick={this.submitDatosMap}/>
+                <Maps subClick={this.submitDatosMap} />
 
               </div>
             </div>

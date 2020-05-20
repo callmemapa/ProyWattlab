@@ -11,17 +11,17 @@ const notificaciones = new alerta();
 const handleFormSubmit = e => {
     e.preventDefault();
 
-    if (e.target.elements.valorKWH.value !== '' && e.target.elements.valorKWH.value >= "1,000" && e.target.elements.observs.value !== '' ) {
+    if (e.target.elements.valorKWH.value !== '' && e.target.elements.valorKWH.value >= "1,000" && e.target.elements.observs.value !== '') {
         solicitudBack.postTarifa({ //Envio de datos al back
             "vlr_kwh": e.target.elements.valorKWH.value,
             "obsrvcn": e.target.elements.observs.value,
-        }).then(res => {notificaciones.exito()})
-          .catch(error => {notificaciones.error()})
+        }).then(res => { notificaciones.exito() })
+            .catch(error => { notificaciones.error() })
 
         e.target.elements.valorKWH.value = "";
         e.target.elements.finVigencia.value = "";
         e.target.elements.observs.value = "";
-    }else{
+    } else {
         notificaciones.error()
     }
 
@@ -52,7 +52,7 @@ function Configuracion() {
                         </div>
                         <div className="col align-self-center">
                             <button type="submit" className="btn btn-success" style={{ marginBottom: "10px", width: "150px", marginRight: "10px" }}>{i18n.t('setting-panel.set_btn-accept')}</button>
-                            <button type="reset"  className="btn btn-danger" style={{ marginBottom: "10px", width: "150px" }}>{i18n.t('setting-panel.set_btn-cancel')}</button>
+                            <button type="reset" className="btn btn-danger" style={{ marginBottom: "10px", width: "150px" }}>{i18n.t('setting-panel.set_btn-cancel')}</button>
                         </div>
                     </div>
                 </div>

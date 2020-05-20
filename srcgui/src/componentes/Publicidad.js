@@ -6,8 +6,9 @@ import './style/slides.css';
 import React, { Component } from 'react';
 import ModificarPub from './ModificarPub';
 import BackService from '../store/PeticionesBack';
+import alerta from '../componentes/Alertas';
 const solicitudBack = new BackService();
-
+const notificaciones = new alerta();
 class Publicidad extends Component {
 
     state = {
@@ -19,7 +20,7 @@ class Publicidad extends Component {
         url: '',
         datos: [],
         buscador: '',
-        resultado:''
+        resultado: ''
     }
 
     //Con este metodo haga el llamado a los datos al back para guardarlos en el estado.
@@ -28,6 +29,7 @@ class Publicidad extends Component {
             .then(res => {
                 this.setState({
                     datos: res
+
                 })
                 this.buscador(this.state.buscador)
             })
@@ -44,8 +46,11 @@ class Publicidad extends Component {
         solicitudBack.postRegisterPublicidad(publicidad
         ).then(res => {
             this.solicitud()
+            notificaciones.exito()
         })
-            .catch(error => console.log(error))
+            .catch(error => {
+                console.log(error)
+            })
         this.cerrarFormulario()
 
     }
@@ -55,8 +60,12 @@ class Publicidad extends Component {
         solicitudBack.putUpdatePublicidad(publicidad
         ).then(res => {
             this.solicitud()
+            notificaciones.exito()
         })
-            .catch(error => console.log(error))
+            .catch(error => {
+                console.log(error)
+                notificaciones.error()
+            })
         this.cerrarFormulario()
     }
 
@@ -96,10 +105,9 @@ class Publicidad extends Component {
                 id={'Nuevo'}
                 onSubmit={this.handleCrearPublicidad}
                 idRow={''}
-                dato1={''}
-                dato2={''}
-                dato3={''}
-                dato4={''}
+                titulo={''}
+                descripcion={''}
+                url={''}
                 h1={'publicidade.pb_new'}
                 nameBtn={'publicidade.pb_new'}
                 cancelar={this.cerrarFormulario} />)
@@ -111,7 +119,7 @@ class Publicidad extends Component {
         return (
             <React.Fragment>
                 <div className="container pre-scrollable" style={{ marginTop: "10px", maxHeight: "350px", marginBottom: "20px" }}>
-                <Table t1={'Id'} t2={'Titulo'} t3={'Descripción'} t4={'Url'} t5={'Modificar'} t6={'Estado'} tabla='publicidad' datos={this.state.datos} modificar={this.modificar} cambiarEstado={this.cambiarEstadoPublicidad} />
+                    <Table t1={'Id'} t2={'Titulo'} t3={'Descripción'} t4={'Url'} t5={'Modificar'} t6={'Estado'} tabla='publicidad' datos={this.state.datos} modificar={this.modificar} cambiarEstado={this.cambiarEstadoPublicidad} />
                 </div>
             </React.Fragment>
         )
@@ -137,37 +145,36 @@ class Publicidad extends Component {
             banderaN: true,
         });
     }
-    
+
     onChange = (e) => {
         this.setState({
             buscador: e.target.value.toLowerCase()
         })
-        this.buscador(e.target.value.toLowerCase());    
+        this.buscador(e.target.value.toLowerCase());
     }
 
     onKeyPressed = (e) => {
-        if(e.keyCode===8){
+        if (e.keyCode === 8) {
             this.solicitud()
         }
     }
 
     buscador = (letra) => {
-        const datosNuevos = this.state.datos.filter(function(fila){
-            if(fila.titulo.toLowerCase().indexOf(letra)!==-1){
+        const datosNuevos = this.state.datos.filter(function (fila) {
+            if (fila.titulo.toLowerCase().indexOf(letra) !== -1) {
                 return fila;
-            }else if(fila.descripcion.toLowerCase().indexOf(letra)!==-1)
-            {
+            } else if (fila.descripcion.toLowerCase().indexOf(letra) !== -1) {
                 return fila;
-            }   
+            }
         })
         this.setState({
             datos: datosNuevos,
-            resultado:datosNuevos.length
+            resultado: datosNuevos.length
         })
-        
+
     }
 
-    default = (e) =>{
+    default = (e) => {
         e.preventDefault();
     }
 
@@ -182,7 +189,7 @@ class Publicidad extends Component {
                         <div className="form-row justify-content-between">
                             <div className="col-lg-8 col-md-8 col-sm-12 col-xs-12" style={{ marginBottom: "10px" }}>
                                 <div className="input-group">
-                                    <input type="text" name="buscador" value={this.state.buscador}  onChange={this.onChange} autoComplete="off" className="form-control" required />
+                                    <input type="text" name="buscador" value={this.state.buscador} onChange={this.onChange} autoComplete="off" className="form-control" required />
                                     <div className="input-group-prepend">
                                         <span className="input-group-text" id="inputGroupPrepend2">
                                             <svg className="bi bi-search" width="20px" height="20px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -208,10 +215,10 @@ class Publicidad extends Component {
                             </div>
                         </div>
                         <div className="alert alert-success col-md-6">
-                                Resultados:
+                            Resultados:
                                 <strong> {this.state.resultado} filas encontradas.</strong>
-                                         
-                            </div>
+
+                        </div>
                         {this.mostrarTable()}
                     </form>
                 </div>

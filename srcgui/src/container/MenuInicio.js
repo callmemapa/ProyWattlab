@@ -6,9 +6,32 @@ import Menu from '../componentes/Menu.js';
 import { Layout } from 'antd';
 import Footer from '../componentes/Footer.js';
 import Noticias from './Noticias.js';
+import BackService from '../store/PeticionesBack';
+const solicitudBack = new BackService();
 const { Content } = Layout;
 
 class MenuInicio extends Component {
+    state = {
+        datos: []
+    }
+    componentWillUpdate() {
+        this.submitSub()
+    }
+
+    componentDidMount() {
+        this.submitSub();
+
+    }
+
+    submitSub = () => {
+        solicitudBack.getListPublicidad()
+            .then(res => {
+                this.setState({
+                    datos: res
+                })
+            })
+
+    }
     render() {
         return (
             <Layout className="layout">
@@ -24,7 +47,9 @@ class MenuInicio extends Component {
                     <Servicio />
                 </div>
                 <div>
-                    <Noticias/>
+                    <Noticias
+                        dato={this.state.datos}
+                    />
                 </div>
                 <div>
                     <Footer />

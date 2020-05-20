@@ -155,7 +155,15 @@
          "rpt_ext-title":"Relatórios",
          "rpt_ext-description":"Relatório de receita da empresa",
          "rpt_int-title":"Painel relatórios",
-         "rpt_int-description":"A continuação, você encontrará os relatórios de receita"
+         "rpt_int-description":"A continuação, você encontrará os relatórios de receita",
+         "rpt_clientes": "Número de Clientes Registrados",
+         "rpt_cntrt-activo": "Número de contratos ativos",
+         "rpt_cntd-sube": "Número de subestações",
+         "rpt_cntd-trns": "Número de transformadores",
+         "rpt_conv-act-banco": "Acordos ativos com bancos",
+         "rpt_conv-inct-banco": "Acordos inativos com bancos",
+         "rpt_prm-enrg": "Consumo médio de energia",
+         "rpt_ingr-dinero": "Renda monetária"
       },
       "publicidade": {
          "pb_int-title": "Painel de publicidade",

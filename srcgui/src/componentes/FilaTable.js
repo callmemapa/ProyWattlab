@@ -95,7 +95,7 @@ function FilaTable(props) {
         } else {
             return (
                 <td>
-                    <BotonInactivar cambiarEstado={props.cambiarEstado.bind(this, fila)} nombre='activar' claseBoton='btn btn-primary' />
+                    <BotonInactivar cambiarEstado={props.cambiarEstado.bind(this, fila)} nombre='Activar' claseBoton='btn btn-primary' />
                 </td>
             )
         }

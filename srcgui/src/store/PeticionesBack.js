@@ -1,5 +1,8 @@
 import axios from 'axios';
+import alerta from '../componentes/Alertas';
+const notificaciones = new alerta();
 const API_URL = 'http://127.0.0.1:8000';
+
 
 
 export default class BackService {
@@ -10,7 +13,10 @@ export default class BackService {
         const url = `${API_URL}/api/pqrs/`;
         return axios.post(url, solitAtent)
             .then(res => res.data)
-            .catch(error => console.log(error));
+            .catch(error => {
+                console.log(error)
+                notificaciones.error()
+            });
     }
     //TARIFA
     async postTarifa(tarifa) {
@@ -71,7 +77,10 @@ export default class BackService {
         const url = `${API_URL}/api/articulo/`;
         return axios.post(url, publicidad)
             .then(res => res.data)
-            .catch(error => console.log(error));
+            .catch(error => {
+                console.log(error)
+                notificaciones.error()
+            });
     }
     async putUpdatePublicidad(publicidad) {
         const url = `${API_URL}/api/articulo/update/${publicidad.id}/`;
@@ -79,7 +88,7 @@ export default class BackService {
             .then(res => res.data)
             .catch(error => console.log(error));
     }
-    
+
     //ACTIVOS
     async getTransformador() {
         const url = `${API_URL}/oper/activo-trans/`;
@@ -110,10 +119,10 @@ export default class BackService {
     }
 
     //CLIENTES
-    async getListCliente(){
+    async getListCliente() {
         const url = `${API_URL}/oper/cliente/`;
         return axios.get(url)
-            .then(res=> res.data)
+            .then(res => res.data)
             .catch(error => console.log(error))
     }
     async postRegisterCliente(cliente) {
@@ -144,12 +153,12 @@ export default class BackService {
             .then(res => res.data)
             .catch(error => console.log(error));
     }
-    
+
     async putUpdateContrato(contrato) {
         const url = `${API_URL}/oper/cliente-contrato/${contrato.id}`;
         return axios.put(url, contrato)
             .then(res => res.data)
             .catch(error => console.log(error));
     }
-    
+
 }

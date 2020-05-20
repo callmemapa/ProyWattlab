@@ -5,10 +5,10 @@ import Encabezado from './Encabezado';
 function PagosClientes() {
     const i18n = useTranslation();
     return (
-        <div className="container-fluid" style={{backgroundColor: "white", position: "absolute", top: "70px", left: "0px"}}>
+        <div className="container-fluid" style={{ backgroundColor: "white", position: "absolute", top: "70px", left: "0px" }}>
             <Encabezado
-                titulo = {i18n.t('payments-panel.pay_int-title')}
-                descripcion = {i18n.t('payments-panel.pay_int-description')}/>
+                titulo={i18n.t('payments-panel.pay_int-title')}
+                descripcion={i18n.t('payments-panel.pay_int-description')} />
             <div className="container">
                 <div className="form-row">
                     <div className="form-group col-md-4">
@@ -49,8 +49,8 @@ function PagosClientes() {
                         <input placeholder={i18n.t('payments-panel.pay_bill-state-generated')} type="text" className="form-control" id="estadoFactura" disabled></input>
                     </div>
                     <div className="col align-self-center">
-                        <button type="submit" className="btn btn-success" style={{marginBottom: "10px", width: "150px", marginRight: "10px"}}>{i18n.t('payments-panel.pay_btn-save')}</button>
-                        <button type="submit" className="btn btn-danger" style={{marginBottom: "10px", width: "150px"}}>{i18n.t('payments-panel.pay_btn-cancel')}</button>
+                        <button type="submit" className="btn btn-success" style={{ marginBottom: "10px", width: "150px", marginRight: "10px" }}>{i18n.t('payments-panel.pay_btn-save')}</button>
+                        <button type="submit" className="btn btn-danger" style={{ marginBottom: "10px", width: "150px" }}>{i18n.t('payments-panel.pay_btn-cancel')}</button>
                     </div>
                 </div>
             </div>
