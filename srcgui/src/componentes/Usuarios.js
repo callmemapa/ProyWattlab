@@ -4,7 +4,9 @@ import React, { Component } from 'react';
 import Table from '../container/Table'
 import ModificarUse from './ModificarUse'
 import BackService from '../store/PeticionesBack';
+import alerta from '../componentes/Alertas';
 const solicitudBack = new BackService();
+const notificaciones = new alerta();
 
 class Usuarios extends Component {
 
@@ -15,8 +17,12 @@ class Usuarios extends Component {
         ).then(res => {
             console.log(res)
             this.solicitud()
+            notificaciones.exito()
         })
-            .catch(error => console.log(error))
+            .catch(error => {
+                console.log(error)
+                notificaciones.error()
+            })
         this.cerrarFormulario()
 
     }
@@ -27,8 +33,12 @@ class Usuarios extends Component {
         ).then(res => {
             console.log(res)
             this.solicitud()
+            notificaciones.exito()
         })
-            .catch(error => console.log(error))
+            .catch(error => {
+                console.log(error)
+                notificaciones.error()
+            })
         this.cerrarFormulario()
     }
 

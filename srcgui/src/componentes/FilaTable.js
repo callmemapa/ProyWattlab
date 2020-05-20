@@ -48,9 +48,9 @@ function FilaTable(props) {
                         <td>{props.nombre}</td>
                         <td>{props.apellido}</td>
                         {mostrarTipoCliente()}
-                        <td><BotonModificar modificar={props.modificar.bind(this, props.id, props.nombre, props.apellido, props.numeroIdent, props.tipoIdent, props.tipoClient)}/></td>
+                        <td><BotonModificar modificar={props.modificar.bind(this, props.id, props.nombre, props.apellido, props.numeroIdent, props.tipoIdent, props.tipoClient,props.fechaNa)}/></td>
                         <td><BotonCrear crearContrato={props.crearContrato.bind(this, props.id, props.nombre, props.apellido, props.numeroIdent, props.tipoIdent, props.tipoClient)} /></td>
-                        <td><BotonVisualizar verContrato={props.verContrato}/></td>
+                        <td><BotonVisualizar verContrato={props.verContrato.bind(this,props.id, props.nombre, props.apellido, props.numeroIdent, props.tipoIdent, props.tipoClient)}/></td>
                         
                     </React.Fragment>
                 )
@@ -64,8 +64,31 @@ function FilaTable(props) {
                         <td>{props.valorAPagar}</td>
                         <td>{props.fechaPago}</td>
                         <td>{props.fechaCorte}</td>
-                        <td>
-                            <BotonVisualizar/>
+                        <td> <BotonVisualizar
+                            verFactura={
+                                props.verFactura.bind(this)
+                            }
+                        />
+                           {/*  <BotonVisualizar 
+                            verFactura={
+                                props.verFactura.bind(this,
+                                props.id, 
+                                props.cnsctvo_cnsmo.kwh, 
+                                props.cnsctvo_cnsmo.prdo_cnsmo, 
+                                props.cnsctvo_trfa.vlr_kwh, 
+                                props.cnsctvo_trfa.obsrvcn, 
+                                props.vlr_cnsmo, 
+                                props.vlr_intrss_mra, 
+                                props.vlr_rcnxn, 
+                                props.vlr_ttl, 
+                                props.fcha_lmte_pgo, 
+                                props.fcha_crte_srvco, 
+                                props.obsrvcn, 
+                                props.cnsctvo_cnsmo.idntfccn_cntrto.id,
+                                props.cnsctvo_cnsmo.idntfccn_cntrto.cliente,
+                                props.cnsctvo_cnsmo.idntfccn_cntrto.estrt_scl,
+                                props.cnsctvo_cnsmo.idntfccn_cntrto.drccn
+                                )}/> */}
                         </td>
                     </React.Fragment>
                 )
@@ -75,7 +98,7 @@ function FilaTable(props) {
                     <React.Fragment>
                         <td>{props.direccion}</td>
                         <td>{props.estrato}</td>
-                        <td><BotonModificar/></td>
+                        <td><BotonModificar modificar={props.modificar.bind(this,props.id, props.estrato, props.direccion)}/></td>
                         {mostrarBotonA({ "id": props.id, "estado": !props.estado })}
                     </React.Fragment>
                 )
@@ -89,13 +112,13 @@ function FilaTable(props) {
         if (props.estado === true) {
             return (
                 <td>
-                    <BotonInactivar cambiarEstado={props.cambiarEstado.bind(this, fila)} nombre='Inactivar' claseBoton='btn btn-danger' />
+                    <BotonInactivar cambiarEstado={props.cambiarEstado.bind(this, fila)} nombre='inactivar' claseBoton='btn btn-danger' />
                 </td>
             )
         } else {
             return (
                 <td>
-                    <BotonInactivar cambiarEstado={props.cambiarEstado.bind(this, fila)} nombre='activar' claseBoton='btn btn-primary' />
+                    <BotonInactivar cambiarEstado={props.cambiarEstado.bind(this, fila)} nombre='Activar' claseBoton='btn btn-primary' />
                 </td>
             )
         }

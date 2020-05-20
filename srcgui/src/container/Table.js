@@ -90,14 +90,33 @@ class Table extends Component {
                     {this.props.datos.map(factura => (
                         <FilaTable
                             tipo='factura'
+                            verFactura={this.props.verFactura}
                             key={factura.id}
                             id={factura.id}
-                            valorConsumo={factura.valorConsumo}
-                            valorMora={factura.valorMora}
-                            valorReconexion={factura.valorReconexion}
-                            valorAPagar={factura.valorAPagar}
-                            fechaPago={factura.fechaPago}
-                            fechaCorte={factura.fechaCorte}
+                            valorConsumo={factura.vlr_cnsmo}
+                            valorMora={factura.vlr_intrss_mra}
+                            valorReconexion={factura.vlr_rcnxn}
+                            valorAPagar={factura.vlr_ttl}
+                            fechaPago={factura.fcha_lmte_pgo}
+                            fechaCorte={factura.fcha_crte_srvco} 
+
+
+                            
+                            consumoKWH={factura.cnsctvo_cnsmo.kwh}
+                            periodoConsumo={factura.cnsctvo_cnsmo.prdo_cnsmo}
+                            valorKWH={factura.cnsctvo_trfa.vlr_kwh} 
+                            observacionTarifa={factura.cnsctvo_trfa.obsrvcn} 
+                            valorConsumo={factura.vlr_cnsmo} 
+                            valorInteresMora={factura.vlr_intrss_mra} 
+                            valorReconexion={factura.vlr_rcnxn} 
+                            valorTotal={factura.vlr_ttl} 
+                            fechaLimitePago={factura.fcha_lmte_pgo} 
+                            fechaCorteServicio={factura.fcha_crte_srvco} 
+                            observacion={factura.obsrvcn} 
+                            idContrato={factura.cnsctvo_cnsmo.idntfccn_cntrto.id}
+                            contratoCliente={factura.cnsctvo_cnsmo.idntfccn_cntrto.cliente}
+                            estrato={factura.cnsctvo_cnsmo.idntfccn_cntrto.estrt_scl}
+                            direccion={factura.cnsctvo_cnsmo.idntfccn_cntrto.drccn}
                         />
                     ))}
                 </tbody>
@@ -134,6 +153,7 @@ class Table extends Component {
                             numeroIdent={cliente.nmro_idntfccn}
                             nombre={cliente.prmr_nmbre}
                             apellido={cliente.prmr_aplldo}
+                            fechaNa={cliente.fcha_ncmnto}
                             tipoIdent={cliente.tpo_idntfcn}
                             tipoClient={cliente.tpT_clnte}
                         />
@@ -143,7 +163,7 @@ class Table extends Component {
         </React.Fragment>)
     }
 
-    tablaContrato = () =>{
+    tablaContrato = () => {
 
         return (<React.Fragment>
             <table className="table">
@@ -154,7 +174,7 @@ class Table extends Component {
                         <th scope="col">{this.props.t3}</th>
                         <th scope="col">{this.props.t4}</th>
                         <th scope="col">{this.props.t5}</th>
-                        
+
                     </tr>
                 </thead>
                 <tbody>
@@ -168,7 +188,7 @@ class Table extends Component {
                             id={contrato.id}
                             estrato={contrato.estrt_scl}
                             direccion={contrato.drccn}
-                            estado={contrato.estado}            
+                            estado={contrato.estado}
                         />
                     ))}
                 </tbody>
@@ -192,11 +212,11 @@ class Table extends Component {
         }
         if(this.props.tabla === 'contrato'){
             return this.tablaContrato()
-        }   
-         else {
-            return null
-        } 
         }
+        else {
+            return null
+        }
+    }
 
 
 

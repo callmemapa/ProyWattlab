@@ -10,6 +10,8 @@ function ModificarClie(props) {
     const myRef = useRef();
     const myRef2 = useRef();
 
+    
+
     //Para inactivar o activar tomar el id del cliente, el estado, y el profile vacio, 
     //Para modificar crear un segundo estado con el id, nmro_idntfccn, prmr_nmbre, prmr_aplldo, email, tpo_idntfcn
 
@@ -20,8 +22,8 @@ function ModificarClie(props) {
         prmr_aplldo: '',
         nmro_idntfccn: '',
         fcha_ncmnto: '',
-        tpo_idntfcn: props.tipoIdent,
-        tpT_clnte: props.tipoClient,
+        tpo_idntfcn: '2',
+        tpT_clnte: '',
         contrato: {
             estrt_scl: '',
             drccn: ''
@@ -34,7 +36,7 @@ function ModificarClie(props) {
         if (props.id === 'Nuevo' || props.id === 'Modificar') {
             myRef.current.focus();
             actualizar();
-        } else if (props.id === 'Crear') {
+        } else if (props.id === 'Crear' || props.id==='ModificarCont') {
             myRef2.current.focus();
             actualizar();
         }
@@ -48,7 +50,7 @@ function ModificarClie(props) {
             nmro_idntfccn: props.numeroIdent,
             prmr_nmbre: props.nombre,
             prmr_aplldo: props.apellido,
-            fcha_ncmnto: props.fecha,
+            fcha_ncmnto: props.fechaNa,
             tpo_idntfcn: props.tipoIdent,
             tpT_clnte: props.tipoClient,
             contrato: {
@@ -123,13 +125,13 @@ function ModificarClie(props) {
     const mostrarCliente = () => {
         if (props.id === 'Nuevo' || props.id === 'Modificar') {
 
-
+            {console.log(cliente.tpo_idntfcn)}
             return (
                 <React.Fragment>
                     <div className="form-row">
                         <div className="form-group col-md-6">
                             <label htmlFor="inputTipoIdent">Tipo de identificación</label>
-                            <select onChange={onChange} ref={myRef} name="tpo_idntfcn" id="inputTipoIdent" className="custom-select" required>
+                            <select onChange={onChange} ref={myRef} value={cliente.tpo_idntfcn} name="tpo_idntfcn" id="inputTipoIdent" className="custom-select" required>
                                 <option ></option>
                                 <option value="1">C.C</option>
                                 <option value="2">NIT</option>
@@ -156,14 +158,14 @@ function ModificarClie(props) {
                     </div>
 
                     <div className="form-row">
-                        <div class="form-group col-md-6">
+                        <div className="form-group col-md-6">
                             <label htmlFor="inputFecha">Fecha de nacimiento</label>
                             <input required type="date" name="fcha_ncmnto" onChange={onChange} value={cliente.fcha_ncmnto} className="form-control" id="inputFecha" max="3000-12-31"
                                 min="1000-01-01" class="form-control" />
                         </div>
                         <div className="form-group col-md-6">
                             <label htmlFor="inputTipoClient">Tipo de cliente</label>
-                            <select onChange={onChange} name="tpT_clnte" id="inputTipoClient" className="custom-select" >
+                            <select onChange={onChange} name="tpT_clnte" id="inputTipoClient" value={cliente.tpT_clnte} className="custom-select" >
                                 <option ></option>
                                 <option value="1">Natural</option>
                                 <option value="2">Juridica</option>
@@ -187,7 +189,8 @@ function ModificarClie(props) {
         }
     }
     const mostrarContrato = () => {
-        if (props.id === 'Nuevo' || props.id === 'Crear') {
+        {console.log(props.direccion)}
+        if (props.id === 'Nuevo' || props.id === 'Crear' || props.id=== 'ModificarCont') {
             return (
                 <React.Fragment>
 
@@ -198,21 +201,21 @@ function ModificarClie(props) {
                     <div className="form-row">
                         <div className="form-group col-md-6">
                             <label htmlFor="inputTipoIdent">Estrato Socioeconómico</label>
-                            <select onChange={onChange} name="estrt_scl" id="inputTipoIdent" className="custom-select" ref={myRef, myRef2} required >
+                            <select onChange={onChange} name="estrt_scl" value={cliente.contrato.estrt_scl} id="inputTipoIdent" className="custom-select" ref={myRef, myRef2} required >
                                 <option ></option>
-                                <option >1</option>
-                                <option >2</option>
-                                <option >3</option>
-                                <option >4</option>
-                                <option >5</option>
-                                <option >6</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
 
                             </select>
                         </div>
 
                         <div className="form-group col-md-6">
                             <label htmlFor="inputDire">Dirección de la residencia</label>
-                            <input required name="drccn" onChange={onChange} type="text" value={cliente.drccn} className="form-control" id="inputDire" required/>
+                            <input required name="drccn" onChange={onChange} type="text" value={cliente.contrato.drccn} className="form-control" id="inputDire" required/>
                         </div>
 
                     </div>
@@ -225,7 +228,7 @@ function ModificarClie(props) {
 
     const validar = (event) => {
         event.preventDefault();
-        if(props.id==='Nuevo') {
+        if (props.id === 'Nuevo') {
             props.onSubmit(event, cliente)
         }else if(props.id==='Crear'){
             props.onSubmit(event,{"estrt_scl": cliente.contrato.estrt_scl,
@@ -238,7 +241,12 @@ function ModificarClie(props) {
             "prmr_aplldo": cliente.prmr_aplldo,
             "tpo_idntfcn": cliente.tpo_idntfcn,
             "tpT_clnte": cliente.tpT_clnte})
-        } 
+        }else if (props.id==='ModificarCont'){
+            props.onSubmit(event, {"id":cliente.id,
+            "estrt_scl":cliente.contrato.estrt_scl,
+            "drccn":cliente.contrato.drccn}
+            )
+        }
     }
 
     return (

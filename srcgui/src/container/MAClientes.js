@@ -1,22 +1,21 @@
 import React from 'react'
-import Sidebar from  '../componentes/Sidebar'
+import Sidebar from '../componentes/Sidebar'
 import { Layout } from 'antd';
 import Clientes from '../componentes/Clientes'
 
-function MAClientes (){
+function MAClientes() {
 
+    return (
 
-        return (
-
-            <Layout className="layout">
+        <Layout className="layout">
             <div>
-                <Sidebar/>
+                <Sidebar />
             </div>
             <div>
-                <Clientes/>
+                <Clientes />
             </div>
         </Layout>
-        )
+    )
 
 }
 

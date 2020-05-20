@@ -34,35 +34,42 @@ function Factura(props) {
     const [factura, setFactura] = useState({
       id: 2,
       cnsctvo_cnsmo: {
-          id: 4,
-          kwh: 110,
-          prdo_cnsmo: "202007",
-          obsrvcn: "Registro de consumo",
+          id: '',
+          kwh: '',
+          prdo_cnsmo: '',
+          obsrvcn: '',
           idntfccn_cntrto: {
-              id: 2,
-              estrt_scl: 1,
-              drccn: "Calle 72q #27o",
-              estado: true,
-              cliente: 2
+              id: '',
+              estrt_scl: '',
+              drccn: '',
+              estado: '',
+              cliente: ''
           }
       },
       cnsctvo_trfa: {
-          id: 1,
-          vlr_kwh: 9.501,
-          inco_vgca: "2020-05-15",
-          obsrvcn: "Tarifa kwh año 2020",
-          estdo: true
+          id: '',
+          vlr_kwh: '',
+          inco_vgca: '',
+          obsrvcn: '',
+          estdo: ''
       },
-      vlr_cnsmo: 171.018,
-      vlr_intrss_mra: 0.0,
-      vlr_rcnxn: 0.0,
-      vlr_ttl: 171.018,
-      fcha_lmte_pgo: "2020-05-22",
-      cntdd_fctrs_pndts: 0,
-      fcha_crte_srvco: "2020-05-30",
-      obsrvcn: "Ningún problema",
-      estado: false
+      vlr_cnsmo: '',
+      vlr_intrss_mra: '',
+      vlr_rcnxn: '',
+      vlr_ttl: '',
+      fcha_lmte_pgo: '',
+      cntdd_fctrs_pndts: '',
+      fcha_crte_srvco: '',
+      obsrvcn: '',
+      estado: ''
     })
+
+    useEffect(() => {
+      if (props.id === 'verFactura') {
+        myRef.current.focus();
+        actualizar();
+      }
+    }, [props.id, props.focus])
 
     const actualizar = () => {
       setFactura({
@@ -70,7 +77,7 @@ function Factura(props) {
           id: props.idRow,
           cnsctvo_cnsmo: {
             id: props.idConsumo,
-            kwh: props.kwg,
+            kwh: props.kwh,
             prdo_cnsmo: props.periodoConsumo,
             obsrvcn: props.observacionConsumo,
             idntfccn_cntrto: {
@@ -122,6 +129,7 @@ function Factura(props) {
     const head3 = [["# Contrato", "ID Cliente", "Estrato", "Dirección residencia"]]
     const body3 = [[factura.cnsctvo_cnsmo.idntfccn_cntrto.id, factura.cnsctvo_cnsmo.idntfccn_cntrto.cliente, factura.cnsctvo_cnsmo.idntfccn_cntrto.estrt_scl, factura.cnsctvo_cnsmo.idntfccn_cntrto.drccn]]
     const body4 = [["TOTAL A PAGAR", "$"+factura.vlr_ttl]]
+    
     return (
       <React.Fragment>
         <PDF properties={properties} preview={true}>
@@ -136,7 +144,8 @@ function Factura(props) {
         </PDF>
         <div id="page" style={invisibleStyle}></div>
       </React.Fragment>
-    )
+    ) 
+    
   }
 
 

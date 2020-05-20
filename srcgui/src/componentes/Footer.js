@@ -1,11 +1,11 @@
 import React from 'react';
 
-function Footer(){
+function Footer() {
 	return (
-		<nav className="navbar fixed-buttom navbar-dark bg-dark" style={{ backgroundColor: 'black', color: 'white'}}>
+		<nav className="navbar fixed-buttom navbar-dark bg-dark" style={{ backgroundColor: 'black', color: 'white' }}>
 			<p>&copy; {(new Date().getFullYear())} Wattlab, Inc.</p>
-        </nav>
-    );
+		</nav>
+	);
 }
 
 export default Footer;
