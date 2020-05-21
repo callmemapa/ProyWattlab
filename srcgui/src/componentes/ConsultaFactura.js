@@ -7,11 +7,8 @@ import Table from '../container/Table'
 import ModificarUse from './ModificarUse'
 import BackService from '../store/PeticionesBack';
 import BotonVisualizar from './BotonVisualizar';
-import Hola from './Hola'
-import FacturaPrue from './FacturaPrue';
-import PaymentForm from './PaymentForm';
+import Factura from './Factura';
 const solicitudBack = new BackService();
-
 
 class ConsultaFactura extends React.Component {
     state = {
@@ -32,7 +29,7 @@ class ConsultaFactura extends React.Component {
         return (
             <React.Fragment>
                 <div className="container pre-scrollable" style={{ marginTop: "10px", maxHeight: "350px", marginBottom: "20px" }}>
-                    <Table t1='Id' t2='Valor consumo' t3='Valor mora' t4='Valor reconexión' t5='Valor a pagar' t6='Fecha pago' t7='Fecha corte' t8='Visualizar' tabla='factura' datos={this.state.datos} />
+                    <Table t1='Id' t2='Valor consumo' t3='Valor mora' t4='Valor reconexión' t5='Valor a pagar' t6='Fecha pago' t7='Fecha corte' t8='Visualizar' tabla='factura' datos={this.state.datos}/>
                 </div>
             </React.Fragment>
         )
@@ -47,20 +44,8 @@ class ConsultaFactura extends React.Component {
 
     onKeyPressed = (e) => {
         if (e.keyCode === 8) {
-            // this.solicitud()
+           // this.solicitud()
         }
-    }
-
-    ver = () => {
-        this.setState({
-            bandera: true
-        })
-    }
-    mostrar = () => {
-        console.log(this.state.bandera)
-        if (this.state.bandera === true) {
-            return <Hola hola="Esta funcionando"/>
-        } else return null
     }
 
     buscador = (numero) => {
@@ -117,13 +102,11 @@ class ConsultaFactura extends React.Component {
                             {this.mostrarTable()}
                         </div>
                     </form>
-                    <div></div><BotonVisualizar verContrato={this.ver} /></div>
-                    <PaymentForm/>
-                
-                <div></div>
+                    <div><BotonVisualizar/></div>
+                    <div><Factura/></div>
                     
-                {this.mostrar()}
-            </Layout >
+                </div>
+            </Layout>
         );
     }
 }
