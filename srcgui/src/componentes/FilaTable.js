@@ -64,31 +64,8 @@ function FilaTable(props) {
                         <td>{props.valorAPagar}</td>
                         <td>{props.fechaPago}</td>
                         <td>{props.fechaCorte}</td>
-                        <td> <BotonVisualizar
-                            verContrato={
-                                props.verFactura.bind(this)
-                            }
-                        />
-                           {/*  <BotonVisualizar 
-                            verFactura={
-                                props.verFactura.bind(this,
-                                props.id, 
-                                props.cnsctvo_cnsmo.kwh, 
-                                props.cnsctvo_cnsmo.prdo_cnsmo, 
-                                props.cnsctvo_trfa.vlr_kwh, 
-                                props.cnsctvo_trfa.obsrvcn, 
-                                props.vlr_cnsmo, 
-                                props.vlr_intrss_mra, 
-                                props.vlr_rcnxn, 
-                                props.vlr_ttl, 
-                                props.fcha_lmte_pgo, 
-                                props.fcha_crte_srvco, 
-                                props.obsrvcn, 
-                                props.cnsctvo_cnsmo.idntfccn_cntrto.id,
-                                props.cnsctvo_cnsmo.idntfccn_cntrto.cliente,
-                                props.cnsctvo_cnsmo.idntfccn_cntrto.estrt_scl,
-                                props.cnsctvo_cnsmo.idntfccn_cntrto.drccn
-                                )}/> */}
+                        <td>
+                            <BotonVisualizar/>
                         </td>
                     </React.Fragment>
                 )
@@ -100,6 +77,19 @@ function FilaTable(props) {
                         <td>{props.estrato}</td>
                         <td><BotonModificar modificar={props.modificar.bind(this,props.id, props.estrato, props.direccion)}/></td>
                         {mostrarBotonA({ "id": props.id, "estado": !props.estado })}
+                    </React.Fragment>
+                )
+            }
+            case 'pagos': { // ¡NUEVO! ELIMINAR SI NO FUNCIONA. (@bryansbr)
+                return(
+                    <React.Fragment>
+                        <td>{props.idntfccn_bnco}</td>
+                        <td>{props.cnsctvo_fctra}</td>
+                        <td>{props.nmro_unco_idntfccn_usro}</td>
+                        <td>{props.vlr_pgdo}</td>
+                        <td>{props.tp_pgdo}</td>
+                        <td>{props.nmro_trjt}</td> 
+                        <td>{props.obsrvcn}</td>                                      
                     </React.Fragment>
                 )
             }

@@ -3,11 +3,11 @@ import React, { Component } from 'react';
 //import { useTranslation } from 'react-i18next';
 import Encabezado from './Encabezado';
 import Table from '../container/Table';
-import PagosBancos from './PagosBancos';
+import FormPBanco from './FormPBanco';
 import BackService from '../store/PeticionesBack';
 const solicitudBack = new BackService(); // Datos al back-end.
 
-class PagosClientes extends Component {
+class PagosOperario extends Component {
 
     handleNewPagosBancos = async (e, pagos) => {
         e.preventDefault()
@@ -110,7 +110,7 @@ class PagosClientes extends Component {
     mostrarFormulario = () => {
         if (this.state.banderaN === true) {
             return(
-                <PagosBancos
+                <FormPBanco
                     id={'Nuevo'}
                     onSubmit={this.handleNewPagosBancos}
                     idRow={''}
@@ -191,8 +191,8 @@ class PagosClientes extends Component {
         return(
             <div onKeyDown={this.onKeyPressed} className="container-fluid" style={{ backgroundColor: "white", position: "absolute", top: "70px", left: "0px" }}>
                 <Encabezado
-                    titulo="Panel de pagos de bancos"
-                    descripcion="Este es el panel de pagos de bancos"
+                    titulo="Panel de pagos"
+                    descripcion="Este es el panel de pagos"
                 />
                 <div className="container" style={{ justifyContent: "center" }}>
                     <form method="POST" onSubmit={this.default}>
@@ -237,4 +237,4 @@ class PagosClientes extends Component {
     }
 }
 
-export default PagosClientes;
+export default PagosOperario;

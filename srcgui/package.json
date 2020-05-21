@@ -30,6 +30,7 @@
     "react-app-rewired": "^2.1.5",
     "react-bootstrap-sidebar": "0.0.1",
     "react-burger-menu": "^2.6.13",
+    "react-credit-cards": "^0.8.2",
     "react-dom": "^16.13.0",
     "react-fontawesome": "^1.7.1",
     "react-google-charts": "^3.0.15",

@@ -219,6 +219,7 @@ function ModificarUse(props) {
                             <option value="Gerente">Gerente</option>
                             <option value="Administrador">Administrador</option>
                             <option value="Operador">Operador</option>
+                            <option value="Revisor">Revisor</option>
                         </select>
                     </div>
                 </div>

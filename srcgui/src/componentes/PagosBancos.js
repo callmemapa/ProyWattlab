@@ -3,11 +3,11 @@ import React, { Component } from 'react';
 //import { useTranslation } from 'react-i18next';
 import Encabezado from './Encabezado';
 import Table from '../container/Table';
-import PagosBancos from './PagosBancos';
+import FormPBanco from './FormPBanco';
 import BackService from '../store/PeticionesBack';
 const solicitudBack = new BackService(); // Datos al back-end.
 
-class PagosClientes extends Component {
+class PagosBanco extends Component {
 
     handleNewPagosBancos = async (e, pagos) => {
         e.preventDefault()
@@ -64,18 +64,17 @@ class PagosClientes extends Component {
     componentDidMount() {
         this.submitSub()
         this.solicitud()
-
-
     }
 
     submitSub = async () => {
         solicitudBack.getBanco()
-          .then(res => {
-            this.setState({
-              banco: res
+            .then(res => {
+                this.setState({
+                    banco: res
+                })
             })
-          })
-      }
+    }
+
 
     // Con este método haga el llamado a los datos al back-end para guardarlos en el estado.
     solicitud = () => {
@@ -110,7 +109,7 @@ class PagosClientes extends Component {
     mostrarFormulario = () => {
         if (this.state.banderaN === true) {
             return(
-                <PagosBancos
+                <FormPBanco
                     id={'Nuevo'}
                     onSubmit={this.handleNewPagosBancos}
                     idRow={''}
@@ -237,4 +236,4 @@ class PagosClientes extends Component {
     }
 }
 
-export default PagosClientes;
+export default PagosBanco;

@@ -1,8 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import FilaTable from '../componentes/FilaTable';
 
 class Table extends Component {
-
     tablaPublicidad = () => {
         return (<React.Fragment>
             <table className="table">
@@ -90,33 +89,14 @@ class Table extends Component {
                     {this.props.datos.map(factura => (
                         <FilaTable
                             tipo='factura'
-                            verFactura={this.props.verFactura}
                             key={factura.id}
                             id={factura.id}
-                            valorConsumo={factura.vlr_cnsmo}
-                            valorMora={factura.vlr_intrss_mra}
-                            valorReconexion={factura.vlr_rcnxn}
-                            valorAPagar={factura.vlr_ttl}
-                            fechaPago={factura.fcha_lmte_pgo}
-                            fechaCorte={factura.fcha_crte_srvco} 
-
-
-                            
-                            consumoKWH={factura.cnsctvo_cnsmo.kwh}
-                            periodoConsumo={factura.cnsctvo_cnsmo.prdo_cnsmo}
-                            valorKWH={factura.cnsctvo_trfa.vlr_kwh} 
-                            observacionTarifa={factura.cnsctvo_trfa.obsrvcn} 
-                            valorConsumo={factura.vlr_cnsmo} 
-                            valorInteresMora={factura.vlr_intrss_mra} 
-                            valorReconexion={factura.vlr_rcnxn} 
-                            valorTotal={factura.vlr_ttl} 
-                            fechaLimitePago={factura.fcha_lmte_pgo} 
-                            fechaCorteServicio={factura.fcha_crte_srvco} 
-                            observacion={factura.obsrvcn} 
-                            idContrato={factura.cnsctvo_cnsmo.idntfccn_cntrto.id}
-                            contratoCliente={factura.cnsctvo_cnsmo.idntfccn_cntrto.cliente}
-                            estrato={factura.cnsctvo_cnsmo.idntfccn_cntrto.estrt_scl}
-                            direccion={factura.cnsctvo_cnsmo.idntfccn_cntrto.drccn}
+                            valorConsumo={factura.valorConsumo}
+                            valorMora={factura.valorMora}
+                            valorReconexion={factura.valorReconexion}
+                            valorAPagar={factura.valorAPagar}
+                            fechaPago={factura.fechaPago}
+                            fechaCorte={factura.fechaCorte}
                         />
                     ))}
                 </tbody>
@@ -164,7 +144,6 @@ class Table extends Component {
     }
 
     tablaContrato = () => {
-
         return (<React.Fragment>
             <table className="table">
                 <thead className="thead-dark">
@@ -194,8 +173,46 @@ class Table extends Component {
                 </tbody>
             </table>
         </React.Fragment>)
-
     }
+
+    tablaPagos = () => { // ¡NUEVO! ELIMINAR SI NO FUNCIONA. (@bryansbr)
+            return(
+                <React.Fragment>
+                    <table className="table">
+                        <thead className="thead-dark">
+                            <tr>
+                                <th scope="col">{this.props.t1}</th>
+                                <th scope="col">{this.props.t2}</th>
+                                <th scope="col">{this.props.t3}</th>
+                                <th scope="col">{this.props.t4}</th>
+                                <th scope="col">{this.props.t5}</th>
+                                <th scope="col">{this.props.t6}</th>
+                                <th scope="col">{this.props.t7}</th>
+                                <th scope="col">{this.props.t8}</th>                          
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {this.props.datos.map(pagos => (
+                                <FilaTable
+                                    cambiarEstado={this.props.cambiarEstado}
+                                    modificar={this.props.modificar}
+                                    tipo='pagos'
+                                    key={pagos.id}
+                                    id={pagos.id}
+                                    idntfccn_bnco={pagos.idntfccn_bnco}
+                                    cnsctvo_fctra={pagos.cnsctvo_fctra}
+                                    nmro_unco_idntfccn_usro={pagos.nmro_unco_idntfccn_usro}
+                                    vlr_pgdo={pagos.vlr_pgdo}
+                                    tp_pgdo={pagos.tp_pgdo}
+                                    nmro_trjt={pagos.nmro_trjt}
+                                    obsrvcn={pagos.obsrvcn}
+                                />                            
+                            ))}
+                        </tbody>
+                    </table>
+                </React.Fragment>
+            )
+        }
 
     mostrarTabla = () => {
         if (this.props.tabla === 'publicidad') {
@@ -213,19 +230,18 @@ class Table extends Component {
         if(this.props.tabla === 'contrato'){
             return this.tablaContrato()
         }
-        else {
+        if(this.props.tabla === 'pagos'){
+            return this.tablaPagos()
+        } else {
             return null
-        }
+        } 
     }
 
-
-
     render() {
-        return (
+        return(
             this.mostrarTabla()
         )
     }
-
 }
 
 export default Table
