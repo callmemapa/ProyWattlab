@@ -6,6 +6,10 @@ const solicitudBack = new BackService();
 
 const PaymentForm = (props) => {
 
+
+    //numero de la tarjeta, 
+    //idbanco, valor a pagar, id de la factura, tipo de pago:Debito, 
+    //Observacion:nombre usuario 
     const [state, setState] = useState({
         number: '',
         name: '',
@@ -58,6 +62,18 @@ const PaymentForm = (props) => {
     }
 
 
+    const validar = (event) =>{
+        event.preventDefault();
+            props.onSubmit(event,{ 'idntfccn_bnco':state.nBanco,
+            'cnsctvo_fctra':props.consFact, 
+            'vlr_pgdo':props.valorPagado,
+            'tp_pgdo':'Debito',
+            'nmro_trjt': state.number,
+            'obsrvcn':state.name})
+    }
+
+     
+ 
 
     return (
         <div className="card" >
@@ -69,7 +85,7 @@ const PaymentForm = (props) => {
                     name={state.name}
                     number={state.number}
                 />
-                <form>
+                <form method="POST" onSubmit={(event) => validar(event)}>
                     <div className="form-group">
                         <label htmlFor="number">Número de la tarjeta</label>
                         <input
@@ -80,6 +96,7 @@ const PaymentForm = (props) => {
                             placeholder="Número de tarjeta"
                             onChange={handleChange}
                             onFocus={handleFocus}
+                            required
                         />
                     </div>
                     <div className="form-row">
@@ -93,12 +110,13 @@ const PaymentForm = (props) => {
                                 placeholder="Nombre"
                                 onChange={handleChange}
                                 onFocus={handleFocus}
+                                required
                             />
                         </div>
                         <div className="form-group col-md-6">
                             <label htmlFor="inputIdentfBanco">Lista bancos</label>
-                            <select name="nBanco" onChange={handleChange} value={state.nBanco} id="inputIdentfBanco" className="custom-select">
-                                <option defaultValue>---</option>
+                            <select name="nBanco" onChange={handleChange} value={state.nBanco} id="inputIdentfBanco" className="custom-select" required>
+                                <option></option>
                                 {state.banco.map(banco => (
                                     <option key={banco.id} value={banco.id}>{banco.nmbre_bnco}</option>
                                 ))}
@@ -119,6 +137,7 @@ const PaymentForm = (props) => {
                                 placeholder="Expiración"
                                 onChange={handleChange}
                                 onFocus={handleFocus}
+                                required
                             />
                         </div>
                         <div className="form-group col-md-6">
@@ -131,14 +150,14 @@ const PaymentForm = (props) => {
                                 placeholder="CVC"
                                 onChange={handleChange}
                                 onFocus={handleFocus}
+                                required
                             />
                         </div>
                     </div>
 
                     <button
-                        type="button"
+                        type="submit"
                         className="btn btn-success btn-block btn-lg"
-                        onClick={submitPayment}
                     >Pagar</button>
                 </form>
             </div>

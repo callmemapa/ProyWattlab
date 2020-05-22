@@ -4,6 +4,27 @@
     }
 }
 
+h1 {
+  
+  color:#faa
+  
+}
+
+h2 {
+  background-color: blue;
+  color: yellow
+}
+
+#titulo{
+  color:cornflowerblue;
+  text-align:center;
+  justify-content: center;
+  align-items: center;
+}
+#titulo2{
+  color:coral
+}
+
 /*body{
   background-color: #fafafa;
 }
