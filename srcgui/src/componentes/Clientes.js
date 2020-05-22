@@ -1,11 +1,13 @@
+import React, { Component } from 'react';
+import { withTranslation } from 'react-i18next';
 import Encabezado from './Encabezado';
 import Table from '../container/Table'
-import './style/slides.css';
-
-import React, { Component } from 'react';
 import ModificarClie from './ModificarClie'
 import BackService from '../store/PeticionesBack';
 import alerta from '../componentes/Alertas';
+import i18n from 'i18next';
+import './style/slides.css';
+
 const solicitudBack = new BackService();
 const notificaciones = new alerta();
 
@@ -33,8 +35,6 @@ class Clientes extends Component {
         estrt_scl: '',
         drccn: '',
         idCont:''
-
-
     }
 
     //Con este metodo haga el llamado a los datos al back para guardarlos en el estado.
@@ -45,7 +45,6 @@ class Clientes extends Component {
                     datos: res
                 })
                 this.buscador(this.state.buscador)
-
             })
     }
 
@@ -56,8 +55,6 @@ class Clientes extends Component {
                     contratos: res
                 })
                 this.buscadorCont(id)
-
-
             })
     }
 
@@ -79,7 +76,6 @@ class Clientes extends Component {
                 notificaciones.error()
             })
         this.cerrarFormulario()
-
     }
 
     handleCrearContrato = async (e, contrato) => {
@@ -93,7 +89,6 @@ class Clientes extends Component {
                 notificaciones.error()
             })
         this.cerrarFormulario()
-
     }
 
     handleModificarCliente = async (e, cliente) => {
@@ -135,8 +130,6 @@ class Clientes extends Component {
             })
     }
 
-
-
     cerrarFormulario = () => {
         this.setState({
             banderaM: false,
@@ -145,8 +138,6 @@ class Clientes extends Component {
             banderaMCont: false
         })
     }
-
-
 
     focusRef() {
         this.myRef.current.focus();
@@ -165,12 +156,11 @@ class Clientes extends Component {
                 tipoIdent={this.state.tpo_idntfcn}
                 tipoClient={this.state.tpT_clnte}
                 fechaNa={this.state.fcha_ncmnto}
-                h1={'Modificar Cliente'}
-                nameBtn={'Modificar Cliente'}
+                h1={i18n.t('customers-panel.cst_change-cst')}
+                nameBtn={i18n.t('customers-panel.cst_change-cst')}
                 cancelar={this.cerrarFormulario} />
             )
-        }
-        else if (this.state.banderaN === true) {
+        } else if (this.state.banderaN === true) {
             return (<ModificarClie
                 id={'Nuevo'}
                 onSubmit={this.handleCrearCliente}
@@ -180,10 +170,10 @@ class Clientes extends Component {
                 numeroIdent=''
                 tipoIdent=''
                 tipoClient=''
-
-                h1={'Nuevo Cliente'}
-                nameBtn={'Crear Cliente'}
-                cancelar={this.cerrarFormulario} />)
+                h1={i18n.t('customers-panel.cst_new-cst')}
+                nameBtn={i18n.t('customers-panel.cst_new-cst')}
+                cancelar={this.cerrarFormulario} />
+            )
         } else if (this.state.banderaC === true) {
             return (<ModificarClie
                 id={'Crear'}
@@ -194,8 +184,8 @@ class Clientes extends Component {
                 numeroIdent={this.state.nmro_idntfccn}
                 tipoIdent={this.state.tpo_idntfcn}
                 tipoClient={this.state.tpT_clnte}
-                h1={'Nuevo Contrato'}
-                nameBtn={'Crear Contrato'}
+                h1={i18n.t('customers-panel.cst_new-cst')}
+                nameBtn={i18n.t('customers-panel.cst_new-cst')}
                 cancelar={this.cerrarFormulario} />
             )
         } else if (this.state.banderaMCont === true) {
@@ -205,8 +195,8 @@ class Clientes extends Component {
                 idRow={this.state.idCont}
                 estrato={this.state.estrt_scl}
                 direccion={this.state.drccn}
-                h1={'Modificar Contrato'}
-                nameBtn={'Modificar Contrato'}
+                h1={i18n.t('customers-panel.cst_change-ctc')}
+                nameBtn={i18n.t('customers-panel.cst_change-ctc')}
                 cancelar={this.cerrarFormulario} />)
         }
         return null
@@ -222,14 +212,13 @@ class Clientes extends Component {
             contratos: datosNuevos,
             resultado: datosNuevos.length
         })
-
     }
 
     mostrarTable = () => {
         return (
             <React.Fragment>
                 <div className="container pre-scrollable" style={{ marginTop: "10px", maxHeight: "350px", marginBottom: "20px" }}>
-                    <Table t1={'Id'} t2={'Tipo ident'} t3={'Número ident'} t4={'Nombres'} t5={'Apellidos'} t6={'Tipo Cliente'} t7={'Modificar Cliente'} t8={'Crear Contrato'} t9={'Ver Contratos'} tabla='cliente' datos={this.state.datos} modificar={this.modificar} crearContrato={this.crearContrato} verContrato={this.verContratos} />
+                    <Table t1={'ID'} t2={'Tipo ident.'} t3={'Número ident.'} t4={'Nombres'} t5={'Apellidos'} t6={'Tipo cliente'} t7={'Modificar cliente'} t8={'Crear contrato'} t9={'Ver contratos'} tabla='cliente' datos={this.state.datos} modificar={this.modificar} crearContrato={this.crearContrato} verContrato={this.verContratos} />
                 </div>
             </React.Fragment>
         )
@@ -260,13 +249,13 @@ class Clientes extends Component {
     mostrarTipoCliente = () => {
         if (this.state.tpT_clnte === 1) {
             return (
-                <p class="lead">TIPO DE CLIENTE: NATURAL</p>
+                <p class="lead">{i18n.t('customers-panel.cst_type-cstn')}</p>
 
             )
         }
         if (this.state.tpT_clnte === 2) {
             return (
-                <p class="lead">TIPO DE CLIENTE: JURIDICA</p>
+                <p class="lead">{i18n.t('customers-panel.cst_type-cstj')}</p>
             )
         }
         else {
@@ -283,12 +272,9 @@ class Clientes extends Component {
             estrt_scl: estrato,
             drccn: direccion
         })
-
-
     }
 
     mostrarTablaCon = () => {
-
 
         if (this.state.banderaCont === false) {
             return null
@@ -296,7 +282,7 @@ class Clientes extends Component {
             return (
                 <React.Fragment>
 
-                    <h1 className="display-4" >Contratos</h1><br />
+                    <h1 className="display-4" >{i18n.t('customers-panel.cst_contract2-title')}</h1><br />
                     <div className="jumbotron" >
                         <div className="container">
                             <div className="form-row">
@@ -308,7 +294,7 @@ class Clientes extends Component {
                                 </div>
                                 <div className="form-group col-md-6">
 
-                                    <h3 className="display-8">CLIENTE: {this.state.prmr_nmbre.toUpperCase() + ' ' + this.state.prmr_aplldo.toUpperCase()}</h3>
+                                    <h3 className="display-8">{i18n.t('customers-panel.cst_title-cst')}: {this.state.prmr_nmbre.toUpperCase() + ' ' + this.state.prmr_aplldo.toUpperCase()}</h3>
                                     {this.mostrarTipoIdent()}
                                     {this.mostrarTipoCliente()}
 
@@ -320,14 +306,12 @@ class Clientes extends Component {
                     </div>
 
                     <div className="container pre-scrollable" style={{ marginTop: "10px", maxHeight: "350px", marginBottom: "20px" }}>
-                        <Table ref={this.myRef} t1={'Id'} t2={'Direccion'} t3={'Estrato'} t4={'Modificar Contrato'} t5={'Estado'} tabla='contrato' datos={this.state.contratos} modificar={this.modificarContrato} crearContrato={this.crearContrato} cambiarEstado={this.cambiarEstadoContrato} />
+                        <Table ref={this.myRef} t1={'ID'} t2={'Dirección'} t3={'Estrato'} t4={'Modificar contrato'} t5={'Estado'} tabla='contrato' datos={this.state.contratos} modificar={this.modificarContrato} crearContrato={this.crearContrato} cambiarEstado={this.cambiarEstadoContrato} />
                     </div>
 
                 </React.Fragment>
             )
         }
-
-
     }
     //Este el metodo que le envio a la table para que se ejecute en ese componente y me traiga los datos de la fila que se va a modificar
     //y junto con este actualizo la banderaMa true para que se muestre el formulario correspondiente
@@ -359,9 +343,7 @@ class Clientes extends Component {
             prmr_aplldo: apellido,
             tpo_idntfcn: tipoIdent,
             tpT_clnte: tipoClient,
-
         })
-
     }
 
     //Cuando presione en nuevo cambia la banderaN a true para mostrar el formulario correspondiente
@@ -371,13 +353,10 @@ class Clientes extends Component {
             banderaC: false,
             banderaM: false,
             banderaCont: false
-
-
         });
     }
 
     verContratos = (id, nombre, apellido, ident, tipoIdent, tipoClient) => {
-
         this.solicitudContratos(id)
         this.setState({
             banderaCont: true,
@@ -427,16 +406,12 @@ class Clientes extends Component {
         e.preventDefault();
     }
 
-
     render() {
-        return (
-
+        return(
             <div onKeyDown={this.onKeyPressed} className="container-fluid" style={{ backgroundColor: "white", position: "absolute", top: "70px", left: "0px" }}>
                 <Encabezado
-                    titulo="Panel de Clientes"
-                    descripcion="A contiuación, encontrará el listado de clientes" />
-
-
+                    titulo={i18n.t('customers-panel.cst_int-title')}
+                    descripcion={i18n.t('customers-panel.cst_int-description')} />
                 <div className="container" style={{ justifyContent: "center" }}>
                     <form method="POST" onSubmit={this.default}>
                         <div className="form-row justify-content-between">
@@ -470,9 +445,7 @@ class Clientes extends Component {
                         <div className="alert alert-success col-md-6">
                                 Resultados:
                                 <strong> {this.state.resultado} filas encontradas.</strong>
-
                         </div>
-
                         {this.mostrarTable()}
                         {this.mostrarTablaCon()}
                     </form>
@@ -483,4 +456,4 @@ class Clientes extends Component {
     }
 }
 
-export default Clientes
+export default withTranslation()(Clientes);

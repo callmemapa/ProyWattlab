@@ -17,13 +17,13 @@
          },
          "services-homepage":{
             "svcs_title":"We think about your comfort",
-            "svcs_description":"Find here all our services and online transactions",
+            "svcs_description":"Find hereHere you can check your statement, download or pay your energy bill. all our services and online transactions.Here you can check your statement, download or pay your energy bill.",
             "svcs_info-titulo": "About us?",
-            "svcs_info-descrip": "Wattlab It is a company of domiciliary public services, socially and environmentally responsible, that is why we are interested in maintaining a good relationship with our stakeholders. For this we adopt the security measures contemplated by law to protect and preserve the confidentiality, integrity and availability of the information."
+            "svcs_info-descrip": "We are an electric energy company founded in the city of Cali, Colombia in 2019. We have high social and environmental responsibility, which is why we are interested in maintaining good relationships with our stakeholders. For this, we have adopted the security measures contemplated by law to protect and preserve the confidentiality, integrity and availability of our clients' information."
          },
          "bill-homepage":{
             "bill_title":"Check your bill",
-            "bill_description":"To check your statement, download or pay your bill",
+            "bill_description":"Here you can check your statement, download or pay your energy bill.",
             "bill_dig-doc":"Enter your ID number",
             "bill_num-fact":"# Bill",
             "bill_prd":"Period",
@@ -46,7 +46,7 @@
          },
          "pqrs-homepage":{
             "pqrs_title":"Petitions, complaints, claims and suggestions",
-            "pqrs_description":"PQRS section",
+            "pqrs_description":"Enter our PQRS section if you have questions or something to tell us. We will gladly answer you!",
             "pqrs_ptn-title":"Petition",
             "pqrs_ptn-description":"It is the fundamental right of every person to submit respectful requests to the authorities for reasons of general or particular interest, and to obtain their prompt resolution.",
             "pqrs_cmpn-title":"Complaint",
@@ -114,6 +114,8 @@
          "usr_date-init":"Start date",
          "usr_btn-search":"Search",
          "usr_btn-new":"New",
+         "usr-btn-create": "Create",
+         "usr_btn-view": "See",
          "usr_btn-change":"Change",
          "usr_btn-activate":"Activate",
          "usr_btn-inactive":"Inactivate",
@@ -202,15 +204,36 @@
       },
       "advertising-panel":{
          "adv_ext-title":"Advertising",
-         "adv_ext-description":"Advertising registration",
+         "adv_ext-description":"Registration of company advertising",
          "adv_int-title":"",
          "adv_int-description":""
       },
       "customers-panel":{
          "cst_ext-title":"Customers",
-         "cst_ext-description":"Customer registration",
-         "cst_int-title":"",
-         "cst_int-description":""
+         "cst_ext-description":"Company customer registration",
+         "cst_int-title":"Customers panel",
+         "cst_int-description":"In this section, you will find the list of all registered customers.",
+         "cst_type-id": "ID Type",
+         "cst_id-num": "ID Number",
+         "cst_first-name": "First name",
+         "cst_last-name": "Last name",
+         "cst_birth-date": "Birthdate",
+         "cst_type-cst": "Customer type",
+         "cst_type-cst-nat": "Natural person",
+         "cst_type-cst-jud": "Legal person",         
+         "cst_type-soc": "Socioeconomic",
+         "cst_adress-resd": "Residence address",
+         "cst_title-cst": "CUSTOMER",
+         "cst_type-cstn": "CUSTOMER TYPE: NATURAL PERSON",
+         "cst_type-cstj": "CUSTOMER TYPE: LEGAL PERSON",
+         "cst_new-cst": "New customer",
+         "cst_create-cst": "Create customer",
+         "cst_change-cst": "Change customer",
+         "cst_contract-title": "Contract",
+         "cst_contract2-title": "Contracts",          
+         "cst_new-ctc": "New contract",
+         "cst_create-ctc": "Create contract",
+         "cst_change-ctc": "Change contract"    
       },
       "banks-panel":{
          "bks_ext-title":"Banks",

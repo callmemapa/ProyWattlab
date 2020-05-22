@@ -1,27 +1,19 @@
 import React, { Component } from 'react';
-import { Translation } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import Card from '../componentes/Card.js';
+import i18n from 'i18next';
 
 class Servicio extends Component {
     render() {
-        return (
+        return(
             <div className="container" style={{ marginTop: '15px', marginBottom: "20px", textAlign: "center" }}>
-                <Translation>
-                    {(t, { i18n }) => <h1>{t('homepage.services-homepage.svcs_info-titulo')}</h1>}
-                </Translation>
+                <h1>{i18n.t('homepage.services-homepage.svcs_info-titulo')}</h1>
                 <div style={{ marginBottom: "20px", marginTop: "20px", textAlign: "justify" }}>
-                    <Translation>
-                        {(t, { i18n }) => <h5>{t('homepage.services-homepage.svcs_info-descrip')}</h5>}
-                    </Translation>
-
+                    <h5>{i18n.t('homepage.services-homepage.svcs_info-descrip')}</h5>
                 </div>
                 <div style={{ marginBottom: "20px", marginTop: "20px" }}>
-                    <Translation>
-                        {(t, { i18n }) => <h1>{t('homepage.services-homepage.svcs_title')}</h1>}
-                    </Translation>
-                    <Translation>
-                        {(t, { i18n }) => <h4>{t('homepage.services-homepage.svcs_description')}</h4>}
-                    </Translation>
+                    <h1>{i18n.t('homepage.services-homepage.svcs_title')}</h1>
+                    <h4>{i18n.t('homepage.services-homepage.svcs_description')}</h4>
                 </div>
                 <div className="row">
                     <Card
@@ -38,10 +30,10 @@ class Servicio extends Component {
                         titulo='homepage.pqrs-homepage.pqrs_title'
                         descripcion='homepage.pqrs-homepage.pqrs_description'
                         urlRuta='/PQRS' />
-
                 </div>
             </div>
         )
     }
 }
-export default Servicio;
+
+export default withTranslation()(Servicio);
