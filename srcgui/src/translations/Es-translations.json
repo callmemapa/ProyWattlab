@@ -17,13 +17,13 @@
          },
          "services-homepage":{
             "svcs_title":"Pensamos en tu comodidad",
-            "svcs_description":"Encuentra aquí todos nuestros servicios y transacciones en línea",
+            "svcs_description":"Encuentra aquí todos nuestros servicios y transacciones en línea.",
             "svcs_info-titulo": "¿Quiénes somos?",
-            "svcs_info-descrip": "Wattlab es una empresa de servicios públicos domiciliarios, responsable social y ambientalmente, por eso nos interesa mantener un buen relacionamiento con nuestros grupos de interés. Para ello adoptamos las medidas de seguridad contempladas por la ley para proteger y preservar la confidencialidad, integridad y disponibilidad de la información."
+            "svcs_info-descrip": "Somos una empresa de energía eléctrica fundada en la ciudad de Cali, Colombia en el año 2019. Contamos con una alta responsabilidad social y ambiental, por lo que nos interesa mantener buenas relaciones con nuestros grupos de interés. Para ello, hemos adoptado las medidas de seguridad contempladas por la ley para proteger y preservar la confidencialidad, integridad y disponibilidad de la información de nuestros clientes."
          },
          "bill-homepage":{
             "bill_title":"Consulta tu factura",
-            "bill_description":"Para consultar tu extracto, descargar o pagar tu factura",
+            "bill_description":"Aquí podrás consultar tu extracto, descargar o pagar tu factura de energía.",
             "bill_dig-doc":"Digite su número de documento",
             "bill_num-fact":"# Factura",
             "bill_prd":"Periodo",
@@ -46,7 +46,7 @@
          },
          "pqrs-homepage":{
             "pqrs_title":"Peticiones, quejas, reclamos y sugerencias",
-            "pqrs_description":"Sección de PQRS",
+            "pqrs_description":"Ingresa a nuestra sección de PQRS si tienes dudas o algo para decirnos. ¡Con gusto te antenderemos!",
             "pqrs_ptn-title":"Petición",
             "pqrs_ptn-description":"Es el derecho fundamental que tiene toda persona a presentar solicitudes respetuosas a las autoridades por motivos de interés general o particular, y a obtener su pronta resolución.",
             "pqrs_cmpn-title":"Queja",
@@ -93,7 +93,7 @@
       },
       "administration-panel":{
          "adm_title":"Panel de administración",
-         "adm_description":"A continuación, seleccione una de las siguientes opciones"
+         "adm_description":"Aquí se encuentran las diferentes opciones para el manejo y administración de la página"
       },
       "users-panel":{
          "usr_ext-title":"Usuarios",
@@ -104,7 +104,7 @@
          "usr_user-name": "Usuario",
          "usr_name":"Nombre",
          "usr_last-name": "Apellido",
-         "usr_email": "Coreo",
+         "usr_email": "Correo",
          "usr_type":"Tipo de usuario",
          "usr_opts": "Opciones",
          "usr_state":"Estado",
@@ -114,6 +114,8 @@
          "usr_date-init":"Fecha de inicio",
          "usr_btn-search":"Buscar",
          "usr_btn-new":"Nuevo",
+         "usr_btn-create": "Crear",
+         "usr_btn-view": "Ver",
          "usr_btn-change":"Modificar",
          "usr_btn-activate":"Activar",
          "usr_btn-inactive":"Inactivar",
@@ -126,7 +128,7 @@
          "act_int-description":"A continuación, encontrará la ubicación de los transformadores y subestaciones.",
          "act_msj-add": "¿Qué desea añadir?",         
          "actives-panel-transformer":{
-            "act_create-trfm": "Creacion de transformador",
+            "act_create-trfm": "Creación de transformador",
             "act_sub-trfm":"Subestación",
             "act_grp-cnt-trfm":"Grupo de conexión",
             "act_vprmy-trfm":"Tensión primaria",
@@ -157,18 +159,18 @@
          "rpt_ext-title":"Reportes",
          "rpt_ext-description":"Reporte de ingresos de la empresa",
          "rpt_int-title":"Panel de reportes",
-         "rpt_int-description":"A continuación, encontrará los reportes de ingresos económicos",
-         "rpt_clientes":"Numero de Clientes Registrados",
-         "rpt_cntrt-activo":"Cantidad de Contratos Activos",
-         "rpt_cntd-sube":"Cantidad de Subestaciones",
-         "rpt_cntd-trns":"Cantidad de Transformadores",
-         "rpt_conv-act-banco": "Convenios Activos con Bancos",
-         "rpt_conv-inct-banco":"Convenios Inactivos con Bancos",
-         "rpt_prm-enrg": "Consumo energia promedio",
+         "rpt_int-description":"En esta sección, podrás encontrar los reportes de ingresos económicos de la empresa",
+         "rpt_clientes":"Numero de clientes registrados",
+         "rpt_cntrt-activo":"Cantidad de contratos activos",
+         "rpt_cntd-sube":"Cantidad de subestaciones",
+         "rpt_cntd-trns":"Cantidad de transformadores",
+         "rpt_conv-act-banco": "Convenios activos con bancos",
+         "rpt_conv-inct-banco":"Convenios inactivos con bancos",
+         "rpt_prm-enrg": "Consumo de energia promedio",
          "rpt_ingr-dinero": "Ingreso de dinero"
       },
       "publicidade": {
-         "pb_int-title": "Panel publicidad",
+         "pb_int-title": "Panel de publicidad",
          "pb_int-description": "A continuación, encontrará el listado de publicidad",
          "pb_titulo": "Titulo",
          "pb_description": "Descripcion",
@@ -177,11 +179,22 @@
          "pb_new": "Nueva Publicación",
          "pb_btn-cancelar": "Cancelar"
       },
+      "advertising-panel":{
+         "adv_ext-title":"Publicidad",
+         "adv_ext-description":"Registro de la publicidad de la empresa",
+         "adv_int-title":"Panel de publicidad",
+         "adv_int-description":"En esta sección, podrá anadir la publicidad de la página",
+         "adv_new_adv": "Crear publicidad",
+         "adv_change_adv": "Modificar publicidad",
+         "adv_new-title": "Título",
+         "adv_new-dcp": "Descripción",
+         "adv_new-url-img": "URL Imágenes"
+      },
       "payments-panel":{
          "pay_ext-title":"Pagos",
          "pay_ext-description":"Registro de pago de servicios por clientes",
          "pay_int-title":"Panel de pagos de clientes",
-         "pay_int-description":"En esta sección usted podrá registrar los pagos de los clientes",
+         "pay_int-description":"En esta sección, podrá registrar los pagos de los clientes",
          "pay_id":"ID Usuario",
          "pay_bill-ref":"# Referencia factura",
          "pay_pay-date":"Fecha de pago",
@@ -200,17 +213,32 @@
          "pay_btn-save":"Guardar",
          "pay_btn-cancel":"Cancelar"
       },
-      "advertising-panel":{
-         "adv_ext-title":"Publicidad",
-         "adv_ext-description":"Registro de la publicidad",
-         "adv_int-title":"",
-         "adv_int-description":""
-      },
       "customers-panel":{
          "cst_ext-title":"Clientes",
-         "cst_ext-description":"Registro de clientes",
-         "cst_int-title":"",
-         "cst_int-description":""
+         "cst_ext-description":"Registro de clientes de la empresa",
+         "cst_int-title":"Panel de clientes",
+         "cst_int-description":"En esta sección, encontrará el listado de todos los clientes registrados.",
+         "cst_type-id": "Tipo de identificación",
+         "cst_id-num": "Número de identificación",
+         "cst_first-name": "Nombres",
+         "cst_last-name": "Apellidos",
+         "cst_birth-date": "Fecha de nacimiento",
+         "cst_type-cst": "Tipo de cliente",
+         "cst_type-cst-nat": "Persona natural",
+         "cst_type-cst-jud": "Persona jurídica",         
+         "cst_type-soc": "Estrato socioeconómico",
+         "cst_adress-resd": "Dirección de la residencia",
+         "cst_title-cst": "CLIENTE",
+         "cst_type-cstn": "TIPO CLIENTE: PERSONAL NATURAL",
+         "cst_type-cstj": "TIPO CLIENTE: PERSONA JURÍDICA",
+         "cst_new-cst": "Nuevo cliente",
+         "cst_create-cst": "Crear cliente",
+         "cst_change-cst": "Modificar cliente",
+         "cst_contract-title": "Contrato",
+         "cst_contract2-title": "Contratos",         
+         "cst_new-ctc": "Nuevo contrato",
+         "cst_create-ctc": "Crear contrato",
+         "cst_change-ctc": "Modificar contrato"    
       },
       "banks-panel":{
          "bks_ext-title":"Bancos",

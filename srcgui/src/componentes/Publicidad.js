@@ -1,14 +1,14 @@
-
+import React, { Component } from 'react';
 import Encabezado from './Encabezado';
 import Table from '../container/Table'
-import './style/slides.css';
-
-import React, { Component } from 'react';
 import ModificarPub from './ModificarPub';
 import BackService from '../store/PeticionesBack';
 import alerta from '../componentes/Alertas';
+import './style/slides.css';
+
 const solicitudBack = new BackService();
 const notificaciones = new alerta();
+
 class Publicidad extends Component {
 
     state = {
@@ -52,7 +52,6 @@ class Publicidad extends Component {
                 console.log(error)
             })
         this.cerrarFormulario()
-
     }
 
     handleModificarPublicidad = async (e, publicidad) => {
@@ -95,8 +94,8 @@ class Publicidad extends Component {
                 titulo={this.state.titulo}
                 descripcion={this.state.descripcion}
                 url={this.state.url}
-                h1={'publicidade.pb_change'}
-                nameBtn={'publicidade.pb_change'}
+                h1={'advertising-panel.adv_change_adv'}
+                nameBtn={'advertising-panel.adv_change_adv'}
                 cancelar={this.cerrarFormulario} />
             )
         }
@@ -108,8 +107,8 @@ class Publicidad extends Component {
                 titulo={''}
                 descripcion={''}
                 url={''}
-                h1={'publicidade.pb_new'}
-                nameBtn={'publicidade.pb_new'}
+                h1={'advertising-panel.adv_new_adv'}
+                nameBtn={'advertising-panel.adv_new_adv'}
                 cancelar={this.cerrarFormulario} />)
         }
         return null
@@ -119,7 +118,7 @@ class Publicidad extends Component {
         return (
             <React.Fragment>
                 <div className="container pre-scrollable" style={{ marginTop: "10px", maxHeight: "350px", marginBottom: "20px" }}>
-                    <Table t1={'Id'} t2={'Titulo'} t3={'Descripción'} t4={'Url'} t5={'Modificar'} t6={'Estado'} tabla='publicidad' datos={this.state.datos} modificar={this.modificar} cambiarEstado={this.cambiarEstadoPublicidad} />
+                    <Table t1={'ID'} t2={'Título'} t3={'Descripción'} t4={'URL'} t5={'Modificar'} t6={'Estado'} tabla='publicidad' datos={this.state.datos} modificar={this.modificar} cambiarEstado={this.cambiarEstadoPublicidad} />
                 </div>
             </React.Fragment>
         )
@@ -136,7 +135,6 @@ class Publicidad extends Component {
             banderaN: false,
         })
     }
-
 
     //Cuando presione en nuevo cambia la banderaN a true para mostrar el formulario correspondiente
     nuevo = () => {
@@ -171,7 +169,6 @@ class Publicidad extends Component {
             datos: datosNuevos,
             resultado: datosNuevos.length
         })
-
     }
 
     default = (e) => {
@@ -182,8 +179,8 @@ class Publicidad extends Component {
         return (
             <div onKeyDown={this.onKeyPressed} className="container-fluid" style={{ backgroundColor: "white", position: "absolute", top: "70px", left: "0px" }}>
                 <Encabezado
-                    titulo="publicidade.pb_int-title"
-                    descripcion="publicidade.pb_int-description" />
+                    titulo="advertising-panel.adv_int-title"
+                    descripcion="advertising-panel.adv_int-description" />
                 <div className="container" style={{ justifyContent: "center" }}>
                     <form method="POST" onSubmit={this.default}>
                         <div className="form-row justify-content-between">
@@ -217,7 +214,6 @@ class Publicidad extends Component {
                         <div className="alert alert-success col-md-6">
                             Resultados:
                                 <strong> {this.state.resultado} filas encontradas.</strong>
-
                         </div>
                         {this.mostrarTable()}
                     </form>
@@ -226,7 +222,6 @@ class Publicidad extends Component {
             </div>
         )
     }
-
 }
 
 export default Publicidad

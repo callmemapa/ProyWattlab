@@ -10,6 +10,7 @@ function BotonVisualizar(props) {
                 <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z" clip-rule="evenodd" />
             </svg>
                 &nbsp; Ver
+            {/*{i18n.t('users-panel.usr_btn-view')}*/}
         </button>
     );
 }

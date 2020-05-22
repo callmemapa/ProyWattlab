@@ -10,6 +10,7 @@ function BotonCrear(props) {
                 <path fill-rule="evenodd" d="M5 15V4H4v11h1zM.5 4h15V3H.5v1zM13 6.5a.5.5 0 00-.5-.5h-5a.5.5 0 000 1h5a.5.5 0 00.5-.5zm0 3a.5.5 0 00-.5-.5h-5a.5.5 0 000 1h5a.5.5 0 00.5-.5zm0 3a.5.5 0 00-.5-.5h-5a.5.5 0 000 1h5a.5.5 0 00.5-.5z" clip-rule="evenodd" />
             </svg>
                 &nbsp; Crear
+            {/*{i18n.t('users-panel.usr_btn-create')}*/}
         </button>
     );
 }

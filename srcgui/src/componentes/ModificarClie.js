@@ -1,6 +1,5 @@
+import React, { useRef, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-
-import React, { useRef, useEffect, useState } from 'react'
 
 function ModificarClie(props) {
     const i18n = useTranslation();
@@ -9,8 +8,6 @@ function ModificarClie(props) {
     //La referencia para poder enfocar
     const myRef = useRef();
     const myRef2 = useRef();
-
-    
 
     //Para inactivar o activar tomar el id del cliente, el estado, y el profile vacio, 
     //Para modificar crear un segundo estado con el id, nmro_idntfccn, prmr_nmbre, prmr_aplldo, email, tpo_idntfcn
@@ -106,13 +103,13 @@ function ModificarClie(props) {
     const mostrarTipoCliente = () => {
         if (props.tipoClient === 1) {
             return (
-                <p class="lead">TIPO DE CLIENTE: NATURAL</p>
+                <p class="lead">{i18n.t('customers-panel.cst_type-cstn')}</p>
 
             )
         }
         if (props.tipoClient === 2) {
             return (
-                <p class="lead">TIPO DE CLIENTE: JURIDICA</p>
+                <p class="lead">{i18n.t('customers-panel.cst_type-cstj')}</p>
             )
         }
         else {
@@ -130,7 +127,7 @@ function ModificarClie(props) {
                 <React.Fragment>
                     <div className="form-row">
                         <div className="form-group col-md-6">
-                            <label htmlFor="inputTipoIdent">Tipo de identificación</label>
+                            <label htmlFor="inputTipoIdent">{i18n.t('customers-panel.cst_type-id')}</label>
                             <select onChange={onChange} ref={myRef} value={cliente.tpo_idntfcn} name="tpo_idntfcn" id="inputTipoIdent" className="custom-select" required>
                                 <option ></option>
                                 <option value="1">C.C</option>
@@ -140,18 +137,18 @@ function ModificarClie(props) {
                         </div>
 
                         <div className="form-group col-md-6">
-                            <label htmlFor="inputIdent">Número de identificación</label>
+                            <label htmlFor="inputIdent">{i18n.t('customers-panel.cst_id-num')}</label>
                             <input required name="nmro_idntfccn" onChange={onChange} type="text" value={cliente.nmro_idntfccn} className="form-control" id="inputIdent" />
                         </div>
 
                     </div>
                     <div className="form-row">
                         <div className="form-group col-md-6">
-                            <label htmlFor="inputNombre">Nombres</label>
+                            <label htmlFor="inputNombre">{i18n.t('customers-panel.cst_first-name')}</label>
                             <input required name="prmr_nmbre" onChange={onChange} type="text" value={cliente.prmr_nmbre} className="form-control" id="inputNombre" />
                         </div>
                         <div className="form-group col-md-6">
-                            <label htmlFor="inputApellido">Apellidos</label>
+                            <label htmlFor="inputApellido">{i18n.t('customers-panel.cst_last-name')}</label>
                             <input required name="prmr_aplldo" onChange={onChange} type="text" value={cliente.prmr_aplldo} className="form-control" id="inputApellido" />
                         </div>
 
@@ -159,16 +156,16 @@ function ModificarClie(props) {
 
                     <div className="form-row">
                         <div className="form-group col-md-6">
-                            <label htmlFor="inputFecha">Fecha de nacimiento</label>
+                            <label htmlFor="inputFecha">{i18n.t('customers-panel.cst_birth-date')}</label>
                             <input required type="date" name="fcha_ncmnto" onChange={onChange} value={cliente.fcha_ncmnto} className="form-control" id="inputFecha" max="3000-12-31"
                                 min="1000-01-01" class="form-control" />
                         </div>
                         <div className="form-group col-md-6">
-                            <label htmlFor="inputTipoClient">Tipo de cliente</label>
+                            <label htmlFor="inputTipoClient">{i18n.t('customers-panel.cst_type-cst')}</label>
                             <select onChange={onChange} name="tpT_clnte" id="inputTipoClient" value={cliente.tpT_clnte} className="custom-select" >
-                                <option ></option>
-                                <option value="1">Natural</option>
-                                <option value="2">Juridica</option>
+                                <option defaultValue>--</option>
+                                <option value="1">{i18n.t('customers-panel.cst_type-cst-nat')}</option>
+                                <option value="2">{i18n.t('customers-panel.cst_type-cst-jud')}</option>
                             </select>
                         </div>
                     </div>
@@ -180,7 +177,7 @@ function ModificarClie(props) {
         if (props.id === 'Crear') {
             return (<div className="jumbotron jumbotron-fluid" >
                 <div className="container">
-                    <h1 className="display-4">CLIENTE: {props.nombre.toUpperCase() + ' ' + props.apellido.toUpperCase()}</h1>
+                    <h1 className="display-4">{i18n.t('customers-panel.cst_title-cst')}: {props.nombre.toUpperCase() + ' ' + props.apellido.toUpperCase()}</h1>
                     {mostrarTipoIdent()}
                     {mostrarTipoCliente()}
 
@@ -196,11 +193,11 @@ function ModificarClie(props) {
 
                     {mostrarInfoClient()}
 
-                    <h2>Contrato</h2>
+                    <h2>{i18n.t('customers-panel.cst_contract-title')}</h2>
 
                     <div className="form-row">
                         <div className="form-group col-md-6">
-                            <label htmlFor="inputTipoIdent">Estrato Socioeconómico</label>
+                            <label htmlFor="inputTipoIdent">{i18n.t('customers-panel.cst_type-soc')}</label>
                             <select onChange={onChange} name="estrt_scl" value={cliente.contrato.estrt_scl} id="inputTipoIdent" className="custom-select" ref={myRef, myRef2} required >
                                 <option ></option>
                                 <option value="1">1</option>
@@ -214,7 +211,7 @@ function ModificarClie(props) {
                         </div>
 
                         <div className="form-group col-md-6">
-                            <label htmlFor="inputDire">Dirección de la residencia</label>
+                            <label htmlFor="inputDire">{i18n.t('customers-panel.cst_adress-resd')}</label>
                             <input required name="drccn" onChange={onChange} type="text" value={cliente.contrato.drccn} className="form-control" id="inputDire" required/>
                         </div>
 
