@@ -1,16 +1,21 @@
 # WATTLAB 🚀👽
-Aplicación web para el manejo de usuarios, activos, publicidad y consumo de energía en los hogares de Cali-Colombia 💥.
+Aplicación web para el manejo de usuarios, activos, publicidad y consumo de energía en los hogares de Cali, Colombia 💥.
 ![](srcgui/public/imagenes/Imagotipo.png)
 
 ## Pre-requisitos 📋
 
 * Tener instalado Node.js 12.16.3+.
 * Tener instalado Python (3.7+), Django (3.0.3+) y PostgreSQL (10+).
-* Tener instalado un entorno de desarrollo (IDE). En nuestro caso es utiliamos **Visual Studio Code**.
-* Crear un entorno virtual en la carpeta donde vayas a descargar/clonar el proyecto.
+* Tener instalado un entorno de desarrollo (IDE). En nuestro caso es utilizamos **Visual Studio Code**.
+* Crear un entorno virtual en la carpeta donde vayas a descargar/clonar el repositorio del proyecto (puede ser en el escritorio). Para crear el entorno virtual se debe hacer lo siguiente:
+
+**En Windows**
 ```
 virtualenv myvenv
-ó
+```
+
+**En Linux**
+```
 virtualenv myvenv -p python3.7
 ```
 
@@ -27,46 +32,87 @@ git clone http://github.com/sebastian18t/ProyWattlab
 
 **En Windows**
 ```
-myvenv\Scripts\activate
+cd myvenv
+.\Scripts\activate
 ```
 **En Linux**
 ```
-myvenv/bin
+cd myvenv/bin
 source activate
 ```
-* Instalamos los requerimientos:
+
+* Nos dirigimos a la carpeta del proyecto desde el entorno virtual:
+
+**En Windows**
+```
+cd ..
+cd ProyWattlab
+```
+
+**En Linux**
+```
+cd .. (x2)
+cd ProyWattlab
+```
+
+* Instalamos los requerimientos en la raíz de la carpeta:
+
+**En Windows**
 ```
 pip install -r requeriments.txt
-ó
+```
+
+**En Linux**
+```
 pip3 install -r requeriments.txt
 ```
+
 * Realizamos las migraciones:
+
+**En Windows**
 ```
 python manage.py makemigrations
 python manage.py migrate
-ó
+```
+
+**En Linux**
+```
 python3.7 manage.py makemigrations
 python3.7 manage.py migrate
 ```
+
 * Inicializamos el backend:
+
+**En Windows**
 ```
 python manage.py runserver
-ó
+```
+
+**En Linux**
+```
 python3.7 manage.py runserver
 ```
+
 **Nota:** La ruta por defecto será: ```http://127.0.0.1:8000/```
 
 ### Frontend 🎨
 * Navegamos hasta la carpeta que contiene todos los elementos de la GUI:
+
+**En Windows**
 ```
-cd srcgui
+cd ProyWattlab\srcgui
 ```
+
+**En Linux**
+```
+cd ProyWattlab/srcgui
+```
+
 * Instalamos las dependencias y módulos a través del gestor de paquetes de Node.js:
 ```
 npm install
-ó
-npm i
 ```
+
 * Ejecutamos el proyecto desde el frontend:
 ```
 npm start
