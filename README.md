@@ -3,32 +3,28 @@ Aplicación web para el manejo de usuarios, activos, publicidad y consumo de ene
 ![](srcgui/public/imagenes/Imagotipo.png)
 
 ## Pre-requisitos 📋
-
-* Tener instalado Node.js 12.16.3+.
-* Tener instalado Python (3.7+), Django (3.0.3+) y PostgreSQL (10+).
+* Tener instalado Node.js (12.16.3+), Python (3.7+), Django (3.0.3+) y PostgreSQL (10+).
 * Tener instalado un entorno de desarrollo (IDE). En nuestro caso es utilizamos **Visual Studio Code**.
-* Crear un entorno virtual en la carpeta donde vayas a descargar/clonar el repositorio del proyecto (puede ser en el escritorio). Para crear el entorno virtual se debe hacer lo siguiente:
+* Crear un entorno virtual en la carpeta donde vayas a descargar/clonar el repositorio del proyecto (puede ser en el escritorio). Para crear el entorno virtual debes abrir una consola o terminal y escribir lo siguiente:
 
 **En Windows**
 ```
 virtualenv myvenv
 ```
-
 **En Linux**
 ```
 virtualenv myvenv -p python3.7
 ```
 
 ## Instalación e inicialización 🔧
-### Backend ⚡
-
-* Primero se debe clonar el repositorio del proyecto en tu dispositivo local (en la misma carpeta donde está el entorno virtual):
+### Back-end ⚡
+* Primero, se debe clonar el repositorio del proyecto en tu dispositivo local a través de la consola o terminal (te recomendamos que lo hagas dentro de la misma carpeta donde se creó el entorno virtual):
 ```
 git clone http://github.com/sebastian18t/ProyWattlab
 ```
-* Listo, ya tenemos el proyecto descargado.
-* Abrimos el proyecto en nuestro entorno de desarrollo y abrimos la terminal.
-* Tenemos que activar el entorno virtual.
+* Listo, ya tenemos el proyecto descargado/clonado.
+* Abrimos el proyecto en nuestro entorno de desarrollo y regresamos a la vetana de comandos o terminal.
+* Ahora, tenemos que activar el entorno virtual:
 
 **En Windows**
 ```
@@ -40,7 +36,6 @@ cd myvenv
 cd myvenv/bin
 source activate
 ```
-
 * Nos dirigimos a la carpeta del proyecto desde el entorno virtual:
 
 **En Windows**
@@ -48,25 +43,21 @@ source activate
 cd ..
 cd ProyWattlab
 ```
-
 **En Linux**
 ```
 cd .. (x2)
 cd ProyWattlab
 ```
-
 * Instalamos los requerimientos en la raíz de la carpeta:
 
 **En Windows**
 ```
 pip install -r requeriments.txt
 ```
-
 **En Linux**
 ```
 pip3 install -r requeriments.txt
 ```
-
 * Realizamos las migraciones:
 
 **En Windows**
@@ -74,52 +65,66 @@ pip3 install -r requeriments.txt
 python manage.py makemigrations
 python manage.py migrate
 ```
-
 **En Linux**
 ```
 python3.7 manage.py makemigrations
 python3.7 manage.py migrate
 ```
-
-* Inicializamos el backend:
+* Inicializamos el Back-end:
 
 **En Windows**
 ```
 python manage.py runserver
 ```
-
 **En Linux**
 ```
 python3.7 manage.py runserver
 ```
-
 **Nota:** La ruta por defecto será: ```http://127.0.0.1:8000/```
 
-### Frontend 🎨
-* Navegamos hasta la carpeta que contiene todos los elementos de la GUI:
+### Front-end 🎨
+* Navegamos hasta la carpeta que contiene todos los elementos de la interfaz gráfica (GUI):
 
 **En Windows**
 ```
 cd ProyWattlab\srcgui
 ```
-
 **En Linux**
 ```
 cd ProyWattlab/srcgui
 ```
-
 * Instalamos las dependencias y módulos a través del gestor de paquetes de Node.js:
 ```
 npm install
 ```
-
-* Ejecutamos el proyecto desde el frontend:
+* Ejecutamos el proyecto desde el Front-end:
 ```
 npm start
 ```
-* ¡Y listo! Tenemos nuestro proyecto funcionando tanto en el backend, como en el frontend.
-
 **Nota:** La ruta por defecto será: ```localhost:3000/```
+* ¡Y listo! Tendremos nuestro proyecto funcionando tanto en el Back-end como en el Front-end.
+
+## Desactivar la ejecución del proyecto
+
+### Para desactivar el Back-end ⚡
+
+* Ingresar a la consola o terminal donde se esté ejecutando este y presionar las siguientes teclas:
+```
+CTRL + C
+```
+* Desactivar el entorno virtual:
+```
+deactivate
+```
+* Cerrar la consola o terminal.
+
+### Para desactivar el Front-end 🎨
+* Ingresar a la consola o terminal donde se esté ejecutando este y presionar las siguientes teclas:
+```
+CTRL + C
+```
+**Nota:** Si pide confirmación para terminar de ejecutar la aplicación, escribir la letra ```y``` de *Yes*.
+* Cerrar la consola o terminal.
 
 ## Este proyecto fue construido con 🛠️
 
@@ -136,12 +141,12 @@ npm start
 
 ## Autores ✒️
 
-* **Sebastián Tamayo Lasso** - *Scrum Master, Desarrollador FullStack y QA Tester* - [sebastian18t](https://github.com/sebastian18t)
-* **Fabián Andrés Benavides Labiano** - *Desarrollador BackEnd y Analista de bases de datos* - [fabianunivalle](http://github.com/fabianunivalle)
-* **María Paula Mosquera Rengifo** - *Desarrolladora FrontEnd* - [callmemapa](https://github.com/callmemapa)
-* **Juan David Castro Cardona** - *Product Owner y Desarrollador FrontEnd* - [JuanCardona97](https://github.com/JuanCardona97)
-* **Bryan Steven Biojó Romero** - *Desarrollador FrontEnd* - [bryansbr](http://github.com/bryansbr)
-* **Daniel Stiven Cardona Cano** - *Desarrollador FrontEnd* - [Hickaro12](http://github.com/Hickaro12)
+* **Sebastián Tamayo Lasso** - *Scrum Master, Desarrollador Full-stack y QA Tester* - [sebastian18t](https://github.com/sebastian18t)
+* **Fabián Andrés Benavides Labiano** - *Desarrollador Back-end y Analista de bases de datos* - [fabianunivalle](http://github.com/fabianunivalle)
+* **María Paula Mosquera Rengifo** - *Desarrolladora Front-end* - [callmemapa](https://github.com/callmemapa)
+* **Juan David Castro Cardona** - *Product Owner y Desarrollador Front-end* - [JuanCardona97](https://github.com/JuanCardona97)
+* **Bryan Steven Biojó Romero** - *Desarrollador Front-end* - [bryansbr](http://github.com/bryansbr)
+* **Daniel Stiven Cardona Cano** - *Desarrollador Front-end* - [Hickaro12](http://github.com/Hickaro12)
 
 También puedes mirar la lista de todos los [contribuyentes](https://github.com/sebastian18t/ProyWattlab/graphs/contributors) quíenes han participado en este proyecto. 
 
