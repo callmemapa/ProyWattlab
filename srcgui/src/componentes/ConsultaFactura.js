@@ -7,19 +7,16 @@ import Table from '../container/Table'
 import ModificarUse from './ModificarUse'
 import BackService from '../store/PeticionesBack';
 import BotonVisualizar from './BotonVisualizar';
-import Factura from './Factura';
-import MAFactura from '../container/MAFactura'
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import FacturaPrueba from './FacturaPrueba';
+
 import jsPDF from 'jspdf'
-import ImagePublicidad from './Image'
+import { renderToString } from 'react-dom/server';
+import html2canvas from 'html2canvas';
+import ImagePublicidad from './Image';
 import PaymentForm from './PaymentForm'
+var Barcode = require('react-barcode');
 
 
 const solicitudBack = new BackService();
-
-const element = <MAFactura />
-
 
 
 class ConsultaFactura extends Component {
@@ -27,11 +24,12 @@ class ConsultaFactura extends Component {
 
     state = {
         banderaVer: false,
-        banderaPago:false,
+        banderaPago: false,
         id: '',
         datos: [],
         buscador: '',
         resultado: '',
+        estado: true,
         //mode: ''
     }
 
@@ -47,7 +45,7 @@ class ConsultaFactura extends Component {
         ).then(res => {
             //console.log(res)
             this.setState({
-                banderaPago:false
+                banderaPago: false
             })
         })
             .catch(error => console.log(error))
@@ -62,18 +60,21 @@ class ConsultaFactura extends Component {
             console.log(res)
             this.setState({
                 datos: res,
+                estado: res[0].estado,
                 id: contrato,
                 resultado: res.length,
-                vlr_cnsmo: 14500
             })
-            this.mostrarFactura()
+            
             //notificaciones.exito()
         })
             .catch(error => {
                 console.log(error)
                 this.setState({
                     datos: [],
-                    resultado: 0
+                    resultado: 0,
+                    estado: true,
+                    banderaPago:false,
+
                 })
                 //notificaciones.error()
             })
@@ -86,38 +87,17 @@ class ConsultaFactura extends Component {
         })
     }
 
-    async componentDidMount() {
-        this.verDatos()
-    }
-
-    verFactura = () => {
-        this.setState({
-            banderaVer: true,
-            //mode: 'fact'
-        })
-    }
 
 
     async componentDidMount() {
 
     }
-
+    //Para revisar
     cerrarFactura = () => {
         console.log('holaaa x2')
         this.setState({
             banderaVer: false,
         })
-    }
-
-    mostrarFactura() {
-        
-    }
-
-
-    validar = () => {
-        if (this.state.banderaPago === true) {
-            this.mostrarFactura()
-        }
     }
 
     pagar = () => {
@@ -131,18 +111,68 @@ class ConsultaFactura extends Component {
         if (this.state.banderaPago === true) {
             console.log(this.state.datos[0].id)
 
-            return <PaymentForm consFact={this.state.datos[0].id} valorPagado={this.state.datos[0].vlr_ttl} onSubmit={this.handleNewPagosBancos}/>
+            return <PaymentForm consFact={this.state.datos[0].id} valorPagado={this.state.datos[0].vlr_ttl} onSubmit={this.handleNewPagosBancos} />
         }
     }
 
-    
+    mostratBotonPago = () => {
+        if (this.state.resultado !== 0) {
+            if (this.state.estado===true) {
+                return (
+                    <React.Fragment>
+                        <button type="submit" target="_blank" id="print" onClick={this.generarF} className="btn btn-primary btn-lg mx-auto d-block col-md-5" >Download PDF</button>
+                        <button style={{ cursor: "default" }} type="button" name="info" className="btn btn-lg btn-success mx-auto d-block col-md-5 " disabled>La factura ya esta cancelada</button>
+                    </React.Fragment>
+                    
+                )
+            } else {
+                
+                return (
+                    <React.Fragment>
+                        <button type="submit" target="_blank" id="print" onClick={this.generarF} className="btn btn-primary btn-lg mx-auto d-block col-md-5" >Download PDF</button>
+                        <button type="button" name="pagar" onClick={this.pagar} className="btn  btn-lg btn-danger mx-auto d-block col-md-5">Pagar online</button>
+                    </React.Fragment>
+                )
+            }
+        } else {
+            return (
+                <button style={{ cursor: "default" }} type="button" name="info" className="btn btn-lg btn-danger mx-auto d-block col-md-12 " disabled>No hay Facturas</button>
+            )
+        }
+
+
+    }
+
+    generarF = () => {
+        var h1 = document.getElementById('Factura')
+        var image = new Image()
+        image.src = '../imagenes/imagotipo.png'
+        var doc = new jsPDF()
+
+        doc.setFont("helvetica");
+        doc.setFontType("bold");
+        doc.text(50, 70, 'FACTURA DE LOS SERVICIOS PÚBLICOS');
+        doc.line(20, 75, 190, 75);
+        doc.fromHTML(h1, 15, 80)
+        doc.addImage(image, 'JPEG', 25, 10, 155, 50)
+
+        var barcode = new Image()
+        barcode.src = '../imagenes/codigo.jpg'
+        doc.addImage(barcode, 'JPEG', 60, 193, 90, 35)
+
+        var imagePublicidad = new Image()
+        imagePublicidad.src = '../imagenes/publicidadTR.jpg'
+        doc.addImage(imagePublicidad, 'JPEG', 30, 230, 150, 50)
+
+        doc.save("Factura" + (this.state.id) + ".pdf")
+    }
 
     mostrarInfoFactura = () => {
         if (this.state.banderaVer === true) {
             return (
                 <React.Fragment>
-                    <div className="jumbotron" id="Factura">
-                        <div className="container">
+                    <div className="jumbotron">
+                        <div className="container" id="me">
                             <div className="form-row" style={{ textAlign: "center" }}>
                                 <div className="form-group col-md-12">
                                     <svg class="bi bi-file-text" width="8em" height="8em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -150,29 +180,30 @@ class ConsultaFactura extends Component {
                                         <path fill-rule="evenodd" d="M4.5 10.5A.5.5 0 015 10h3a.5.5 0 010 1H5a.5.5 0 01-.5-.5zm0-2A.5.5 0 015 8h6a.5.5 0 010 1H5a.5.5 0 01-.5-.5zm0-2A.5.5 0 015 6h6a.5.5 0 010 1H5a.5.5 0 01-.5-.5zm0-2A.5.5 0 015 4h6a.5.5 0 010 1H5a.5.5 0 01-.5-.5z" clip-rule="evenodd" />
                                     </svg>
                                 </div>
-                                <div className="form-group col-md-12">
+                                <div className="form-group col-md-12" id="Factura" style={{ fontFamily: "helvetica", fontStyle: "" }}>
                                     {this.state.datos.map(factura => (
                                         <div>
-                                            <h3 style={{ color: "yellow" }} className="display-5">ID factura: {factura.id}</h3>
-                                            <h3 className="display-5">Periodo Consumo: {factura.cnsctvo_cnsmo.prdo_cnsmo}</h3>
-                                            <h3 className="display-5">ID contrato: {factura.cnsctvo_cnsmo.idntfccn_cntrto.id}</h3>
-                                            <h3 className="display-5">Estrato socioeconómico: {factura.cnsctvo_cnsmo.idntfccn_cntrto.estrt_scl}</h3>
-                                            <h3 className="display-5">Dirección: {factura.cnsctvo_cnsmo.idntfccn_cntrto.drccn}</h3>
-                                            <h3 className="display-5">Cliente: {factura.cnsctvo_cnsmo.idntfccn_cntrto.cliente}</h3>
-                                            <h3 className="display-5">Valor KwH: {factura.cnsctvo_trfa.vlr_kwh}</h3>
-                                            <h3 className="display-5">Consumo en kwH: {factura.cnsctvo_cnsmo.kwh}</h3>
-                                            <h3 className="display-5">Valor consumo: {factura.vlr_cnsmo}</h3>
-                                            <h3 className="display-5">Valor interés mora: {factura.vlr_intrss_mra}</h3>
-                                            <h2 className="display-5">Total a pagar: {factura.vlr_ttl}</h2>
+                                            <h5 className="display-5">Número de factura: {factura.id}</h5>
+                                            <h5 className="display-5">Periodo Consumo: {factura.cnsctvo_cnsmo.prdo_cnsmo}</h5>
+                                            <h5 className="display-5">Identificación contrato: {factura.cnsctvo_cnsmo.idntfccn_cntrto.id}</h5>
+                                            <h5 className="display-5">Estrato socioeconómico: {factura.cnsctvo_cnsmo.idntfccn_cntrto.estrt_scl}</h5>
+                                            <h5 className="display-5">Dirección de residencia: {factura.cnsctvo_cnsmo.idntfccn_cntrto.drccn}</h5>
+                                            <h5 className="display-5">Identificación cliente: {factura.cnsctvo_cnsmo.idntfccn_cntrto.cliente}</h5>
+                                            <h5 className="display-5">Valor del KwH: {factura.cnsctvo_trfa.vlr_kwh}</h5>
+                                            <h5 className="display-5">Consumo en kwH: {factura.cnsctvo_cnsmo.kwh}</h5>
+                                            <h5 className="display-5">Valor consumo: {factura.vlr_cnsmo}</h5>
+                                            <h5 className="display-5">Valor interés mora: {factura.vlr_intrss_mra}</h5>
+                                            <h5 className="display-5">Valor de reconexión: {factura.vlr_rcnxn}</h5>
+                                            <h3 className="display-5" style={{ color: "red" }}>Total a pagar: {factura.vlr_ttl}</h3>
+                                            <Barcode value={factura.vlr_ttl} />,
                                         </div>
                                     ))}
-
                                 </div>
                             </div>
                         </div>
                         <div className="form-row">
-                            <button type="submit" target="_blank" onClick={this.generarF} className="btn btn-primary mx-auto d-block col-md-5" >Download PDF</button>
-                            <button type="button" name="pagar" onClick={this.pagar} className="btn btn-danger mx-auto d-block col-md-5">Pagar online</button>
+                            
+                            {this.mostratBotonPago()}
                         </div>
                     </div>
                     <br></br>
@@ -187,22 +218,6 @@ class ConsultaFactura extends Component {
             buscador: e.target.value.toLowerCase()
         })
         //this.buscador(e.target.value.toLowerCase());
-    }
-
-
-
-    buscador = (numero) => {
-        const datosNuevos = this.state.datos.filter(function (fila) {
-            if (fila.contrato.toLowerCase().indexOf(numero) !== -1) {
-                return fila;
-            } else if (fila.id.toLowerCase().indexOf(numero) !== -1) {
-                return fila;
-            }
-        })
-        this.setState({
-            datos: datosNuevos,
-            resultado: datosNuevos.length
-        })
     }
 
     default = (e) => {
@@ -242,7 +257,6 @@ class ConsultaFactura extends Component {
                                 <strong> {this.state.resultado} factura(s) encontrada(s).</strong>
 
                             </div>
-                            {/*  {this.mostrarTable()} */}
                         </div>
                     </form>
                     {this.mostrarInfoFactura()}

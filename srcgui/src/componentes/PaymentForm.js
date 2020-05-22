@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef} from 'react';
 import Cards from 'react-credit-cards';
 import 'react-credit-cards/es/styles-compiled.css';
 import BackService from '../store/PeticionesBack';
 const solicitudBack = new BackService();
 
 const PaymentForm = (props) => {
+    
+    const myRef = useRef();
 
 
     //numero de la tarjeta, 
@@ -21,7 +23,7 @@ const PaymentForm = (props) => {
     })
 
     useEffect(() => {
-
+        myRef.current.focus();
         submitSub()
 
     }, [])
@@ -89,6 +91,7 @@ const PaymentForm = (props) => {
                     <div className="form-group">
                         <label htmlFor="number">Número de la tarjeta</label>
                         <input
+                            ref={myRef}
                             type="text"
                             className="form-control"
                             name="number"

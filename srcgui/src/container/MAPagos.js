@@ -13,8 +13,8 @@ class MAPagos extends Component {
                 <div>
                     <Sidebar />
                 </div>
-                <div className="container" style={{marginTop: "20px", textAlign: "center"}}>
-                    <PagosOperario/>}
+                <div>
+                    <PagosOperario/>
                 </div>
             </Layout>
 

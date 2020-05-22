@@ -23,8 +23,7 @@ import MAPublicidad from './container/MAPublicidad';
 import RegistroConsumo from './componentes/RegistroConsumo';
 import PageNotFound from './container/PageNotFound';
 import MAClientes from './container/MAClientes';
-import MAFactura from './container/MAFactura';
-import Factura from './componentes/Factura';
+
 
 function BaseRouter() {
     return (
@@ -46,8 +45,6 @@ function BaseRouter() {
                         <PrivateRoute exact path="/ModuloAdministrador/Publicidad" component={MAPublicidad} />
                         <PrivateRoute exact path="/ModuloAdministrador/Clientes" component={MAClientes} />
                         <PrivateRoute exact path="/ModuloAdministrador/Bancos" component={MAPagosBancos} />
-                        <PrivateRoute exact path="/ModuloAdministrador/Factura" component={MAFactura} />
-                        <Route exact path="/ModuloAdministrador/FacturaPDF" component={Factura}/>
                         <Route exact path="/RegistroConsumo" component={RegistroConsumo} />
                         <Route component={PageNotFound} />
                     </Switch>

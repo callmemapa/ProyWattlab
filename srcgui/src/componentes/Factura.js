@@ -129,6 +129,7 @@ function Factura(props) {
     const head3 = [["# Contrato", "ID Cliente", "Estrato", "Dirección residencia"]]
     const body3 = [[factura.cnsctvo_cnsmo.idntfccn_cntrto.id, factura.cnsctvo_cnsmo.idntfccn_cntrto.cliente, factura.cnsctvo_cnsmo.idntfccn_cntrto.estrt_scl, factura.cnsctvo_cnsmo.idntfccn_cntrto.drccn]]
     const body4 = [["TOTAL A PAGAR", "$"+factura.vlr_ttl]]
+    
     return (
       <React.Fragment>
         <PDF properties={properties} preview={true}>
@@ -143,7 +144,8 @@ function Factura(props) {
         </PDF>
         <div id="page" style={invisibleStyle}></div>
       </React.Fragment>
-    )
+    ) 
+    
   }
 
 

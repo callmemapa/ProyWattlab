@@ -1,13 +1,45 @@
-// ¡NUEVO! ELIMINAR SI NO FUNCIONA. (@bryansbr)
-import React, { Component } from 'react';
-//import { useTranslation } from 'react-i18next';
-import Encabezado from './Encabezado';
-import Table from '../container/Table';
-import FormPBanco from './FormPBanco';
+import React, { Component, Suspense, Spinner } from 'react'
+import { Translation, withTranslation } from 'react-i18next';
+import i18n from "i18next";
+import { Layout } from 'antd';
+import Menu from './Menu';
+import Table from '../container/Table'
+import ModificarUse from './ModificarUse'
 import BackService from '../store/PeticionesBack';
-const solicitudBack = new BackService(); // Datos al back-end.
+import BotonVisualizar from './BotonVisualizar';
+import Factura from './Factura';
+import MAFactura from '../container/MAFactura'
+import jsPDF from 'jspdf'
+import { renderToString } from 'react-dom/server';
+import html2canvas from 'html2canvas';
+import ImagePublicidad from './Image';
+import PaymentForm from './PaymentForm'
+import Encabezado from './Encabezado';
+import alerta from '../componentes/Alertas';
+
+const notificaciones = new alerta();
+var Barcode = require('react-barcode');
+
+const solicitudBack = new BackService();
 
 class PagosOperario extends Component {
+    myRef = React.createRef();
+
+    state = {
+        banderaVer: false,
+        banderaPago: false,
+        id: '',
+        datos: [],
+        buscador: '',
+        resultado: '',
+        estado: true,
+        //mode: ''
+    }
+
+    /*constructor(props) {
+        super(props);
+        this.handleFact = this.handleFact.bind(this);
+    }*/
 
     handleNewPagosBancos = async (e, pagos) => {
         e.preventDefault()
@@ -15,172 +47,177 @@ class PagosOperario extends Component {
         solicitudBack.postRegisterPagos(pagos
         ).then(res => {
             //console.log(res)
-            this.solicitud()
-        })
-            .catch(error => console.log(error))
-        this.cerrarFormulario()
-    }
-
-    handleChangePagosBancos = async (e, pagos) => {
-        e.preventDefault()
-        solicitudBack.putUpdatePagos(pagos
-        ).then(res => {
-            //console.log(res)
-            this.solicitud()
-        })
-            .catch(error => console.log(error))
-        this.cerrarFormulario()
-    }
-
-    /*cambiarEstadoPagos = (pagos) => {
-        //console.log(pagos)
-        solicitudBack.putUpdatePagos(pagos
-        ).then(res => {
-            //console.log(res)
-            this.solicitud()
-        })
-            .catch(error => console.log(error))
-    }*/
-
-    // Con estos estados me doy cuenta que boton se presionó si el 'Modificar' o el 'Nuevo'.
-    state = {
-        banderaM: false,
-        banderaN: false,
-        id: '',
-        idntfccn_bnco: '',
-        cnsctvo_fctra: '',
-        nmro_unco_idntfccn_usro: '',
-        vlr_pgdo: '',
-        tp_pgdo: '',
-        nmro_trjt: '',
-        obsrvcn:'',
-        banco: [],
-        datos: [],
-        buscador: '',
-        resultado: ''
-    }
-
-    // Con este método hago el llamado a solicitud una vez se renderize el componente.
-    componentDidMount() {
-        this.submitSub()
-        this.solicitud()
-
-
-    }
-
-    submitSub = async () => {
-        solicitudBack.getBanco()
-          .then(res => {
             this.setState({
-              banco: res
+                banderaPago: false
             })
-          })
-      }
+        })
+            .catch(error => console.log(error))
+    }
 
-    // Con este método haga el llamado a los datos al back-end para guardarlos en el estado.
-    solicitud = () => {
-        solicitudBack.getListPagos()
-            .then(res => {
+
+    handleConsultarFactura = async (e, contrato) => {
+        e.preventDefault()
+        //console.log(publicidad)
+        solicitudBack.postFactura({ "contrato": contrato }
+        ).then(res => {
+            console.log(res)
+            this.setState({
+                datos: res,
+                estado: res[0].estado,
+                id: contrato,
+                resultado: res.length,
+            })
+            this.mostrarFactura()
+            //notificaciones.exito()
+        })
+            .catch(error => {
+                console.log(error)
                 this.setState({
-                    datos: res
+                    datos: [],
+                    resultado: 0,
+                    estado: true,
+                    banderaPago:false,
+
                 })
-                this.buscador(this.state.buscador)
+                //notificaciones.error()
             })
     }
 
-    cerrarFormulario = () => {
+    verDatos = () => {
+        { console.log(this.state.banderaVer) }
         this.setState({
-            banderaM: false,
-            banderaN: false
+            banderaVer: true,
         })
     }
 
-    mostrarTable = () => {
-        return (
-            <React.Fragment>
-                <div className="container pre-scrollable" style={{ marginTop: "10px", maxHeight: "350px", marginBottom: "20px" }}>
-                    <Table t1={'ID'} t2={'Identf. Banco'} t3={'Consect. Factura'} t4={'Nº ID Usuario'} t5={'Valor Pagado'} t6={'Tipo Pago'} t7={'Nº Tarjeta'} t8={'Observación'} tabla='pagos' datos={this.state.datos} modificar={this.modificar}  />
-                </div>
-            </React.Fragment>
-        )
+
+
+    async componentDidMount() {
+
+    }
+    //Para revisar
+    cerrarFactura = () => {
+        console.log('holaaa x2')
+        this.setState({
+            banderaVer: false,
+        })
     }
 
-    // En este solicito los datos a la API y los guardo en el estado datos.
-    // Con este método de acuerdo al boton que haya presionado si 'Modificar' o 'Nuevo', se llama el componente formulario.
-    mostrarFormulario = () => {
-        if (this.state.banderaN === true) {
-            return(
-                <FormPBanco
-                    id={'Nuevo'}
-                    onSubmit={this.handleNewPagosBancos}
-                    idRow={''}
-                    idntfccn_bnco={''}
-                    cnsctvo_fctra={''}
-                    nmro_unco_idntfccn_usro={''}
-                    vlr_pgdo={''}
-                    tp_pgdo={''}
-                    nmro_trjt={''}
-                    obsrvcn={''}
-                    h1={'Añadir pago'}
-                    nameBtn={'Añadir pago'}
-                    cancelar={this.cerrarFormulario}
-                    dato={this.state.banco}
-                />
+    mostrarFactura() {
+        if (this.state.banderaVer === true) {
+            { console.log(this.state.banderaVer) }
+            return (
+
+                <Factura />
             )
-        } 
-        return null;
+        }
+        else {
+            return <Factura />
+        }
     }
 
-    // Este es el método que le envio a la table para que se ejecute en ese componente y me traiga los datos de la fila que se va a modificar.
-    // Junto con este actidntfccn_bncoualizo la banderaM a 'true' para que se muestre el formulario correspondiente.
-    modificar = (id, idntfccn_bnco, cnsctvo_fctra, nmro_unco_idntfccn_usro, vlr_pgdo, tp_pgdo, nmro_trjt, obsrvcn) => {
+    validar = () => {
+        if (this.state.banderaPago === true) {
+            this.mostrarFactura()
+        }
+    }
+
+    pagarTarjeta = () => {
+        console.log('h')
         this.setState({
-            id: id,
-            idntfccn_bnco: idntfccn_bnco,
-            cnsctvo_fctra: cnsctvo_fctra,
-            nmro_unco_idntfccn_usro: nmro_unco_idntfccn_usro,
-            vlr_pgdo: vlr_pgdo,
-            tp_pgdo: tp_pgdo,
-            nmro_trjt: nmro_trjt,
-            obsrvcn: obsrvcn,
-            banderaM: true,
-            banderaN: false,
+            banderaPago: true
         })
     }
 
-    // Cuando presione en 'Nuevo' cambia la banderaN a 'true' para mostrar el formulario correspondiente.
-    nuevo = () => {
-        this.setState({
-            banderaM: false,
-            banderaN: true,
-        });
+    pagarEfectivo = ()=>{
+        notificaciones.confirmarPago()
+    }
+
+    mostrarForPago = () => {
+        if (this.state.banderaPago === true) {
+            console.log(this.state.datos[0].id)
+
+            return <PaymentForm consFact={this.state.datos[0].id} valorPagado={this.state.datos[0].vlr_ttl} onSubmit={this.handleNewPagosBancos} />
+        }
+    }
+
+    mostratBotonPago = () => {
+        if (this.state.resultado !== 0) {
+            if (this.state.estado === true) {
+                return (
+                    <React.Fragment>
+                        <button style={{ cursor: "default" }} type="button" name="info" className="btn btn-lg btn-success mx-auto d-block col-md-5 " disabled>La factura ya esta cancelada</button>
+                    </React.Fragment>             
+                )
+            } else {
+                
+                return (
+                    <React.Fragment>    
+                        <button type="button" name="pagar" onClick={this.pagarTarjeta} className="btn  btn-lg btn-danger mx-auto d-block col-md-5">Pagar Online</button>
+                        <button type="button" name="pagar" onClick={this.pagarEfectivo} className="btn  btn-lg btn-success mx-auto d-block col-md-5">Pagar en Efectivo</button>  
+                    </React.Fragment>
+                )
+            }
+        } else {
+            return (
+                <button style={{ cursor: "default" }} type="button" name="info" className="btn btn-lg btn-danger mx-auto d-block col-md-12 " disabled>No hay Facturas</button>
+            )
+        }
+
+
+    }
+
+    mostrarInfoFactura = () => {
+        if (this.state.banderaVer === true) {
+            return (
+                <React.Fragment>
+                    <div className="jumbotron">
+                        <div className="container" id="me">
+                            <div className="form-row" style={{ textAlign: "center" }}>
+                                <div className="form-group col-md-12">
+                                    <svg class="bi bi-file-text" width="8em" height="8em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M4 1h8a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V3a2 2 0 012-2zm0 1a1 1 0 00-1 1v10a1 1 0 001 1h8a1 1 0 001-1V3a1 1 0 00-1-1H4z" clip-rule="evenodd" />
+                                        <path fill-rule="evenodd" d="M4.5 10.5A.5.5 0 015 10h3a.5.5 0 010 1H5a.5.5 0 01-.5-.5zm0-2A.5.5 0 015 8h6a.5.5 0 010 1H5a.5.5 0 01-.5-.5zm0-2A.5.5 0 015 6h6a.5.5 0 010 1H5a.5.5 0 01-.5-.5zm0-2A.5.5 0 015 4h6a.5.5 0 010 1H5a.5.5 0 01-.5-.5z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                                <div className="form-group col-md-12" id="Factura" style={{ fontFamily: "helvetica", fontStyle: "" }}>
+                                    {this.state.datos.map(factura => (
+                                        <div>
+                                            <h5 className="display-5">Número de factura: {factura.id}</h5>
+                                            <h5 className="display-5">Periodo Consumo: {factura.cnsctvo_cnsmo.prdo_cnsmo}</h5>
+                                            <h5 className="display-5">Identificación contrato: {factura.cnsctvo_cnsmo.idntfccn_cntrto.id}</h5>
+                                            <h5 className="display-5">Estrato socioeconómico: {factura.cnsctvo_cnsmo.idntfccn_cntrto.estrt_scl}</h5>
+                                            <h5 className="display-5">Dirección de residencia: {factura.cnsctvo_cnsmo.idntfccn_cntrto.drccn}</h5>
+                                            <h5 className="display-5">Identificación cliente: {factura.cnsctvo_cnsmo.idntfccn_cntrto.cliente}</h5>
+                                            <h5 className="display-5">Valor del KwH: {factura.cnsctvo_trfa.vlr_kwh}</h5>
+                                            <h5 className="display-5">Consumo en kwH: {factura.cnsctvo_cnsmo.kwh}</h5>
+                                            <h5 className="display-5">Valor consumo: {factura.vlr_cnsmo}</h5>
+                                            <h5 className="display-5">Valor interés mora: {factura.vlr_intrss_mra}</h5>
+                                            <h5 className="display-5">Valor de reconexión: {factura.vlr_rcnxn}</h5>
+                                            <h3 className="display-5" style={{ color: "red" }}>Total a pagar: {factura.vlr_ttl}</h3>
+                                            <Barcode value={factura.vlr_ttl} />,
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                        <div className="form-row">
+                            
+                            {this.mostratBotonPago()}
+                        </div>
+                    </div>
+                    <br></br>
+                </React.Fragment>
+            )
+        }
+        else { return null }
     }
 
     onChange = (e) => {
         this.setState({
             buscador: e.target.value.toLowerCase()
         })
-        this.buscador(e.target.value.toLowerCase());
-    }
-
-    onKeyPressed = (e) => {
-        if (e.keyCode === 8) {
-            this.solicitud()
-        }
-    }
-
-    buscador = (letra) => { // ARREGLAR ESTO (TABLAS EN DJANGO). // REVISAR BIEN ACÁ!!!
-        const datosNuevos = this.state.datos.filter(function (fila) {
-            if (fila.tp_pgdo.toLowerCase().indexOf(letra) !== -1) { // REVISAR BIEN ACÁ!!!
-                return fila;
-            } else if (fila.obsrvcn.toLowerCase().indexOf(letra) !== -1) { // REVISAR BIEN ACÁ!!!
-                return fila;
-            }
-        })
-        this.setState({
-            datos: datosNuevos,
-            resultado: datosNuevos.length
-        })
+        //this.buscador(e.target.value.toLowerCase());
     }
 
     default = (e) => {
@@ -188,18 +225,19 @@ class PagosOperario extends Component {
     }
 
     render() {
-        return(
-            <div onKeyDown={this.onKeyPressed} className="container-fluid" style={{ backgroundColor: "white", position: "absolute", top: "70px", left: "0px" }}>
+        return (
+                <div>
                 <Encabezado
-                    titulo="Panel de pagos"
-                    descripcion="Este es el panel de pagos"
+                    titulo="Panel de pagos de bancos"
+                    descripcion="Este es el panel de pagos de bancos"
                 />
-                <div className="container" style={{ justifyContent: "center" }}>
-                    <form method="POST" onSubmit={this.default}>
+                
+                <div className="container" style={{ justifyContent: "center", marginTop: "20px" }}>
+                    <form method="POST" onSubmit={(event) => this.handleConsultarFactura(event, this.state.buscador)} className="needs-validation" noValidate>
                         <div className="form-row justify-content-between">
                             <div className="col-lg-8 col-md-12 col-sm-12 col-xs-12" style={{ marginBottom: "10px" }}>
                                 <div className="input-group">
-                                    <input type="text" name="buscador" value={this.state.buscador} onChange={this.onChange} autoComplete="off" className="form-control" required></input>
+                                    <input type="text" className="form-control" name="buscador" value={this.state.buscador} onChange={this.onChange} autoComplete="off" id="validationDefaultUsername" aria-describedby="inputGroupPrepend2" required></input>
                                     <div className="input-group-prepend">
                                         <span className="input-group-text" id="inputGroupPrepend2">
                                             <svg className="bi bi-search" width="20px" height="20px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -211,30 +249,25 @@ class PagosOperario extends Component {
                                 </div>
                             </div>
                             <div className="col-lg-1 col-md-1 col-auto mr-auto">
-                                <button className="btn btn-success" type="button">Buscar</button>
-                            </div>
-                            <div className="col-auto">
-                                <button className="btn btn-danger" type="button" onClick={this.nuevo}>
-                                    <svg className="bi bi-person-plus-fill" width="20px" height="20px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="" />
-                                        <path fillRule="evenodd" d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 100-6 3 3 0 000 6zm7.5-3a.5.5 0 01.5.5v2a.5.5 0 01-.5.5h-2a.5.5 0 010-1H13V5.5a.5.5 0 01.5-.5z" clipRule="evenodd" />
-                                        <path fillRule="evenodd" d="M13 7.5a.5.5 0 01.5-.5h2a.5.5 0 010 1H14v1.5a.5.5 0 01-1 0v-2z" clipRule="evenodd" />
-                                    </svg>
-                                    &nbsp; Nuevo
-                                </button>
+                                <button className="btn btn-success" type="submit" onClick={this.verDatos}>Buscar</button>
                             </div>
                             <div className="alert alert-success col-md-6">
-                                Resultados:
-                                <strong> {this.state.resultado} filas encontradas.</strong>
+                                Resultado:
+                                <strong> {this.state.resultado} factura(s) encontrada(s).</strong>
+
                             </div>
-                            {this.mostrarTable()}                                                                               
-                        </div>                      
-                    </form>            
+                            {/*  {this.mostrarTable()} */}
+                        </div>
+                    </form>
+                    {this.mostrarInfoFactura()}
+                    {this.mostrarForPago()}
+
+
                 </div>
-                {this.mostrarFormulario()}            
-            </div>
-        )
+                </div>
+            
+        );
     }
 }
 
-export default PagosOperario;
+export default withTranslation()(PagosOperario);
