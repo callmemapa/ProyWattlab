@@ -4,7 +4,7 @@ Aplicación web para el manejo de usuarios, activos, publicidad y consumo de ene
 
 ## Pre-requisitos 📋
 
-* Tener instalado python y django.
+* Tener instalado Python, Django y postgresSQL.
 * Tener instalado un entorno de desarrollo, en nuestro caso es Visual Studio Code.
 * Crear un entorno virtual en la carpeta donde vayas a descargar el proyecto.
 ```
