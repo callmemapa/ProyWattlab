@@ -80,8 +80,9 @@ npm start
 * [Django](https://www.djangoproject.com/) - Framework utilizado para el Backend.
 * [ReactJS](https://es.reactjs.org/) - Framework utilizado para el Frontend.
 * [PostgreSQL](https://www.postgresql.org/) - Base de datos.
-* [AWS](https://aws.amazon.com/es/) - Servicio de base de datos en la nube.
+* [AWS (Amazon Web Services)](https://aws.amazon.com/es/) - Servicio de base de datos en la nube.
 * [Heroku](https://www.heroku.com/) - Servicio de despligue de aplicaciones Web en la nube.
+* [Trello](https://trello.com/b/WTm7WEHk/wattlab-the-scrum-board) - Tablero de desarrollo para la planeación y organización de las historias de usuario.
 
 ## Versionado 📌
 
