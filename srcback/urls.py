@@ -16,9 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-
 urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
     path('admin/', admin.site.urls),
-    path('public/', include('apps.publicidad.urls')),
+    path('api/', include('apps.publicidad.urls')),
+    path('auth/', include('apps.accounts.urls')),
+    path('oper/', include('apps.factura.urls')),
 ]

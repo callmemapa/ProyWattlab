@@ -3,33 +3,68 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@react-pdf/pdfkit": "^1.5.0",
+    "@react-pdf/renderer": "^1.6.9",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.4.0",
     "@testing-library/user-event": "^7.2.1",
+    "@trendmicro/react-sidenav": "^0.5.0",
     "antd": "^3.26.12",
+    "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
     "bootstrap-icons": "^1.0.0-alpha2",
+    "file-saver": "^2.0.2",
     "font-awesome": "^4.7.0",
+    "google-map-react": "^1.1.7",
+    "html2canvas": "^1.0.0-rc.5",
     "i18next": "^19.3.1",
     "i18next-browser-languagedetector": "^4.0.2",
     "i18next-xhr-backend": "^3.2.2",
-    "jquery": "^3.4.1",
-    "mdbreact": "^4.25.2",
+    "jquery": "^3.5.1",
+    "jsbarcode": "^3.11.0",
+    "jspdf": "^1.5.3",
+    "jspdf-react": "^1.0.11",
+    "leaflet": "^1.6.0",
+    "leaflet-routing-machine": "^3.2.12",
+    "mdbreact": "^4.25.4",
     "popper.js": "^1.16.1",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
+    "react": "^16.13.0",
+    "react-app-rewire-workbox": "^2.0.1",
+    "react-app-rewired": "^2.1.5",
+    "react-barcode": "^1.4.0",
+    "react-bootstrap-sidebar": "0.0.1",
+    "react-burger-menu": "^2.6.13",
+    "react-credit-cards": "^0.8.2",
+    "react-dom": "^16.13.0",
     "react-fontawesome": "^1.7.1",
+    "react-google-charts": "^3.0.15",
     "react-google-recaptcha": "^2.0.1",
+    "react-hook-form": "^5.5.3",
+    "react-html2pdf": "^1.0.1",
     "react-i18next": "^11.3.3",
+    "react-leaflet": "^2.6.3",
+    "react-pdf": "^4.1.0",
+    "react-recaptcha": "^2.3.10",
+    "react-redux": "^7.2.0",
     "react-responsive-carousel": "^3.1.51",
     "react-router": "^5.1.2",
-    "react-scripts": "3.4.0"
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.4.0",
+    "react-sidenav": "^4.0.6",
+    "react-to-pdf": "0.0.11",
+    "reactjs-popup": "^1.5.0",
+    "redux": "^4.0.5",
+    "redux-devtools-extension": "^2.13.8",
+    "redux-thunk": "^2.3.0",
+    "sweetalert2": "^9.10.12",
+    "workbox-webpack-plugin": "^5.1.2"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "start-sw": "http-server ./build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -47,6 +82,6 @@
     ]
   },
   "devDependencies": {
-    "http-server": "^0.12.1"
+    "http-server": "^0.12.3"
   }
 }

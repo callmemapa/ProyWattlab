@@ -5,4 +5,5 @@ from .models import Articulo
 class ArticuloSerializer(serializers.ModelSerializer):
     class Meta: 
         model= Articulo
-        fields = ('Titulo', 'Contenido')
+        fields = ('id','titulo', 'descripcion', 'url', 'estado')
+        

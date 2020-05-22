@@ -1,24 +1,260 @@
 {
-        "translation": {
-            "login": "Iniciar sesión",
-            "logout": "Cerrar sesión",
-            "info_login": "Ingresa con tus datos a la zona de empleados, aquí puedes realizar más acciones y conocer los movimientos de los usuarios.",
-            "consult_bill": "Consulta tu factura",
-            "consult_bill_text": "Para consultar tu extrato, descargar o pagar tu factura...",
-            "information": "Información",
-            "information_text": "Información acerca de nuestros productos, servicios, precios, etc.",
-            "pqrs": "Peticiones, solicitudes, quejas y reclamos",
-            "pqrs_text": "Sección de PQRS.",
-            "language": "Idioma",
-            "spanish": "Español",
-            "english": "Inglés",
-            "portuguese": "Portugués",
-            "click_here": "Click aquí",
-            "service_portal": "Portal de servicios",
-            "service_portal_text": "A continuación los servicios que ofrecemos",
-            "products_and_services": "Productos y servicios",
-            "prices": "Precios"
-
-           
-    }
+   "translation":{
+      "language":{
+         "lang_title":"Idioma",
+         "lang_spanish-title":"Español",
+         "lang_english-title":"Inglés",
+         "lang_portuguese-title":"Portugués"
+      },
+      "homepage":{
+         "slides_homepage":{
+            "sld1h_title":"",
+            "sld1h_description":"",
+            "sld2h_title":"Energía eléctrica",
+            "sld2h_description":"De pura CALIDAD",
+            "sld3h_title":"PARA TODOS LOS CALEÑOS",
+            "sld3h_description":""
+         },
+         "services-homepage":{
+            "svcs_title":"Pensamos en tu comodidad",
+            "svcs_description":"Encuentra aquí todos nuestros servicios y transacciones en línea.",
+            "svcs_info-titulo": "¿Quiénes somos?",
+            "svcs_info-descrip": "Somos una empresa de energía eléctrica fundada en la ciudad de Cali, Colombia en el año 2019. Contamos con una alta responsabilidad social y ambiental, por lo que nos interesa mantener buenas relaciones con nuestros grupos de interés. Para ello, hemos adoptado las medidas de seguridad contempladas por la ley para proteger y preservar la confidencialidad, integridad y disponibilidad de la información de nuestros clientes."
+         },
+         "bill-homepage":{
+            "bill_title":"Consulta tu factura",
+            "bill_description":"Aquí podrás consultar tu extracto, descargar o pagar tu factura de energía.",
+            "bill_dig-doc":"Digite su número de documento",
+            "bill_num-fact":"# Factura",
+            "bill_prd":"Periodo",
+            "bill_valwouts":"Valor sin recargo",
+            "bill_datewouts":"Fecha sin recargo",
+            "bill_valws":"Valor con recargo",
+            "bill_datews":"Fecha con recargo",
+            "bill_state":"Estado",
+            "bill_datepay":"Fecha de pago",
+            "bill_valpay":"Valor pagado",
+            "bill_fts":"Funciones",
+            "bill_btn-wpay":"Sin pagar",
+            "bill_btn-pay":"Pagado",
+            "bill_btn-search":"Buscar",
+            "bill_btn-clean":"Limpiar"
+         },
+         "information-homepage":{
+            "info_title":"Información",
+            "info_description":"Información acerca de nuestros productos, servicios, precios, etc"
+         },
+         "pqrs-homepage":{
+            "pqrs_title":"Peticiones, quejas, reclamos y sugerencias",
+            "pqrs_description":"Ingresa a nuestra sección de PQRS si tienes dudas o algo para decirnos. ¡Con gusto te antenderemos!",
+            "pqrs_ptn-title":"Petición",
+            "pqrs_ptn-description":"Es el derecho fundamental que tiene toda persona a presentar solicitudes respetuosas a las autoridades por motivos de interés general o particular, y a obtener su pronta resolución.",
+            "pqrs_cmpn-title":"Queja",
+            "pqrs_cmpn-description":"Es la manifestación de protesta, censura, descontento, inconformidad o insatisfacción que formula una persona a causa del incumplimiento de una norma legal vigente.",
+            "pqrs_clm-title":"Reclamo",
+            "pqrs_clm-description":"Es el derecho que tiene toda persona de exigir, reivindicar o demandar una solución o atención satisfactoria, ya sea por motivo general o particular, referente a la prestación indebida de un servicio o a la falta de atención de una solicitud.",
+            "pqrs_sgtn-title":"Sugerencia",
+            "pqrs_sgtn-description":"Es la manifestación de ideas o propuestas que pueden ayudar al mejoramiento de un servicio o la gestión de la misma entidad.",
+            "pqrs_submrq-description":"Para enviar su solicitud, rellene los siguientes campos",
+            "pqrs_sbjt-title":"Asunto",
+            "pqrs_email-title":"Correo electrónico",
+            "pqrs_dcptn-title":"Descripción",
+            "pqrs_btn-ext":"Click aquí",
+            "pqrs_btn-subm":"Enviar"
+         },
+         "news-homepage":{
+            "news_title":"Noticias y novedades",
+            "news_description":"Aquí va la sección de noticias..."
+         },
+         "button-homepage":{
+            "button_clkh":"Click aquí"
+         }
+      },
+      "login":{
+         "login_title":"Iniciar sesión",
+         "login_description":"Ingresa con tus datos a la zona de empleados, aquí puedes realizar más acciones y conocer los movimientos de los usuarios.",
+         "login_doc-title":"Usuario",
+         "login_pass-title":"Contraseña",
+         "login_2pass-title": "Confirmar Contraseña",
+         "login_pass-forget-description":"¿Has olvidado tu contraseña?",
+         "login_btn-login":"Iniciar sesión",
+         "login_btn-logout":"Cerrar sesión"
+      },
+      "buttons-panel":{
+         "buttons_btn-home":"Inicio",
+         "buttons_btn-users":"Usuarios",
+         "buttons_btn-actives":"Activos",
+         "buttons_btn-reports":"Reportes",
+         "buttons_btn-payments":"Pagos",
+         "buttons_btn-advertising":"Publicidad",
+         "buttons_btn-customers":"Clientes",
+         "buttons_btn-banks":"Bancos",
+         "buttons_btn-settings":"Configuraciones"
+      },
+      "administration-panel":{
+         "adm_title":"Panel de administración",
+         "adm_description":"Aquí se encuentran las diferentes opciones para el manejo y administración de la página"
+      },
+      "users-panel":{
+         "usr_ext-title":"Usuarios",
+         "usr_ext-description":"Adicionar, editar y consultar usuarios",
+         "usr_int-title":"Panel de usuarios",
+         "usr_int-description":"A continuación, encontrará el listado de usuarios",
+         "usr_id":"ID",
+         "usr_user-name": "Usuario",
+         "usr_name":"Nombre",
+         "usr_last-name": "Apellido",
+         "usr_email": "Correo",
+         "usr_type":"Tipo de usuario",
+         "usr_opts": "Opciones",
+         "usr_state":"Estado",
+         "usr_profile": "Perfil",
+         "usr_change-user": "Modificar usuario",
+         "usr_new-user": "Nuevo usuario",
+         "usr_date-init":"Fecha de inicio",
+         "usr_btn-search":"Buscar",
+         "usr_btn-new":"Nuevo",
+         "usr_btn-create": "Crear",
+         "usr_btn-view": "Ver",
+         "usr_btn-change":"Modificar",
+         "usr_btn-activate":"Activar",
+         "usr_btn-inactive":"Inactivar",
+         "usr_btn-cancelar": "Cancelar"         
+      },
+      "actives-panel":{
+         "act_ext-title":"Activos",
+         "act_ext-description":"Transformadores y subestaciones",
+         "act_int-title":"Transformadores y subestaciones",
+         "act_int-description":"A continuación, encontrará la ubicación de los transformadores y subestaciones.",
+         "act_msj-add": "¿Qué desea añadir?",         
+         "actives-panel-transformer":{
+            "act_create-trfm": "Creación de transformador",
+            "act_sub-trfm":"Subestación",
+            "act_grp-cnt-trfm":"Grupo de conexión",
+            "act_vprmy-trfm":"Tensión primaria",
+            "act_vmax-trfm":"Tensión máxima",
+            "act_vsecond-trfm":"Tensión secundaria",
+            "act_npw-trfm":"Potencia nominal",
+            "act_nity-trfm":"Intensidad nominal",
+            "act_scvltg-trfm":"Tensión cortocircuito",
+            "act_rt-trfm":"Relación de transformador",
+            "act_lctn-trfm":"Ubicación",
+            "act_btn-trfm":"Transformador",
+            "act_btn-slt-map-trfm":"Seleccionar en el mapa",
+            "act_btn-add-trfm":"Añadir"
+         },
+         "actives-panel-substation":{
+            "act_int-create": "Creación de subestación",
+            "act_name-sub":"Nombre",
+            "act_address-sub":"Dirección",
+            "act_tel-sub":"Número de teléfono",
+            "act_city-sub":"Ciudad",
+            "act_lctn-sub":"Ubicación",
+            "act_btn-sub":"Subestacion",
+            "act-btn-slt-map-sub":"Seleccionar en el mapa",
+            "act_btn-add-sub":"Añadir"
+         }
+      },
+      "reports-panel":{
+         "rpt_ext-title":"Reportes",
+         "rpt_ext-description":"Reporte de ingresos de la empresa",
+         "rpt_int-title":"Panel de reportes",
+         "rpt_int-description":"En esta sección, podrás encontrar los reportes de ingresos económicos de la empresa",
+         "rpt_clientes":"Numero de clientes registrados",
+         "rpt_cntrt-activo":"Cantidad de contratos activos",
+         "rpt_cntd-sube":"Cantidad de subestaciones",
+         "rpt_cntd-trns":"Cantidad de transformadores",
+         "rpt_conv-act-banco": "Convenios activos con bancos",
+         "rpt_conv-inct-banco":"Convenios inactivos con bancos",
+         "rpt_prm-enrg": "Consumo de energia promedio",
+         "rpt_ingr-dinero": "Ingreso de dinero"
+      },
+      "publicidade": {
+         "pb_int-title": "Panel de publicidad",
+         "pb_int-description": "A continuación, encontrará el listado de publicidad",
+         "pb_titulo": "Titulo",
+         "pb_description": "Descripcion",
+         "pb_url": "Url imagenes",
+         "pb_change": "Modificar Publicidad",
+         "pb_new": "Nueva Publicación",
+         "pb_btn-cancelar": "Cancelar"
+      },
+      "advertising-panel":{
+         "adv_ext-title":"Publicidad",
+         "adv_ext-description":"Registro de la publicidad de la empresa",
+         "adv_int-title":"Panel de publicidad",
+         "adv_int-description":"En esta sección, podrá anadir la publicidad de la página",
+         "adv_new_adv": "Crear publicidad",
+         "adv_change_adv": "Modificar publicidad",
+         "adv_new-title": "Título",
+         "adv_new-dcp": "Descripción",
+         "adv_new-url-img": "URL Imágenes"
+      },
+      "payments-panel":{
+         "pay_ext-title":"Pagos",
+         "pay_ext-description":"Registro de pago de servicios por clientes",
+         "pay_int-title":"Panel de pagos de clientes",
+         "pay_int-description":"En esta sección, podrá registrar los pagos de los clientes",
+         "pay_id":"ID Usuario",
+         "pay_bill-ref":"# Referencia factura",
+         "pay_pay-date":"Fecha de pago",
+         "pay_exp-date":"Fecha de vencimiento",
+         "pay_pay-type":"Tipo de pago",
+         "pay_pay-type-cash":"Efectivo",
+         "pay_pay-type-btransfer":"Transferencia bancaria",
+         "pay_val-paid":"Valor pagado",
+         "pay_slt-bank":"Seleccione el banco",
+         "pay_slt-bank-b1":"Banco 1",
+         "pay_slt-bank-b2":"Banco 2",    
+         "pay_slt-bank-b3":"Banco 3",             
+         "pay_bill-state":"Estado de la factura",
+         "pay_bill-state-generated": "Generada",
+         "pay_bill-state-ngenerated": "No generada",
+         "pay_btn-save":"Guardar",
+         "pay_btn-cancel":"Cancelar"
+      },
+      "customers-panel":{
+         "cst_ext-title":"Clientes",
+         "cst_ext-description":"Registro de clientes de la empresa",
+         "cst_int-title":"Panel de clientes",
+         "cst_int-description":"En esta sección, encontrará el listado de todos los clientes registrados.",
+         "cst_type-id": "Tipo de identificación",
+         "cst_id-num": "Número de identificación",
+         "cst_first-name": "Nombres",
+         "cst_last-name": "Apellidos",
+         "cst_birth-date": "Fecha de nacimiento",
+         "cst_type-cst": "Tipo de cliente",
+         "cst_type-cst-nat": "Persona natural",
+         "cst_type-cst-jud": "Persona jurídica",         
+         "cst_type-soc": "Estrato socioeconómico",
+         "cst_adress-resd": "Dirección de la residencia",
+         "cst_title-cst": "CLIENTE",
+         "cst_type-cstn": "TIPO CLIENTE: PERSONAL NATURAL",
+         "cst_type-cstj": "TIPO CLIENTE: PERSONA JURÍDICA",
+         "cst_new-cst": "Nuevo cliente",
+         "cst_create-cst": "Crear cliente",
+         "cst_change-cst": "Modificar cliente",
+         "cst_contract-title": "Contrato",
+         "cst_contract2-title": "Contratos",         
+         "cst_new-ctc": "Nuevo contrato",
+         "cst_create-ctc": "Crear contrato",
+         "cst_change-ctc": "Modificar contrato"    
+      },
+      "banks-panel":{
+         "bks_ext-title":"Bancos",
+         "bks_ext-description":"Pagos por bancos",
+         "bks_int-title":"",
+         "bks_int-description":""
+      },
+      "setting-panel": {
+         "set_int-title":"Configuraciones",
+         "set_int-description":"Ajuste de tarifas por periodo de tiempo",
+         "set_val-kwh":"Valor del kWh",
+         "set_beg-vald-rate":"Inicio vigencia tarifa",
+         "set_end-vald-rate":"Fin vigencia tarifa",
+         "set_obsv":"Observaciones",
+         "set_btn-accept":"Aceptar",
+         "set_btn-cancel":"Cancelar"
+      }
+   }
 }

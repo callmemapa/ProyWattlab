@@ -1,6 +1,15 @@
 .recaptcha {
-    transform:scale(0.77);
-    -webkit-transform:scale(0.77);
-    transform-origin:0 0;
-    -webkit-transform-origin:0 0;
+    -webkit-transform: scale(0.84);
+    -moz-transform:    scale(0.84);
+    -ms-transform:     scale(0.84);
+    -o-transform:      scale(0.84);
+    transform:         scale(0.84);
+    -webkit-transform-origin: 0 0;
+    -moz-transform-origin: 0 0;
+    -ms-transform-origin: 0 0;
+    -o-transform-origin: 0 0;
+    transform-origin: 0 0;
+    justify-content: center;
+    position: relative;
+    display: inline-block;
 }
