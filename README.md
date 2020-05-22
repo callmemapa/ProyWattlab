@@ -1,6 +1,6 @@
 # WATTLAB 🚀👽
 Aplicación web para el manejo de usuarios, activos, publicidad y consumo de energía en los hogares de Cali-Colombia 💥.
-![](srcgui/public/imagenes/logo.png)
+![](srcgui/public/imagenes/Imagotipo.png)
 
 ## Pre-requisitos 📋
 
