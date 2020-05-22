@@ -161,8 +161,7 @@ export default class BackService {
             .catch(error => console.log(error));
     }
 
-    // ¡NUEVO! ELIMINAR SI NO FUNCIONA. (@bryansbr)
-    // PAGOS
+    
     async getListPagos() { // REVISAR BIEN ACÁ!!!
         const url = `${API_URL}/oper/pago/`;
         return axios.get(url)
@@ -175,11 +174,12 @@ export default class BackService {
             .then(res => res.data)
             .catch(error => console.log(error));
     }
-    /*async putUpdatePagos(pagos) {
-        const url = `${API_URL}/oper/pago/${pagos.id}/`;
-        return axios.put(url, pagos)
+
+    async postRegisterConsumo(consumo) {
+        const url = `${API_URL}/oper/consumo/`;
+        return axios.post(url, consumo)
             .then(res => res.data)
             .catch(error => console.log(error));
-    }*/
+    }
     
 }

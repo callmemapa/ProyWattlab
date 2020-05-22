@@ -36,11 +36,14 @@ const alertas = () => {
 
 function Login(props) {
     const i18n = useTranslation();
-    if (props.auth.authenticate) {
+    if (props.auth.authenticate == true && props.auth.usuario != 'Revisor') {
         return (<Redirect to="/ModuloAdministrador" />
         )
-
+    } else if (props.auth.usuario === 'Revisor'){
+        return (<Redirect to="/RegistroConsumo" />
+        )
     }
+
     return (
         <Layout className="layout">
             <div>
