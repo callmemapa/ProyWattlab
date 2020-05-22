@@ -1,5 +1,5 @@
 # WATTLAB 🚀
-Aplicación web para el manejo de usuarios, activos, publicidad y consumo de energía en los hogares.
+Aplicación web para el manejo de usuarios, activos, publicidad y consumo de energía en los hogares de Cali-Colombia 💥.
 ![](srcgui/public/imagenes/logo.png)
 
 ## Pre-requisitos 📋
@@ -31,7 +31,7 @@ python manage.py migrate
 ```
 * Instalamos los requerimientos:
 ```
-pip install -r requeriments
+pip install -r requeriments.txt
 ```
 * Inicializar el backend:
 ```
