@@ -38,8 +38,8 @@ class ConsultaFactura extends Component {
         this.handleFact = this.handleFact.bind(this);
     }*/
 
-    handleNewPagosBancos = async (e, pagos) => {
-        e.preventDefault()
+    handleNewPagosBancos = async (pagos) => {
+        
         console.log(pagos)
         solicitudBack.postRegisterPagos(pagos
         ).then(res => {

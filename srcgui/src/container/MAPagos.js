@@ -13,7 +13,7 @@ class MAPagos extends Component {
                 <div>
                     <Sidebar />
                 </div>
-                <div>
+                <div style={{ backgroundColor: "white"}}>
                     <PagosOperario/>
                 </div>
             </Layout>

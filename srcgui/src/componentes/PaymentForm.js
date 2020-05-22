@@ -2,7 +2,9 @@ import React, { useState, useEffect, useRef} from 'react';
 import Cards from 'react-credit-cards';
 import 'react-credit-cards/es/styles-compiled.css';
 import BackService from '../store/PeticionesBack';
+import alerta from '../componentes/Alertas';
 const solicitudBack = new BackService();
+const notificaciones = new alerta();
 
 const PaymentForm = (props) => {
     
@@ -65,17 +67,14 @@ const PaymentForm = (props) => {
 
 
     const validar = (event) =>{
-        event.preventDefault();
-            props.onSubmit(event,{ 'idntfccn_bnco':state.nBanco,
+        event.preventDefault()
+            props.onSubmit({ 'idntfccn_bnco':state.nBanco,
             'cnsctvo_fctra':props.consFact, 
             'vlr_pgdo':props.valorPagado,
             'tp_pgdo':'Debito',
             'nmro_trjt': state.number,
             'obsrvcn':state.name})
     }
-
-     
- 
 
     return (
         <div className="card" >
