@@ -90,12 +90,11 @@ npm start
 ## Autores ✒️
 
 * **Sebastián Tamayo Lasso** - *Scrum Master, Desarrollador FullStack y QA Tester* - [sebastian18t](https://github.com/sebastian18t)
-* **Fabián Andrés Benavides Labiano** - *Desarrollador BackEnd y Analista de bases de datos* - [fabianunivalle]
+* **Fabián Andrés Benavides Labiano** - *Desarrollador BackEnd y Analista de bases de datos* - [fabianunivalle](http://github.com/fabianunivalle)
 * **María Paula Mosquera Rengifo** - *Desarrolladora FrontEnd* - [callmemapa](https://github.com/callmemapa)
 * **Juan David Castro Cardona** - *Product Owner y Desarrollador FrontEnd* - [JuanCardona97](https://github.com/JuanCardona97)
 * **Bryan Steven Biojó Romero** - *Desarrollador FrontEnd* - [bryansbr](http://github.com/bryansbr)
 * **Daniel Stiven Cardona Cano** - *Desarrollador FrontEnd* - [Hickaro12](http://github.com/Hickaro12)
-(http://github.com/fabianunivalle)
 
 También puedes mirar la lista de todos los [contribuyentes](https://github.com/sebastian18t/ProyWattlab/graphs/contributors) quíenes han participado en este proyecto. 
 
