@@ -68,7 +68,7 @@ npm start
 
 ## Autores ✒️
 
-* **Sebastián Tamayo Lasso** - *Desarrollador Backend y QA* - [sebastian18t](https://github.com/sebastian18t)
+* **Sebastián Tamayo Lasso** - *Scrum Master, Desarrollador FullStack y QA* - [sebastian18t](https://github.com/sebastian18t)
 * **María Paula Mosquera Rengifo** - *Desarrolladora FrontEnd* - [callmemapa](https://github.com/callmemapa)
 * **Juan David Castro Cardona** - *Product Owner y Desarrollador FrontEnd* - [JuanCardona97](https://github.com/JuanCardona97)
 * **Fabián Andrés Benavides Labiano** - *Analista de bases de datos* - [fabianunivalle](http://github.com/fabianunivalle)
