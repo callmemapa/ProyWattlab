@@ -57,7 +57,7 @@ python3.7 manage.py runserver
 **Nota:** La ruta por defecto será: ```http://127.0.0.1:8000/```
 
 ### Frontend 🎨
-* Navegamos hasta la carpeta que contine todos los elementos de la GUI:
+* Navegamos hasta la carpeta que contiene todos los elementos de la GUI:
 ```
 cd srcgui
 ```
