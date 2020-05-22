@@ -93,7 +93,7 @@
       },
       "administration-panel":{
          "adm_title":"Painel do administrador",
-         "adm_description":"A continuação, selecione uma das seguintes opções"
+         "adm_description":"Aqui estão as diferentes opções para gerenciamento e administração de páginas"
       },
       "users-panel":{
          "usr_ext-title":"Usuários",
@@ -128,7 +128,7 @@
          "act_int-description":"A continuação, você encontrará a localização dos transformadores e subestações.",
          "act_msj-add": "O que você quer adicionar?",      
          "actives-panel-transformer":{
-            "act_create-trfm": "Creation  Transformador",
+            "act_create-trfm": "Criação de transformador",
             "act_sub-trfm":"Subestação",
             "act_grp-cnt-trfm":"Grupo de conexão",
             "act_vprmy-trfm":"Tensão primária",
@@ -158,16 +158,16 @@
       "reports-panel":{
          "rpt_ext-title":"Relatórios",
          "rpt_ext-description":"Relatório de receita da empresa",
-         "rpt_int-title":"Painel relatórios",
-         "rpt_int-description":"A continuação, você encontrará os relatórios de receita",
-         "rpt_clientes": "Número de Clientes Registrados",
+         "rpt_int-title":"Painel de relatórios",
+         "rpt_int-description":"Nesta seção, você poderá encontrar os relatórios de receita econômica da empresa",
+         "rpt_clientes": "Número de clientes registrados",
          "rpt_cntrt-activo": "Número de contratos ativos",
          "rpt_cntd-sube": "Número de subestações",
          "rpt_cntd-trns": "Número de transformadores",
-         "rpt_conv-act-banco": "Acordos ativos com bancos",
+         "rpt_conv-act-banco": "Contratos ativos com bancos",
          "rpt_conv-inct-banco": "Acordos inativos com bancos",
          "rpt_prm-enrg": "Consumo médio de energia",
-         "rpt_ingr-dinero": "Renda monetária"
+         "rpt_ingr-dinero": "Ingresso de dinheiro"
       },
       "publicidade": {
          "pb_int-title": "Painel de publicidade",
@@ -178,6 +178,17 @@
          "pb_change": "Modificar Publicidade",
          "pb_new": "Nova Publicação",
          "pb_btn-cancelar": "Cancelar"
+      },
+      "advertising-panel":{
+         "adv_ext-title":"Publicidade",
+         "adv_ext-description":"Registro de publicidade da empresa",
+         "adv_int-title":"Painel de publicidade",
+         "adv_int-description":"Nesta seção, você pode adicionar publicidade para a página",
+         "adv_new_adv": "Criar publicidade",
+         "adv_change_adv": "Modificar publicidade",
+         "adv_new-title": "Título",
+         "adv_new-dcp": "Descrição",
+         "adv_new-url-img": "Imagens de URL"
       },
       "payments-panel":{
          "pay_ext-title":"Pagamentos",
@@ -201,12 +212,6 @@
          "pay_bill-state-ngenerated": "Não gerado",
          "pay_btn-save":"Salvar",
          "pay_btn-cancel":"Cancelar"
-      },
-      "advertising-panel":{
-         "adv_ext-title":"Publicidade",
-         "adv_ext-description":"Registro de publicidade da empresa",
-         "adv_int-title":"",
-         "adv_int-description":""
       },
       "customers-panel":{
          "cst_ext-title":"Clientes",

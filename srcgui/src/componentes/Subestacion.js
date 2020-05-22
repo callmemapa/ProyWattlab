@@ -34,16 +34,12 @@ function Subestacion(props) {
         lttd: ''
     })
 
-
     const onChange = e => {
         setSubE({
             ...subE,
             [e.target.name]: e.target.value,
         })
     }
-
-
-
 
     return (
         <div className="container">

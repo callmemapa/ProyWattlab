@@ -55,17 +55,17 @@ function ModificarPub(props) {
         <form onSubmit={(event) => props.onSubmit(event, publicidad)}>
             <div className="form-row">
                 <div className="form-group col-md-12">
-                    <label htmlFor="titulo">{i18n.t('publicidade.pb_titulo')}</label>
+                    <label htmlFor="titulo">{i18n.t('advertising-panel.adv_new-title')}</label>
                     <input ref={myRef} name="titulo" onChange={onChange} required type="text" value={publicidad.titulo} className="form-control" id="inputPassword4" />
                 </div>
             </div>
             <div className="form-group">
-                <label htmlFor="descripcion">{i18n.t('publicidade.pb_description')}</label>
+                <label htmlFor="descripcion">{i18n.t('advertising-panel.adv_new-dcp')}</label>
                 <input name="descripcion" onChange={onChange} required type="text" value={publicidad.descripcion} className="form-control" id="inputAddress" />
             </div>
             <div className="form-row">
                 <div className="form-group col-md-12">
-                    <label htmlFor="url">{i18n.t('publicidade.pb_url')}</label>
+                    <label htmlFor="url">{i18n.t('advertising-panel.adv_new-url-img')}</label>
                     <input name="url" onChange={onChange} required type="text" className="form-control" id="inputCity" value={publicidad.url} />
                 </div>
 

@@ -17,7 +17,7 @@ import MADashboard from './container/MADashboard';
 import MATransformadores from './container/MATransformadores';
 import MAReportes from './container/MAReportes';
 import MAPagos from './container/MAPagos';
-import MAPagosBancos from './container/MAPagosBancos'; // NUEVO
+import MAPagosBancos from './container/MAPagosBancos';
 import MAConfiguracion from './container/MAConfiguracion';
 import MAPublicidad from './container/MAPublicidad';
 import RegistroConsumo from './componentes/RegistroConsumo';

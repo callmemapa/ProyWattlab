@@ -93,7 +93,7 @@
       },
       "administration-panel":{
          "adm_title":"Panel de administración",
-         "adm_description":"A continuación, seleccione una de las siguientes opciones"
+         "adm_description":"Aquí se encuentran las diferentes opciones para el manejo y administración de la página"
       },
       "users-panel":{
          "usr_ext-title":"Usuarios",
@@ -128,7 +128,7 @@
          "act_int-description":"A continuación, encontrará la ubicación de los transformadores y subestaciones.",
          "act_msj-add": "¿Qué desea añadir?",         
          "actives-panel-transformer":{
-            "act_create-trfm": "Creacion de transformador",
+            "act_create-trfm": "Creación de transformador",
             "act_sub-trfm":"Subestación",
             "act_grp-cnt-trfm":"Grupo de conexión",
             "act_vprmy-trfm":"Tensión primaria",
@@ -159,18 +159,18 @@
          "rpt_ext-title":"Reportes",
          "rpt_ext-description":"Reporte de ingresos de la empresa",
          "rpt_int-title":"Panel de reportes",
-         "rpt_int-description":"A continuación, encontrará los reportes de ingresos económicos",
-         "rpt_clientes":"Numero de Clientes Registrados",
-         "rpt_cntrt-activo":"Cantidad de Contratos Activos",
-         "rpt_cntd-sube":"Cantidad de Subestaciones",
-         "rpt_cntd-trns":"Cantidad de Transformadores",
-         "rpt_conv-act-banco": "Convenios Activos con Bancos",
-         "rpt_conv-inct-banco":"Convenios Inactivos con Bancos",
-         "rpt_prm-enrg": "Consumo energia promedio",
+         "rpt_int-description":"En esta sección, podrás encontrar los reportes de ingresos económicos de la empresa",
+         "rpt_clientes":"Numero de clientes registrados",
+         "rpt_cntrt-activo":"Cantidad de contratos activos",
+         "rpt_cntd-sube":"Cantidad de subestaciones",
+         "rpt_cntd-trns":"Cantidad de transformadores",
+         "rpt_conv-act-banco": "Convenios activos con bancos",
+         "rpt_conv-inct-banco":"Convenios inactivos con bancos",
+         "rpt_prm-enrg": "Consumo de energia promedio",
          "rpt_ingr-dinero": "Ingreso de dinero"
       },
       "publicidade": {
-         "pb_int-title": "Panel publicidad",
+         "pb_int-title": "Panel de publicidad",
          "pb_int-description": "A continuación, encontrará el listado de publicidad",
          "pb_titulo": "Titulo",
          "pb_description": "Descripcion",
@@ -179,11 +179,22 @@
          "pb_new": "Nueva Publicación",
          "pb_btn-cancelar": "Cancelar"
       },
+      "advertising-panel":{
+         "adv_ext-title":"Publicidad",
+         "adv_ext-description":"Registro de la publicidad de la empresa",
+         "adv_int-title":"Panel de publicidad",
+         "adv_int-description":"En esta sección, podrá anadir la publicidad de la página",
+         "adv_new_adv": "Crear publicidad",
+         "adv_change_adv": "Modificar publicidad",
+         "adv_new-title": "Título",
+         "adv_new-dcp": "Descripción",
+         "adv_new-url-img": "URL Imágenes"
+      },
       "payments-panel":{
          "pay_ext-title":"Pagos",
          "pay_ext-description":"Registro de pago de servicios por clientes",
          "pay_int-title":"Panel de pagos de clientes",
-         "pay_int-description":"En esta sección usted podrá registrar los pagos de los clientes",
+         "pay_int-description":"En esta sección, podrá registrar los pagos de los clientes",
          "pay_id":"ID Usuario",
          "pay_bill-ref":"# Referencia factura",
          "pay_pay-date":"Fecha de pago",
@@ -201,12 +212,6 @@
          "pay_bill-state-ngenerated": "No generada",
          "pay_btn-save":"Guardar",
          "pay_btn-cancel":"Cancelar"
-      },
-      "advertising-panel":{
-         "adv_ext-title":"Publicidad",
-         "adv_ext-description":"Registro de la publicidad de la empresa",
-         "adv_int-title":"",
-         "adv_int-description":""
       },
       "customers-panel":{
          "cst_ext-title":"Clientes",
