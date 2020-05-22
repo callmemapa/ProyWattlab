@@ -13,6 +13,7 @@ const submitDatoSub = (e, consumo) => {
   e.preventDefault();
 
   if (consumo.idntfccn_cntrto !== '' && consumo.kwh !== '') {
+    console.log(consumo)
     solicitudBack.postRegisterConsumo(consumo)
       .then(res => {
         console.log('Realizado')
@@ -23,6 +24,9 @@ const submitDatoSub = (e, consumo) => {
         notificaciones.error()
       })//ALERTA DE ERROR 
   }
+
+  e.target.idntfccn_cntrto.value='';
+  e.target.kwh.value = '';
 }
 
 const handleLogout = (props) => { //ENVIO DE DATOS AL BACK
@@ -36,7 +40,8 @@ function RegistroConsumo(props) {
 
   const [consumo, setConsumo] = useState({
     idntfccn_cntrto: '',
-    kwh: ''
+    kwh: '', 
+    prdo_cnsmo:'202007'
   })
 
   const onChange = e => {
@@ -62,11 +67,11 @@ function RegistroConsumo(props) {
         <form onSubmit={(e) => submitDatoSub(e, consumo)}>
           <div className="form-group">
             Número de contrato:
-                  <input type="text" name="idntfccn_cntrto" value={consumo.idntfccn_cntrto} onChange={onChange} required className="form-control" />
+                  <input type="text" name="idntfccn_cntrto"  onChange={onChange} required className="form-control" />
           </div>
           <div className="form-group">
             Cantidad KwH:
-                  <input type="text" name="kwh" value={consumo.kwh} onChange={onChange} required className="form-control" />
+                  <input type="text" name="kwh"  onChange={onChange} required className="form-control" />
           </div>
           <div className="form-group" style={{ marginBottom: "30px" }}>
             <button className="btn btn-success btn-block" type="submit">Confirmar</button>
