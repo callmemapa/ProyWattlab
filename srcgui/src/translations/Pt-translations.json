@@ -11,17 +11,19 @@
             "sld1h_title":"",
             "sld1h_description":"",
             "sld2h_title":"Energia elétrica",
-            "sld2h_description":"De pura QUALIDADE.",
+            "sld2h_description":"De pura QUALIDADE",
             "sld3h_title":"PARA TODOS OS CALEÑOS",
             "sld3h_description":""
          },
          "services-homepage":{
             "svcs_title":"Pensamos no seu conforto",
-            "svcs_description":"Encontre aqui todos os nossos serviços e transações on-line"
+            "svcs_description":"Encontre aqui todos os nossos serviços e transações on-line.",
+            "svcs_info-titulo": "Quem somos?",
+            "svcs_info-descrip": "Somos uma empresa de energia elétrica fundada na cidade de Cali, Colômbia, em 2019. Temos alta responsabilidade social e ambiental, motivo pelo qual estamos interessados ​​em manter um bom relacionamento com nossos stakeholders. Para isso, adotamos as medidas de segurança previstas em lei para proteger e preservar a confidencialidade, integridade e disponibilidade das informações de nossos clientes."
          },
          "bill-homepage":{
             "bill_title":"Verifique sua fatura",
-            "bill_description":"Para verificar seu extrato, faça o download ou pague sua fatura",
+            "bill_description":"Aqui você pode verificar seu extrato, fazer o download ou pagar sua conta de energia.",
             "bill_dig-doc":"Digite o número do seu documento",
             "bill_num-fact":"# Fatura",
             "bill_prd":"Período",
@@ -44,7 +46,7 @@
          },
          "pqrs-homepage":{
             "pqrs_title":"Petições, reclamações, reivindicações e sugestões",
-            "pqrs_description":"Seção PQRS",
+            "pqrs_description":"Entre na seção PQRS se você tiver alguma dúvida ou algo a nos dizer. Teremos o prazer de responder!",
             "pqrs_ptn-title":"Petição",
             "pqrs_ptn-description":"É direito fundamental de qualquer pessoa enviar solicitações respeitosas às autoridades por razões de interesse geral ou particular e obter sua pronta resolução.",
             "pqrs_cmpn-title":"Reclamação",
@@ -91,7 +93,7 @@
       },
       "administration-panel":{
          "adm_title":"Painel do administrador",
-         "adm_description":"A continuação, selecione uma das seguintes opções"
+         "adm_description":"Aqui estão as diferentes opções para gerenciamento e administração de páginas"
       },
       "users-panel":{
          "usr_ext-title":"Usuários",
@@ -112,6 +114,8 @@
          "usr_date-init":"Data de início",
          "usr_btn-search":"Pesquisar",
          "usr_btn-new":"Novo",
+         "usr-btn-create": "Crio",
+         "usr_btn-view": "Vejo",         
          "usr_btn-change":"Modificar",
          "usr_btn-activate":"Ativar",
          "usr_btn-inactive":"Desativar",
@@ -124,7 +128,7 @@
          "act_int-description":"A continuação, você encontrará a localização dos transformadores e subestações.",
          "act_msj-add": "O que você quer adicionar?",      
          "actives-panel-transformer":{
-            "act_create-trfm": "Creation  Transformador",
+            "act_create-trfm": "Criação de transformador",
             "act_sub-trfm":"Subestação",
             "act_grp-cnt-trfm":"Grupo de conexão",
             "act_vprmy-trfm":"Tensão primária",
@@ -154,8 +158,16 @@
       "reports-panel":{
          "rpt_ext-title":"Relatórios",
          "rpt_ext-description":"Relatório de receita da empresa",
-         "rpt_int-title":"Painel relatórios",
-         "rpt_int-description":"A continuação, você encontrará os relatórios de receita"
+         "rpt_int-title":"Painel de relatórios",
+         "rpt_int-description":"Nesta seção, você poderá encontrar os relatórios de receita econômica da empresa",
+         "rpt_clientes": "Número de clientes registrados",
+         "rpt_cntrt-activo": "Número de contratos ativos",
+         "rpt_cntd-sube": "Número de subestações",
+         "rpt_cntd-trns": "Número de transformadores",
+         "rpt_conv-act-banco": "Contratos ativos com bancos",
+         "rpt_conv-inct-banco": "Acordos inativos com bancos",
+         "rpt_prm-enrg": "Consumo médio de energia",
+         "rpt_ingr-dinero": "Ingresso de dinheiro"
       },
       "publicidade": {
          "pb_int-title": "Painel de publicidade",
@@ -166,6 +178,17 @@
          "pb_change": "Modificar Publicidade",
          "pb_new": "Nova Publicação",
          "pb_btn-cancelar": "Cancelar"
+      },
+      "advertising-panel":{
+         "adv_ext-title":"Publicidade",
+         "adv_ext-description":"Registro de publicidade da empresa",
+         "adv_int-title":"Painel de publicidade",
+         "adv_int-description":"Nesta seção, você pode adicionar publicidade para a página",
+         "adv_new_adv": "Criar publicidade",
+         "adv_change_adv": "Modificar publicidade",
+         "adv_new-title": "Título",
+         "adv_new-dcp": "Descrição",
+         "adv_new-url-img": "Imagens de URL"
       },
       "payments-panel":{
          "pay_ext-title":"Pagamentos",
@@ -190,17 +213,32 @@
          "pay_btn-save":"Salvar",
          "pay_btn-cancel":"Cancelar"
       },
-      "advertising-panel":{
-         "adv_ext-title":"Publicidade",
-         "adv_ext-description":"Registro de publicidade",
-         "adv_int-title":"",
-         "adv_int-description":""
-      },
       "customers-panel":{
          "cst_ext-title":"Clientes",
-         "cst_ext-description":"Registro de cliente",
-         "cst_int-title":"",
-         "cst_int-description":""
+         "cst_ext-description":"Registro de clientes da empresa",
+         "cst_int-title":"Painel do clientes",
+         "cst_int-description":"Nesta seção, você encontrará a lista de todos os clientes registrados.",
+         "cst_type-id": "Tipo de ID",
+         "cst_id-num": "Número de identificação",
+         "cst_first-name": "Nomes",
+         "cst_last-name": "Sobrenomes",
+         "cst_birth-date": "Data de nascimento",
+         "cst_type-cst": "Tipo de cliente",
+         "cst_type-cst-nat": "Pessoa natural",
+         "cst_type-cst-jud": "Pessoa jurídica",         
+         "cst_type-soc": "Socio-econômico",
+         "cst_adress-resd": "Endereço residencial",
+         "cst_title-cst": "CLIENTE",
+         "cst_type-cstn": "TIPO DE CLIENTE: PESSOA NATURAL",
+         "cst_type-cstj": "TIPO DE CLIENTE: PESSOA JURÍDICA",
+         "cst_new-cst": "Novo cliente",
+         "cst_create-cst": "Criar cliente",
+         "cst_change-cst": "Modificar cliente",
+         "cst_contract-title": "Contrato",
+         "cst_contract2-title": "Contratos",          
+         "cst_new-ctc": "Novo Contrato",
+         "cst_create-ctc": "Criar contrato",
+         "cst_change-ctc": "Modificar contratp"       
       },
       "banks-panel":{
          "bks_ext-title":"Bancos",

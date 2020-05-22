@@ -1,13 +1,13 @@
 {
-   "translation":{
-      "language":{
+   "translation": {
+      "language": {
          "lang_title":"Language",
          "lang_spanish-title":"Spanish",
          "lang_english-title":"English",
          "lang_portuguese-title":"Portuguese"
       },
-      "homepage":{
-         "slides_homepage":{
+      "homepage": {
+         "slides_homepage": {
             "sld1h_title":"",
             "sld1h_description":"",
             "sld2h_title":"Electric power",
@@ -15,13 +15,15 @@
             "sld3h_title":"FOR ALL CALEÑOS",
             "sld3h_description":""
          },
-         "services-homepage":{
+         "services-homepage": {
             "svcs_title":"We think about your comfort",
-            "svcs_description":"Find here all our services and online transactions"
+            "svcs_description":"Find hereHere you can check your statement, download or pay your energy bill. all our services and online transactions.Here you can check your statement, download or pay your energy bill.",
+            "svcs_info-titulo": "About us?",
+            "svcs_info-descrip": "We are an electric energy company founded in the city of Cali, Colombia in 2019. We have high social and environmental responsibility, which is why we are interested in maintaining good relationships with our stakeholders. For this, we have adopted the security measures contemplated by law to protect and preserve the confidentiality, integrity and availability of our clients' information."
          },
-         "bill-homepage":{
+         "bill-homepage": {
             "bill_title":"Check your bill",
-            "bill_description":"To check your statement, download or pay your bill",
+            "bill_description":"Here you can check your statement, download or pay your energy bill.",
             "bill_dig-doc":"Enter your ID number",
             "bill_num-fact":"# Bill",
             "bill_prd":"Period",
@@ -38,13 +40,13 @@
             "bill_btn-search":"Search",
             "bill_btn-clean":"Clean"
          },
-         "information-homepage":{
+         "information-homepage": {
             "info_title":"Information",
             "info_description":"Information about our products, services, prices, etc"
          },
-         "pqrs-homepage":{
+         "pqrs-homepage": {
             "pqrs_title":"Petitions, complaints, claims and suggestions",
-            "pqrs_description":"PQRS section",
+            "pqrs_description":"Enter our PQRS section if you have questions or something to tell us. We will gladly answer you!",
             "pqrs_ptn-title":"Petition",
             "pqrs_ptn-description":"It is the fundamental right of every person to submit respectful requests to the authorities for reasons of general or particular interest, and to obtain their prompt resolution.",
             "pqrs_cmpn-title":"Complaint",
@@ -60,15 +62,15 @@
             "pqrs_btn-ext":"Click here",
             "pqrs_btn-subm":"Submit"
          },
-         "news-homepage":{
+         "news-homepage": {
             "news_title":"News and updates",
             "news_description":"Here goes the news section..."
          },
-         "button-homepage":{
+         "button-homepage": {
             "button_clkh":"Click here"
          }
       },
-      "login":{
+      "login": {
          "login_title":"Log in",
          "login_description":"Enter with your data to the employee area, here you can perform more actions and know the movements of users.",
          "login_doc-title":"Username",
@@ -78,7 +80,7 @@
          "login_btn-login":"Log in",
          "login_btn-logout":"Log out"
       },
-      "buttons-panel":{
+      "buttons-panel": {
          "buttons_btn-home":"Home",
          "buttons_btn-users":"Users",
          "buttons_btn-actives":"Actives",
@@ -89,11 +91,11 @@
          "buttons_btn-banks":"Banks",
          "buttons_btn-settings":"Settings"
       },
-      "administration-panel":{
+      "administration-panel": {
          "adm_title":"Administration panel",
-         "adm_description":"Below, select one of the following options"
+         "adm_description":"Here are the different options for page management and administration"
       },
-      "users-panel":{
+      "users-panel": {
          "usr_ext-title":"Users",
          "usr_ext-description":"Add, edit and consult users",
          "usr_int-title":"Users panel",
@@ -112,19 +114,21 @@
          "usr_date-init":"Start date",
          "usr_btn-search":"Search",
          "usr_btn-new":"New",
+         "usr-btn-create": "Create",
+         "usr_btn-view": "See",
          "usr_btn-change":"Change",
          "usr_btn-activate":"Activate",
          "usr_btn-inactive":"Inactivate",
          "usr_btn-cancelar": "Cancel"
       },
-      "actives-panel":{
+      "actives-panel": {
          "act_ext-title":"Actives",
          "act_ext-description":"Transformers and substations",
          "act_int-title":"Transformers and substations",
          "act_int-description":"Below, you will find the location of transformers and substations",
          "act_msj-add": "What do you want to add?",
-         "actives-panel-transformer":{
-            "act_create-trfm":"Creation of Transformer",
+         "actives-panel-transformer": {
+            "act_create-trfm":"Transformer creation",
             "act_sub-trfm":"Substation",
             "act_grp-cnt-trfm":"Connection group",        
             "act_vprmy-trfm":"Primary voltage",
@@ -139,7 +143,7 @@
             "act_btn-slt-map-trfm":"Select on the map",
             "act_btn-add-trfm":"Add"
          },
-         "actives-panel-substation":{
+         "actives-panel-substation": {
             "act_int-create": "Creation of Substation",
             "act_name-sub":"Name",
             "act_address-sub":"Address",
@@ -151,11 +155,19 @@
             "act_btn-add-sub":"Add"
          }
       },
-      "reports-panel":{
+      "reports-panel": {
          "rpt_ext-title":"Reports",
          "rpt_ext-description":"Company income report",
          "rpt_int-title":"Reports panel",
-         "rpt_int-description":"Below, you will find the economic income reports"
+         "rpt_int-description":"In this section, you will be able to find the economic income reports of the company",
+         "rpt_clientes": "Number of registered clients",
+         "rpt_cntrt-activo": "Number of active contracts",
+         "rpt_cntd-sube": "Number of substations",
+         "rpt_cntd-trns": "Number of transformers",
+         "rpt_conv-act-banco": "Active contracts with banks",
+         "rpt_conv-inct-banco": "Inactive contracts with banks",
+         "rpt_prm-enrg": "Average energy consumption",
+         "rpt_ingr-dinero": "Money income"
       },
       "publicidade": {
          "pb_int-title": "Advertising panel",
@@ -167,11 +179,22 @@
          "pb_new": "New Post",
          "pb_btn-cancelar": "Cancel"
       },
+      "advertising-panel":{
+         "adv_ext-title":"Advertising",
+         "adv_ext-description":"Registration of company advertising",
+         "adv_int-title":"Advertising panel",
+         "adv_int-description":"In this section, you can add advertising to the page",
+         "adv_new_adv": "Create advertising",
+         "adv_change_adv": "Change advertising",
+         "adv_new-title": "Title",
+         "adv_new-dcp": "Description",
+         "adv_new-url-img": "URL Images"
+      },
       "payments-panel":{
          "pay_ext-title":"Payments",
          "pay_ext-description":"Record of payment of services by clients",
          "pay_int-title":"Customer payment panel",
-         "pay_int-description":"In this section you can record customer payments",
+         "pay_int-description":"In this section, you can record customer payments",
          "pay_id":"ID User",
          "pay_bill-ref":"# Bill reference",
          "pay_pay-date":"Payment date",
@@ -190,19 +213,34 @@
          "pay_btn-save":"Save",
          "pay_btn-cancel":"Cancel"
       },
-      "advertising-panel":{
-         "adv_ext-title":"Advertising",
-         "adv_ext-description":"Advertising registration",
-         "adv_int-title":"",
-         "adv_int-description":""
+      "customers-panel": {
+         "cst_ext-title":"Clients",
+         "cst_ext-description":"Company clients registration",
+         "cst_int-title":"Clients panel",
+         "cst_int-description":"In this section, you will find the list of all registered clients.",
+         "cst_type-id": "ID Type",
+         "cst_id-num": "ID Number",
+         "cst_first-name": "First name",
+         "cst_last-name": "Last name",
+         "cst_birth-date": "Birthdate",
+         "cst_type-cst": "Client type",
+         "cst_type-cst-nat": "Natural person",
+         "cst_type-cst-jud": "Legal person",         
+         "cst_type-soc": "Socioeconomic",
+         "cst_adress-resd": "Residence address",
+         "cst_title-cst": "CLIENT",
+         "cst_type-cstn": "CLIENT TYPE: NATURAL PERSON",
+         "cst_type-cstj": "CLIENT TYPE: LEGAL PERSON",
+         "cst_new-cst": "New client",
+         "cst_create-cst": "Create client",
+         "cst_change-cst": "Change client",
+         "cst_contract-title": "Contract",
+         "cst_contract2-title": "Contracts",          
+         "cst_new-ctc": "New contract",
+         "cst_create-ctc": "Create contract",
+         "cst_change-ctc": "Change contract"    
       },
-      "customers-panel":{
-         "cst_ext-title":"Customers",
-         "cst_ext-description":"Customer registration",
-         "cst_int-title":"",
-         "cst_int-description":""
-      },
-      "banks-panel":{
+      "banks-panel": {
          "bks_ext-title":"Banks",
          "bks_ext-description":"Bank payments",
          "bks_int-title":"",

@@ -11,13 +11,13 @@ function Menu() {
             <header>
                 <nav className="navbar navbar-expand-md navbar-dark fixed-top rounded-bottom" style={{ background: "linear-gradient(to right, #45B649, #DCE35B)" }}>
                     <Link to="/" className="navbar-header">
-                        <img className="img-responsive" src="../imagenes/imagotipo.png" style={{ width: 'auto', maxWidth: '200px' }}/>
+                        <img className="img-responsive" src="../imagenes/imagotipo.png" style={{ width: 'auto', maxWidth: '200px' }} />
                     </Link>
                     <div className="btn-group rounded">
                         <Language />
                     </div>
                     <ul className="navbar-nav ml-auto">
-                        <button type="button" className="btn" style={{fontSize: "13pt"}} onClick={() => window.location = "/Login"}>
+                        <button type="button" className="btn" style={{ fontSize: "13pt" }} onClick={() => window.location = "/Login"}>
                             {i18n.t('login.login_title')}
                         </button>
                     </ul>

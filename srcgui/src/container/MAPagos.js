@@ -1,23 +1,23 @@
-import React, { Component } from 'react'; 
+import React, { Component } from 'react';
 import i18n from '../i18next';
 import Sidebar from '../componentes/Sidebar';
 import { Layout } from 'antd';
-import PagosClientes from '../componentes/PagosClientes';
+import PagosOperario from '../componentes/PagosOperario';
 
 class MAPagos extends Component {
-    
+
     render() {
-        
+
         return (
             <Layout className="layout">
                 <div>
-                    <Sidebar/>
+                    <Sidebar />
                 </div>
-                <div className="container" style={{marginTop: "20px", textAlign: "center"}}>
-                    <PagosClientes/>
+                <div style={{ backgroundColor: "white"}}>
+                    <PagosOperario/>
                 </div>
             </Layout>
-            
+
         );
     }
 

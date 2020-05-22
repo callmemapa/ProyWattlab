@@ -1,38 +1,52 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 import { withRouter, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { useTranslation } from 'react-i18next';
+import { Layout } from 'antd';
 import * as actions from '../store/actions/auth';
 import Footer from './Footer';
 import Menu from './Menu';
 import Recaptcha from 'react-recaptcha';
-import { Layout } from 'antd';
+import alerta from '../componentes/Alertas';
 import './style/recaptcha.css';
 
+const notificaciones = new alerta();
+
 //FUNCIONES DEL CAPTCHA
-let valido=null;
+let valido = null;
 
 var callback = function () {
     console.log('Done!');
 };
+
 var verifyCallback = function (response) {
     valido = response;
 };
-const handleFormSubmit = (e, props) => { //ENVIO DE DATOS  AL BACK
+
+const handleFormSubmit = (e, props) => { //ENVIO DE DATOS AL BACK
     e.preventDefault();
     if (valido != null) {
         props.onAuth(e.target.elements.username.value, e.target.elements.password.value);
         props.history.push("/ModuloAdministrador"); //Ruta a la cual me redigira si el login es verdadero
     } else {
-        alert("Debes confirmar el captcha antes de iniciar sesión.")
+        alertas()
     }
+}
+
+const alertas = () => {
+    notificaciones.captcha()
 }
 
 function Login(props) {
     const i18n = useTranslation();
-    if ( props.auth.authenticate ){
-        return (<Redirect to="/ModuloAdministrador" />)
-    } 
+    if (props.auth.authenticate == true && props.auth.usuario != 'Revisor') {
+        return (<Redirect to="/ModuloAdministrador" />
+        )
+    } else if (props.auth.usuario === 'Revisor'){
+        return (<Redirect to="/RegistroConsumo" />
+        )
+    }
+
     return (
         <Layout className="layout">
             <div>
@@ -67,11 +81,10 @@ function Login(props) {
                                 <div>
                                     <button type="submit" className="btn btn-success btn-block">{i18n.t('login.login_btn-login')}</button>
                                 </div>
-
                             </form>
                             <div style={{ marginTop: 15 }}>
-                                    <a href='http://127.0.0.1:8000/auth/account/password-reset/'  className="text-decoration-none">{i18n.t('login.login_pass-forget-description')}</a>
-                             </div>
+                                <a href='http://127.0.0.1:8000/auth/account/password-reset/' className="text-decoration-none">{i18n.t('login.login_pass-forget-description')}</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -88,6 +101,7 @@ const mapStateToProps = state => {
         auth: state.reducer
     }
 };
+
 const mapDispatchToProps = dispatch => {
     return {
         onAuth(username, password) {

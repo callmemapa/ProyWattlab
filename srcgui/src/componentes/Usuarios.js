@@ -4,7 +4,9 @@ import React, { Component } from 'react';
 import Table from '../container/Table'
 import ModificarUse from './ModificarUse'
 import BackService from '../store/PeticionesBack';
+import alerta from '../componentes/Alertas';
 const solicitudBack = new BackService();
+const notificaciones = new alerta();
 
 class Usuarios extends Component {
 
@@ -15,8 +17,12 @@ class Usuarios extends Component {
         ).then(res => {
             console.log(res)
             this.solicitud()
+            notificaciones.exito()
         })
-            .catch(error => console.log(error))
+            .catch(error => {
+                console.log(error)
+                notificaciones.error()
+            })
         this.cerrarFormulario()
 
     }
@@ -27,8 +33,12 @@ class Usuarios extends Component {
         ).then(res => {
             console.log(res)
             this.solicitud()
+            notificaciones.exito()
         })
-            .catch(error => console.log(error))
+            .catch(error => {
+                console.log(error)
+                notificaciones.error()
+            })
         this.cerrarFormulario()
     }
 
@@ -90,7 +100,7 @@ class Usuarios extends Component {
         return (
             <React.Fragment>
                 <div className="container pre-scrollable" style={{ marginTop: "10px", maxHeight: "350px", marginBottom: "20px" }}>
-                    <Table t1='Id' t2='Usuaio' t3='Nombre' t4='Apellido' t5='Email' t6='Perfil' t7='Modificar' t8='Estado' tabla='usuario' datos={this.state.datos} modificar={this.modificar} cambiarEstado={this.cambiarEstadoUser} />
+                    <Table t1='Id' t2='Usuario' t3='Nombre' t4='Apellido' t5='Email' t6='Perfil' t7='Modificar' t8='Estado' tabla='usuario' datos={this.state.datos} modificar={this.modificar} cambiarEstado={this.cambiarEstadoUser} />
                 </div>
             </React.Fragment>
         )
