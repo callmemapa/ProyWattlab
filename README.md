@@ -1,4 +1,4 @@
-# WATTLAB 🚀
+# WATTLAB 🚀👽
 Aplicación web para el manejo de usuarios, activos, publicidad y consumo de energía en los hogares de Cali-Colombia 💥.
 ![](srcgui/public/imagenes/logo.png)
 
@@ -12,7 +12,7 @@ virtualenv myvenv
 ```
 
 ## Instalación e inicialización 🔧
-### Backend
+### Backend ⚡
 
 * Primero se debe clonar el repositorio del proyecto en tu dispositivo local (en la misma carpeta donde está el entorno virtual):
 ```
@@ -38,7 +38,7 @@ pip install -r requeriments.txt
 python manage.py runserver
 ```
 
-### Frontend
+### Frontend 🎨
 * Nos ubicamos dentro de la carpeta srcgui:
 ```
 cd srcgui
