@@ -1,15 +1,18 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import Menu from './componentes/Menu';
+import React, { Component, Fragment } from 'react';
+import 'antd/dist/antd.css';
 
-function App() {
-  
-  return (
-    <div className="App">
-      <Menu />
-    </div>
-  );
+import BaseRouter from './routes';
+
+class App extends Component {
+  render() {
+    return (
+      <div>
+        <Fragment>
+          <BaseRouter />
+        </Fragment>
+      </div>
+    );
+  }
 }
 
 export default App;
